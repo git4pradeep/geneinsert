@@ -350,6 +350,62 @@
     </header>
 
     <div class="container">
+        <!-- Contact Section - MOVED TO TOP -->
+        <section class="cta-section">
+            <h2>Interested in Acquiring This Domain?</h2>
+            <p>Get in touch with us today to discuss pricing and acquisition details.</p>
+            <div class="contact-methods">
+                <a href="mailto:pradeep.kothakota@gmail.com?subject=geneinsert.com%20Inquiry" class="btn btn-primary">
+                    📧 Send Email
+                </a>
+                <a href="tel:+1234567890" class="btn btn-secondary" style="display: block;">
+                    Or Call for Details
+                </a>
+            </div>
+            <div style="margin-top: 30px; font-size: 16px;">
+                <p><strong>Contact Email:</strong></p>
+                <p style="font-size: 18px;">pradeep.kothakota@gmail.com</p>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="form-section">
+            <h2>Send Us an Inquiry</h2>
+            <div class="success-message" id="successMessage">
+                ✅ Thank you! Your inquiry has been sent. We'll get back to you shortly.
+            </div>
+            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number (Optional)</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+                </div>
+
+                <div class="form-group">
+                    <label for="organization">Organization / Company (Optional)</label>
+                    <input type="text" id="organization" name="organization" placeholder="Your Company Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required placeholder="Tell us about your interest in this domain..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Submit Inquiry
+                </button>
+            </form>
+        </section>
+
         <!-- Overview Section -->
         <section>
             <h2>About This Domain</h2>
@@ -416,62 +472,6 @@
                     <p>Showcase cutting-edge genetic technology solutions.</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="cta-section">
-            <h2>Interested in Acquiring This Domain?</h2>
-            <p>Get in touch with us today to discuss pricing and acquisition details.</p>
-            <div class="contact-methods">
-                <a href="mailto:pradeep.kothakota@gmail.com?subject=geneinsert.com%20Inquiry" class="btn btn-primary">
-                    📧 Send Email
-                </a>
-                <a href="tel:+1234567890" class="btn btn-secondary" style="display: block;">
-                    Or Call for Details
-                </a>
-            </div>
-            <div style="margin-top: 30px; font-size: 16px;">
-                <p><strong>Contact Email:</strong></p>
-                <p style="font-size: 18px;">pradeep.kothakota@gmail.com</p>
-            </div>
-        </section>
-
-        <!-- Contact Form Section -->
-        <section class="form-section">
-            <h2>Send Us an Inquiry</h2>
-            <div class="success-message" id="successMessage">
-                ✅ Thank you! Your inquiry has been sent. We'll get back to you shortly.
-            </div>
-            <form id="contactForm" onsubmit="handleFormSubmit(event)">
-                <div class="form-group">
-                    <label for="name">Your Name *</label>
-                    <input type="text" id="name" name="name" required placeholder="John Doe">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required placeholder="your@email.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number (Optional)</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
-                </div>
-
-                <div class="form-group">
-                    <label for="organization">Organization / Company (Optional)</label>
-                    <input type="text" id="organization" name="organization" placeholder="Your Company Name">
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Message *</label>
-                    <textarea id="message" name="message" required placeholder="Tell us about your interest in this domain..."></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary" style="width: 100%;">
-                    Submit Inquiry
-                </button>
-            </form>
         </section>
 
         <!-- FAQ Section -->
