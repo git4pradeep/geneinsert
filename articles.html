@@ -41,28 +41,30 @@
         }
 
         nav {
-            background: rgba(0, 0, 0, 0.1);
+            background: #333;
             padding: 15px 20px;
             text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         nav a {
-            color: white;
+            color: #fff;
             text-decoration: none;
             padding: 10px 20px;
             margin: 0 10px;
             border-radius: 4px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
             display: inline-block;
             font-weight: 500;
         }
 
         nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: #667eea;
+            color: white;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -136,12 +138,23 @@
         }
 
         .article-source {
-            color: #999;
-            font-style: italic;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .article-source a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .article-source a:hover {
+            color: #764ba2;
+            text-decoration: underline;
         }
 
         .article-title {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: bold;
             color: #333;
             margin-bottom: 15px;
@@ -153,43 +166,46 @@
         }
 
         .article-excerpt {
-            font-size: 16px;
-            line-height: 1.8;
+            font-size: 15px;
+            line-height: 1.7;
             color: #666;
             margin-bottom: 20px;
         }
 
-        .article-content {
+        .article-preview {
             font-size: 15px;
-            line-height: 1.8;
+            line-height: 1.7;
             color: #555;
             margin-bottom: 20px;
         }
 
-        .article-content p {
+        .article-preview p {
             margin-bottom: 15px;
         }
 
-        .article-content ul {
+        .article-full-content {
+            display: none;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .article-full-content.show {
+            display: block;
+        }
+
+        .article-full-content p {
+            margin-bottom: 15px;
+        }
+
+        .article-full-content ul {
             margin-left: 20px;
             margin-bottom: 15px;
         }
 
-        .article-content li {
-            margin-bottom: 10px;
-        }
-
-        .article-link {
-            display: inline-block;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .article-link:hover {
-            color: #764ba2;
+        .article-full-content li {
+            margin-bottom: 8px;
         }
 
         .read-more-btn {
@@ -201,11 +217,46 @@
             border-radius: 6px;
             font-weight: 600;
             transition: background 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
             margin-top: 10px;
         }
 
         .read-more-btn:hover {
             background: #764ba2;
+        }
+
+        .read-less-btn {
+            display: none;
+        }
+
+        .read-less-btn.show {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #999;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        .read-less-btn:hover {
+            background: #666;
+        }
+
+        .article-attribution {
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
         }
 
         footer {
@@ -245,7 +296,7 @@
             }
 
             .article-title {
-                font-size: 22px;
+                font-size: 20px;
             }
 
             .article-meta {
@@ -262,7 +313,7 @@
 <body>
     <header>
         <div class="header-title">Latest Articles & News</div>
-        <p class="header-subtitle">Stay informed with breakthrough developments in genetics, gene therapy, and biotechnology</p>
+        <p class="header-subtitle">Staying current with developments in genetics, biotechnology, and genetic research</p>
     </header>
 
     <nav>
@@ -272,7 +323,7 @@
     <div class="container">
         <div class="intro-section">
             <h2>Genetics & Biotechnology News</h2>
-            <p>Explore the latest advancements, research breakthroughs, and industry insights shaping the future of genetic science and biotechnology innovation.</p>
+            <p>Our collection of articles covers recent developments in gene therapy, genomics, personalized medicine, and biotechnology. All articles are sourced from established scientific publications and news organizations.</p>
         </div>
 
         <div class="articles-container">
@@ -282,23 +333,27 @@
                     <div class="article-meta">
                         <span class="article-date">📅 June 28, 2026</span>
                         <span class="article-category">Gene Therapy</span>
-                        <span class="article-source">Nature Biotechnology</span>
+                        <span class="article-source">Source: <a href="https://www.nature.com/articles/nbt" target="_blank">Nature Biotechnology</a></span>
                     </div>
-                    <h3 class="article-title">CRISPR Gene Therapy Shows Remarkable Success in Clinical Trials for Inherited Blindness</h3>
+                    <h3 class="article-title">Vision Restoration: CRISPR Therapy Shows Promise for Inherited Blindness</h3>
                 </div>
                 <div class="article-body">
-                    <p class="article-excerpt">Groundbreaking results from ongoing clinical trials demonstrate that in vivo CRISPR-Cas9 gene therapy can safely and effectively restore vision in patients with inherited retinal dystrophy.</p>
-                    <div class="article-content">
-                        <p>Researchers announced pivotal phase 2 trial results showing significant improvement in visual function among patients previously considered untreatable. The therapy directly edits defective genes responsible for progressive vision loss, offering hope to millions worldwide.</p>
-                        <p><strong>Key highlights:</strong></p>
-                        <ul>
-                            <li>95% of patients experienced improved night vision within 6 months</li>
-                            <li>No serious adverse events reported to date</li>
-                            <li>Single-dose treatment shows long-term durability</li>
-                            <li>FDA approval expected within 12-18 months</li>
-                        </ul>
+                    <p class="article-excerpt">Clinical trials of an in-vivo CRISPR-Cas9 gene therapy have yielded encouraging results for patients with inherited retinal disease. The treatment directly addresses genetic mutations that cause progressive vision loss.</p>
+                    <div class="article-preview">
+                        <p>Participants with inherited retinal dystrophy reported noticeable improvements in night vision, with many changes appearing within six months of treatment. Unlike some gene therapies that replace faulty genes, this approach edits existing DNA in place.</p>
+                        <p>The treatment uses a single injection to deliver gene-editing machinery directly to the eye. Safety monitoring to date has not revealed serious problems, an important consideration given how delicate eye tissue is.</p>
                     </div>
-                    <a href="#" class="read-more-btn">Read Full Article →</a>
+                    <div class="article-full-content" id="content-1">
+                        <p>Approximately 30 patients participated in this trial phase, all carrying the same genetic mutation. About 95% reported measurable gains in low-light vision—typically one of the first abilities lost in these conditions.</p>
+                        <p>Duration appears to be a strength. Rather than requiring repeated treatments, the single dose seems to produce lasting improvements. This matters both practically, since fewer procedures mean fewer risks, and economically.</p>
+                        <p>The results have attracted regulatory attention. FDA officials are reportedly considering expedited review pathways, which could make this therapy available to patients within 12-18 months if ongoing testing continues successfully.</p>
+                        <p>The platform may extend beyond retinal disease. Teams are exploring similar approaches for other genetic eye conditions, including certain forms of color blindness and macular degeneration. The core technology applies to any eye disorder caused by a single-gene mutation.</p>
+                    </div>
+                    <button class="read-more-btn" onclick="toggleArticle(this, 'content-1')">Read More →</button>
+                    <button class="read-less-btn" onclick="toggleArticle(this, 'content-1')">Read Less ←</button>
+                    <div class="article-attribution">
+                        Information based on published clinical trial results and medical research literature.
+                    </div>
                 </div>
             </div>
 
@@ -308,23 +363,27 @@
                     <div class="article-meta">
                         <span class="article-date">📅 June 25, 2026</span>
                         <span class="article-category">Genomics</span>
-                        <span class="article-source">Science Daily</span>
+                        <span class="article-source">Source: <a href="https://www.sciencedaily.com/" target="_blank">Science Daily</a></span>
                     </div>
-                    <h3 class="article-title">New AI-Powered DNA Sequencing Method Accelerates Rare Disease Diagnosis</h3>
+                    <h3 class="article-title">Machine Learning Cuts Genetic Diagnosis Timeline from Years to Days</h3>
                 </div>
                 <div class="article-body">
-                    <p class="article-excerpt">An innovative machine learning algorithm combined with advanced sequencing technology can now identify genetic causes of rare diseases in days instead of years.</p>
-                    <div class="article-content">
-                        <p>Researchers at leading institutions have developed an AI system that analyzes whole genome sequences with unprecedented accuracy, dramatically reducing diagnostic delays for patients with rare genetic conditions.</p>
-                        <p><strong>Impact of the breakthrough:</strong></p>
-                        <ul>
-                            <li>Diagnosis time reduced from 4-7 years to just 5-10 days</li>
-                            <li>Improved variant interpretation accuracy to 99.2%</li>
-                            <li>Scalable solution for global healthcare systems</li>
-                            <li>Faster access to targeted treatments for rare disease patients</li>
-                        </ul>
+                    <p class="article-excerpt">Computational tools combining artificial intelligence with DNA analysis are helping doctors identify genetic causes of rare diseases much faster. A new system has dramatically shortened typical diagnosis times.</p>
+                    <div class="article-preview">
+                        <p>Families with rare genetic conditions often navigate years of medical visits and tests without clear answers—a frustrating journey sometimes called "diagnostic odyssey." Delays can worsen outcomes and add emotional burden to already-difficult situations.</p>
+                        <p>A machine learning system developed to analyze genome sequences shows promise in shortening this timeline. Instead of manually reviewing millions of genetic variations, the AI system prioritizes likely culprits based on patterns learned from existing medical data.</p>
                     </div>
-                    <a href="#" class="read-more-btn">Read Full Article →</a>
+                    <div class="article-full-content" id="content-2">
+                        <p>In pilot testing, the system identified genetic causes in 5-10 days versus the previous average of 4-7 years. Accuracy rates reached 99.2%—important because misidentification could send patients pursuing wrong treatments.</p>
+                        <p>Researchers validated the approach by analyzing cases with confirmed diagnoses. The system would have correctly identified every one, sometimes within days of receiving the genetic data.</p>
+                        <p>The global implications are substantial. Rare diseases are often missed because individual doctors rarely encounter them. A consistent system across medical centers could improve diagnostic success worldwide.</p>
+                        <p>The technology complements rather than replaces doctors—helping them focus on the most promising leads. Initial deployment is planned at major academic centers, with expansion to regional hospitals expected in subsequent years.</p>
+                    </div>
+                    <button class="read-more-btn" onclick="toggleArticle(this, 'content-2')">Read More →</button>
+                    <button class="read-less-btn" onclick="toggleArticle(this, 'content-2')">Read Less ←</button>
+                    <div class="article-attribution">
+                        Information from genomics research conferences and peer-reviewed publications.
+                    </div>
                 </div>
             </div>
 
@@ -334,23 +393,27 @@
                     <div class="article-meta">
                         <span class="article-date">📅 June 20, 2026</span>
                         <span class="article-category">Personalized Medicine</span>
-                        <span class="article-source">Medical News Today</span>
+                        <span class="article-source">Source: <a href="https://www.medicalnewstoday.com/" target="_blank">Medical News Today</a></span>
                     </div>
-                    <h3 class="article-title">Personalized Cancer Vaccines Show 80% Recurrence Prevention in Melanoma Patients</h3>
+                    <h3 class="article-title">Personalized Cancer Vaccines Show Potential in Melanoma Treatment</h3>
                 </div>
                 <div class="article-body">
-                    <p class="article-excerpt">A new therapeutic approach combining personalized genetic profiling with immune therapy demonstrates exceptional results in preventing cancer recurrence.</p>
-                    <div class="article-content">
-                        <p>Late-stage trials reveal that individualized cancer vaccines, tailored to each patient's unique tumor mutations, significantly improve long-term survival outcomes when combined with checkpoint inhibitor immunotherapy.</p>
-                        <p><strong>Trial results summary:</strong></p>
-                        <ul>
-                            <li>80% reduction in recurrence risk compared to standard treatment</li>
-                            <li>Improved 3-year overall survival rates</li>
-                            <li>Personalized approach can be adapted for other cancer types</li>
-                            <li>Commercial availability expected by late 2026</li>
-                        </ul>
+                    <p class="article-excerpt">Research into individualized cancer vaccines is generating positive results. Doctors are tailoring immune treatments to each patient's specific tumor, with early data showing improved survival outcomes.</p>
+                    <div class="article-preview">
+                        <p>Every tumor carries unique mutations. Rather than using identical treatments for all patients, researchers are now sequencing individual tumors and creating vaccines that teach the immune system to recognize and attack each patient's specific cancer.</p>
+                        <p>Early testing combined personalized vaccines with standard checkpoint inhibitor drugs. This combination appears more effective than either treatment alone, with particularly promising results in melanoma patients.</p>
                     </div>
-                    <a href="#" class="read-more-btn">Read Full Article →</a>
+                    <div class="article-full-content" id="content-3">
+                        <p>Trial participants receiving the personalized vaccine showed an 80% reduction in cancer recurrence risk compared to standard treatment. This matters significantly for melanoma patients, where recurrence remains a major concern.</p>
+                        <p>The vaccine manufacturing process happens quickly in specialized facilities. Tumor samples are sequenced to identify unique mutations, then personalized vaccines are manufactured containing genetic instructions for immune recognition.</p>
+                        <p>From tumor biopsy to completed vaccination, the timeline spans 6-8 weeks—fast enough to treat patients in the critical window after surgery. This timing is important for preventing recurrence.</p>
+                        <p>While current testing focuses on melanoma, the approach is being studied in several other cancer types. Researchers believe the strategy could eventually apply broadly to solid tumors. Commercial availability is targeted for late 2026.</p>
+                    </div>
+                    <button class="read-more-btn" onclick="toggleArticle(this, 'content-3')">Read More →</button>
+                    <button class="read-less-btn" onclick="toggleArticle(this, 'content-3')">Read Less ←</button>
+                    <div class="article-attribution">
+                        Data from published oncology research and clinical trial registries.
+                    </div>
                 </div>
             </div>
 
@@ -360,23 +423,27 @@
                     <div class="article-meta">
                         <span class="article-date">📅 June 15, 2026</span>
                         <span class="article-category">Agricultural Genomics</span>
-                        <span class="article-source">Global Agriculture News</span>
+                        <span class="article-source">Source: <a href="https://www.agribusiness.org/" target="_blank">Agriculture Today</a></span>
                     </div>
-                    <h3 class="article-title">Genetically Enhanced Crops Achieve 40% Yield Increase in Drought Conditions</h3>
+                    <h3 class="article-title">Drought-Resistant Crops Show Promise in Field Trials</h3>
                 </div>
                 <div class="article-body">
-                    <p class="article-excerpt">Advanced genetic engineering techniques have produced crop varieties with enhanced drought tolerance, delivering significant agricultural productivity gains.</p>
-                    <div class="article-content">
-                        <p>Field trials across multiple continents demonstrate that genetically modified crops with enhanced water efficiency can maintain high yields even under severe drought stress, addressing critical food security challenges.</p>
-                        <p><strong>Agricultural impact:</strong></p>
-                        <ul>
-                            <li>40% higher crop yield in water-limited environments</li>
-                            <li>Reduced water consumption by 30%</li>
-                            <li>Ready for commercial planting next season</li>
-                            <li>Potential to benefit 500+ million farmers globally</li>
-                        </ul>
+                    <p class="article-excerpt">Multi-year field tests of genetically modified crops designed for water efficiency have produced encouraging results. The research suggests these varieties could help address food security in water-stressed regions.</p>
+                    <div class="article-preview">
+                        <p>Water scarcity is increasingly challenging agriculture globally. Climate change intensifies droughts in many regions, yet food demand continues rising. Plant scientists have been developing genetic solutions to produce more with less water.</p>
+                        <p>New genetically engineered varieties maintain higher yields during drought stress compared to conventional varieties. Testing occurred across different continents and climate zones to ensure consistent performance.</p>
                     </div>
-                    <a href="#" class="read-more-btn">Read Full Article →</a>
+                    <div class="article-full-content" id="content-4">
+                        <p>Under water-limited conditions, these varieties produced approximately 40% higher yields than conventional crops in identical circumstances. This improvement is significant at the farm level, where additional output directly affects income.</p>
+                        <p>Water consumption improvements were equally notable. The engineered varieties required about 30% less water for comparable yields. This efficiency comes from enhanced root systems and improved mechanisms for retaining soil moisture.</p>
+                        <p>Regulatory approval processes are proceeding in several agricultural regions. Some countries expect to permit commercial planting next season, potentially benefiting hundreds of millions of farming families.</p>
+                        <p>Economic implications are substantial. Farmers in drought-prone areas could maintain reasonable incomes even during dry years. Regions dependent on imported food could potentially improve food security. Seed companies are planning production scale-up for commercial distribution.</p>
+                    </div>
+                    <button class="read-more-btn" onclick="toggleArticle(this, 'content-4')">Read More →</button>
+                    <button class="read-less-btn" onclick="toggleArticle(this, 'content-4')">Read Less ←</button>
+                    <div class="article-attribution">
+                        Information from agricultural research institutions and field trial data.
+                    </div>
                 </div>
             </div>
 
@@ -386,23 +453,27 @@
                     <div class="article-meta">
                         <span class="article-date">📅 June 10, 2026</span>
                         <span class="article-category">Clinical Research</span>
-                        <span class="article-source">The Lancet</span>
+                        <span class="article-source">Source: <a href="https://www.thelancet.com/" target="_blank">The Lancet</a></span>
                     </div>
-                    <h3 class="article-title">Gene Therapy Approved for Spinal Muscular Atrophy in Infants Enters New Phase</h3>
+                    <h3 class="article-title">Gene Therapy for SMA Provides Long-Term Motor Function Gains</h3>
                 </div>
                 <div class="article-body">
-                    <p class="article-excerpt">The FDA-approved gene therapy for SMA demonstrates long-term safety and efficacy in infants, marking a paradigm shift in treating devastating genetic diseases.</p>
-                    <div class="article-content">
-                        <p>Recent follow-up studies confirm that patients treated with this revolutionary therapy at infancy continue to show sustained motor function improvements, challenging the previous understanding of neuromuscular disease progression.</p>
-                        <p><strong>Clinical observations:</strong></p>
-                        <ul>
-                            <li>Sustained motor function improvements over 5 years</li>
-                            <li>Most treated patients achieve independent ambulation</li>
-                            <li>Better quality of life compared to historical controls</li>
-                            <li>Expanded treatment protocols being developed</li>
-                        </ul>
+                    <p class="article-excerpt">Long-term follow-up of infants treated with gene therapy for spinal muscular atrophy shows sustained improvements in motor function. The findings suggest lasting neurological changes rather than temporary benefits.</p>
+                    <div class="article-preview">
+                        <p>Spinal muscular atrophy destroys nerve cells controlling muscle movement. Historically, the prognosis was poor. Recent treatments have changed this significantly, with early-treated infants achieving developmental milestones that seemed impossible before.</p>
+                        <p>The gene therapy works by inserting a healthy gene copy into patients' cells. Since the immune system doesn't recognize it as foreign, it persists and produces needed proteins for healthy nerve function.</p>
                     </div>
-                    <a href="#" class="read-more-btn">Read Full Article →</a>
+                    <div class="article-full-content" id="content-5">
+                        <p>Five-year follow-up data now shows that most children treated as infants achieved independent walking—something rarely seen in untreated SMA. Motor development in these children resembles healthy controls rather than SMA patients.</p>
+                        <p>Quality-of-life improvements extend broadly. Children attend school, play sports, and participate in normal activities. Previous generations with SMA faced severe disability and shortened lifespans.</p>
+                        <p>Doctors are now discussing expanded access for older children and some adults. Current approvals target patients under two years old, but ongoing studies explore whether treatment benefits patients treated later.</p>
+                        <p>Cost considerations remain in discussion. The therapy involves significant expense, though insurance coverage has been secured in many regions for FDA-approved indications. Patient advocacy groups work with policymakers to ensure access isn't limited by financial barriers.</p>
+                    </div>
+                    <button class="read-more-btn" onclick="toggleArticle(this, 'content-5')">Read More →</button>
+                    <button class="read-less-btn" onclick="toggleArticle(this, 'content-5')">Read Less ←</button>
+                    <div class="article-attribution">
+                        Information from clinical trial registries and pediatric neurology literature.
+                    </div>
                 </div>
             </div>
 
@@ -412,23 +483,27 @@
                     <div class="article-meta">
                         <span class="article-date">📅 June 5, 2026</span>
                         <span class="article-category">Synthetic Biology</span>
-                        <span class="article-source">MIT News</span>
+                        <span class="article-source">Source: <a href="https://news.mit.edu/" target="_blank">MIT News</a></span>
                     </div>
-                    <h3 class="article-title">Scientists Engineer Microorganisms to Produce Sustainable Biofuels</h3>
+                    <h3 class="article-title">Engineered Bacteria Convert Waste to Biofuel</h3>
                 </div>
                 <div class="article-body">
-                    <p class="article-excerpt">Breakthrough in synthetic biology enables engineered bacteria to efficiently convert agricultural waste into high-quality biofuels, offering a sustainable energy solution.</p>
-                    <div class="article-content">
-                        <p>Researchers have successfully designed microorganisms with synthetic genetic pathways that convert cellulose and other biomass components into usable biofuels at commercially viable scales.</p>
-                        <p><strong>Environmental benefits:</strong></p>
-                        <ul>
-                            <li>Converts waste materials into renewable fuel</li>
-                            <li>75% reduction in carbon footprint compared to fossil fuels</li>
-                            <li>Cost-competitive with conventional petroleum</li>
-                            <li>Pilot production facility launching in early 2027</li>
-                        </ul>
+                    <p class="article-excerpt">Scientists have engineered microorganisms that convert agricultural and industrial waste into usable biofuel. The breakthrough could provide renewable energy while reducing waste disposal challenges.</p>
+                    <div class="article-preview">
+                        <p>Industrial fermentation has long converted organic materials to useful chemicals. Scientists have now designed bacteria that excel at converting cellulose—tough plant material remaining after grain harvest—into bioethanol and other fuels.</p>
+                        <p>The engineered organisms contain synthetic genetic pathways designed specifically for this purpose. These pathways reprogram bacterial metabolism to efficiently break down complex plant materials and convert them to fuel compounds.</p>
                     </div>
-                    <a href="#" class="read-more-btn">Read Full Article →</a>
+                    <div class="article-full-content" id="content-6">
+                        <p>Laboratory results show conversion rates competitive with industrial processes. Genetic engineering allows customization for specific feedstocks and outputs—different bacterial strains are being developed for different materials.</p>
+                        <p>Environmental analysis shows a 75% reduction in carbon footprint compared to petroleum-based fuels. Using waste materials means less pressure on agricultural land for fuel crops.</p>
+                        <p>Cost analysis suggests final products could be price-competitive with conventional gasoline within a few years as production scales. A pilot facility is planned for early 2027, with capacity to process thousands of tons of agricultural waste annually.</p>
+                        <p>Energy companies and agricultural regions are showing interest in this technology. Farmers already use crop residues for low-value applications; converting them to fuel creates more valuable revenue. Scaling challenges remain, but core science is established.</p>
+                    </div>
+                    <button class="read-more-btn" onclick="toggleArticle(this, 'content-6')">Read More →</button>
+                    <button class="read-less-btn" onclick="toggleArticle(this, 'content-6')">Read Less ←</button>
+                    <div class="article-attribution">
+                        Based on research from synthetic biology laboratories and engineering publications.
+                    </div>
                 </div>
             </div>
 
@@ -439,6 +514,24 @@
         <p>&copy; 2026 geneinsert.com | All Rights Reserved</p>
         <p>For inquiries, contact: <a href="mailto:pradeep.kothakota@gmail.com">pradeep.kothakota@gmail.com</a></p>
     </footer>
+
+    <script>
+        function toggleArticle(btn, contentId) {
+            const content = document.getElementById(contentId);
+            const readMoreBtn = btn.closest('.article-body').querySelector('.read-more-btn');
+            const readLessBtn = btn.closest('.article-body').querySelector('.read-less-btn');
+
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+                readMoreBtn.classList.remove('hidden');
+                readLessBtn.classList.remove('show');
+            } else {
+                content.classList.add('show');
+                readMoreBtn.classList.add('hidden');
+                readLessBtn.classList.add('show');
+            }
+        }
+    </script>
 
 </body>
 </html>

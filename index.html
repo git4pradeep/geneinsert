@@ -236,24 +236,26 @@
 
 
         nav {
-            background: rgba(0, 0, 0, 0.1);
+            background: #333;
             padding: 15px 20px;
             text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         nav a {
-            color: white;
+            color: #fff;
             text-decoration: none;
             padding: 10px 20px;
             margin: 0 10px;
             border-radius: 4px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
             display: inline-block;
             font-weight: 500;
         }
 
         nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: #667eea;
+            color: white;
         }
 
         @media (max-width: 768px) {
