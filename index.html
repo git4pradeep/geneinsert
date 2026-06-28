@@ -235,6 +235,27 @@
         }
 
 
+        nav {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         @media (max-width: 768px) {
             section {
                 padding: 30px 20px;
@@ -255,6 +276,11 @@
             .cta-section h2 {
                 font-size: 28px;
             }
+
+            nav a {
+                display: block;
+                margin: 8px 0;
+            }
         }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6652166563004001"
@@ -268,10 +294,16 @@
         <p class="subtitle">Your Gateway to Genetic Innovation</p>
     </header>
 
+    <nav>
+        <a href="#overview">About</a>
+        <a href="articles.html">📰 Latest Articles</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
     <div class="container">
 
         <!-- Contact Section -->
-        <section class="cta-section">
+        <section id="contact" class="cta-section">
             <h2>Interested in Acquiring This Domain?</h2>
             <p>Get in touch with us today to discuss pricing and acquisition details.</p>
             <div style="margin-top: 30px; font-size: 16px;">
@@ -281,7 +313,7 @@
         </section>
 
         <!-- Overview Section -->
-        <section>
+        <section id="overview">
             <h2>About This Domain</h2>
             <p>
                 <strong>geneinsert.com</strong> is a premium, brandable domain perfectly suited for businesses and organizations
