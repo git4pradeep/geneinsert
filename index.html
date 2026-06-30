@@ -24,16 +24,48 @@
         header {
             background: #1a1a1a;
             color: white;
-            padding: 30px 20px;
-            text-align: center;
+            padding: 15px 40px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
         }
 
         .domain-name {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 0;
             word-break: break-word;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 14px;
+        }
+
+        .header-nav a:hover {
+            text-decoration: underline;
+            color: white;
         }
 
         .badge {
@@ -242,26 +274,7 @@
 
 
         nav {
-            background: #0f0f0f;
-            padding: 15px 20px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 4px;
-            transition: background 0.3s ease, color 0.3s ease;
-            display: inline-block;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-            color: white;
+            display: none;
         }
 
         @media (max-width: 768px) {
@@ -270,7 +283,7 @@
             }
 
             .domain-name {
-                font-size: 20px;
+                font-size: 18px;
             }
 
             section h2 {
@@ -278,16 +291,29 @@
             }
 
             header {
-                padding: 20px 20px;
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-left {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .header-nav {
+                width: 100%;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 24px;
             }
 
             .cta-section h2 {
                 font-size: 28px;
-            }
-
-            nav a {
-                display: block;
-                margin: 8px 0;
             }
         }
     </style>
@@ -297,16 +323,16 @@
 </head>
 <body>
     <header>
-        <div class="domain-name">geneinsert.com</div>
-        <div class="badge">🌟 Premium Domain For Sale</div>
-        <p class="subtitle">Your Gateway to Genetic Innovation</p>
+        <div class="header-left">
+            <div class="logo">🧬</div>
+            <div class="domain-name">GeneInsert</div>
+        </div>
+        <nav class="header-nav">
+            <a href="#overview">About</a>
+            <a href="articles.html">📰 Latest Articles</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
-
-    <nav>
-        <a href="#overview">About</a>
-        <a href="articles.html">📰 Latest Articles</a>
-        <a href="#contact">Contact</a>
-    </nav>
 
     <div class="container">
 

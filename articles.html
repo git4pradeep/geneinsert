@@ -24,15 +24,47 @@
         header {
             background: #1a1a1a;
             color: white;
-            padding: 30px 20px;
-            text-align: center;
+            padding: 15px 40px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
         }
 
         .header-title {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 0;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 14px;
+        }
+
+        .header-nav a:hover {
+            text-decoration: underline;
+            color: white;
         }
 
         .header-subtitle {
@@ -40,27 +72,8 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        nav {
-            background: #0f0f0f;
-            padding: 15px 20px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 4px;
-            transition: background 0.3s ease, color 0.3s ease;
-            display: inline-block;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-            color: white;
+        nav.old-nav {
+            display: none;
         }
 
         .container {
@@ -284,6 +297,28 @@
         }
 
         @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-left {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .header-nav {
+                width: 100%;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
             .header-title {
                 font-size: 20px;
             }
@@ -294,11 +329,6 @@
 
             .intro-section h2 {
                 font-size: 24px;
-            }
-
-            nav a {
-                display: block;
-                margin: 8px 0;
             }
 
             .article-title {
@@ -318,13 +348,15 @@
 </head>
 <body>
     <header>
-        <div class="header-title">Latest Articles & News</div>
-        <p class="header-subtitle">Staying current with developments in genetics, biotechnology, and genetic research</p>
+        <div class="header-left">
+            <div class="logo">🧬</div>
+            <div class="header-title">Latest Articles</div>
+        </div>
+        <nav class="header-nav">
+            <a href="index.html">← Home</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
     </header>
-
-    <nav>
-        <a href="index.html">← Back to Home</a>
-    </nav>
 
     <div class="container">
         <div class="intro-section">
