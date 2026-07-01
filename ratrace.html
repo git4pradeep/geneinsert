@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏁 Rat Race - Accountability Challenge</title>
+    <title>⚡ Momentum - 21-Day Challenge</title>
     <style>
         * {
             margin: 0;
@@ -980,6 +980,169 @@
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
 
+        /* ========== Error Modal ========== */
+        #error-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #error-modal.show {
+            display: flex;
+        }
+
+        .error-modal-content {
+            background: #1a1a1a;
+            border: 3px solid #ef4444;
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .error-modal-content h2 {
+            color: #ef4444;
+            margin: 0 0 20px 0;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error-modal-content .error-message {
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #b0b0b0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+
+        .error-modal-content .error-solution {
+            background: #2a2a2a;
+            border-left: 4px solid #22c55e;
+            border-radius: 4px;
+            padding: 16px;
+            margin-bottom: 20px;
+            color: #b0b0b0;
+        }
+
+        .error-modal-content .error-solution h3 {
+            color: #22c55e;
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+
+        .error-modal-content .error-solution p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .error-modal-content .error-solution a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .error-modal-content .error-solution a:hover {
+            text-decoration: underline;
+        }
+
+        .error-modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .error-modal-buttons button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .close-error-btn {
+            background: #3a3a3a;
+            color: #ffffff;
+            flex: 1;
+            cursor: pointer;
+            position: relative;
+            z-index: 3001;
+        }
+
+        .close-error-btn:hover {
+            background: #4a4a4a !important;
+            transform: translateY(-2px);
+        }
+
+        .close-error-btn:active {
+            transform: translateY(0);
+        }
+
+        .copy-error-btn {
+            background: #3b82f6;
+            color: #ffffff;
+            flex: 1;
+            cursor: pointer;
+            position: relative;
+            z-index: 3001;
+        }
+
+        .copy-error-btn:hover {
+            background: #2563eb !important;
+            transform: translateY(-2px);
+        }
+
+        .copy-error-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ========== Debug Panel ========== */
+        #debug-panel {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            width: 400px;
+            max-height: 300px;
+            background: #1a1a1a;
+            border: 2px solid #f97316;
+            border-radius: 8px;
+            padding: 16px;
+            z-index: 2999;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 11px;
+        }
+
+        #debug-panel h4 {
+            color: #f97316;
+            margin: 0 0 12px 0;
+            font-size: 12px;
+        }
+
+        #debug-panel .debug-log {
+            color: #b0b0b0;
+            line-height: 1.4;
+        }
+
+        #debug-panel .debug-log .error {
+            color: #ef4444;
+        }
+
         /* ========== Toast Notifications ========== */
         .toast {
             position: fixed;
@@ -1099,7 +1262,7 @@
     <header>
         <div class="header-left">
             <div class="logo">🧬</div>
-            <div class="header-title">🏁 Rat Race Season 1</div>
+            <div class="header-title">⚡ Momentum Season 1</div>
         </div>
         <nav class="header-nav">
             <a href="index.html">← Home</a>
@@ -1114,11 +1277,11 @@
         <div id="login-screen">
             <!-- Left Info Panel -->
             <div class="login-info">
-                <h2>🏁 Rat Race</h2>
-                <p><strong>An Accountability Challenge for Personal Growth</strong></p>
+                <h2>⚡ Momentum</h2>
+                <p><strong>A 21-Day Challenge for Personal Growth</strong></p>
 
-                <h3>🎯 What is Rat Race?</h3>
-                <p>Rat Race is a 21-day competitive accountability challenge where friends commit to daily goals and track their progress. It's designed to push you to be your best self through friendly competition and mutual support.</p>
+                <h3>🎯 What is Momentum?</h3>
+                <p>Momentum is a 21-day accountability challenge where friends commit to daily goals and track their progress. It's designed to push you to be your best self through friendly competition, mutual support, and consistent daily wins.</p>
 
                 <h3>📋 How It Works</h3>
                 <ul>
@@ -1141,13 +1304,13 @@
                 </ul>
 
                 <h3>✨ Why Join?</h3>
-                <p>Challenge yourself, stay accountable to friends, and build better habits in 21 days. Whether it's fitness, learning, work projects, or personal goals—this is your arena.</p>
+                <p>Challenge yourself, stay accountable to friends, and build better habits in 21 days. Whether it's fitness, learning, work projects, or personal goals—this is your moment to build momentum and make real progress.</p>
             </div>
 
             <!-- Right Login Card -->
             <div class="login-card">
-                <h2>🏁 Rat Race</h2>
-                <p style="color: #b0b0b0; margin-bottom: 30px;">21-day accountability challenge</p>
+                <h2>⚡ Momentum</h2>
+                <p style="color: #b0b0b0; margin-bottom: 30px;">Build your 21-day streak</p>
 
                 <!-- Tab Buttons -->
                 <div class="login-tabs">
@@ -1186,7 +1349,7 @@
         <div id="not-invited-screen">
             <div class="not-invited-card">
                 <h2>❌ Not Invited</h2>
-                <p>You're not invited to Rat Race Season 1. Ask the admin for an invite!</p>
+                <p>You're not invited to Momentum Season 1. Ask the admin for an invite!</p>
                 <button onclick="handleSignOut()">Sign Out</button>
             </div>
         </div>
@@ -1194,7 +1357,7 @@
         <!-- ========== APP SCREEN ========== -->
         <div id="app">
             <div class="app-header">
-                <h2>🏁 Rat Race Season 1</h2>
+                <h2>⚡ Momentum Season 1</h2>
             </div>
 
             <!-- Season Banner -->
@@ -1251,7 +1414,7 @@
 
                     <!-- Post Section -->
                     <div class="post-section">
-                        <h3>✍️ Today's Post</h3>
+                        <h3>✍️ Today's Posts</h3>
                         <div style="background: #2a2a2a; border: 1px solid #3a3a3a; border-radius: 8px; padding: 12px; margin-bottom: 20px; border-left: 3px solid #f97316;">
                             <p style="color: #f97316; font-size: 12px; font-weight: 600; margin: 0 0 4px 0;">⚠️ Privacy Notice</p>
                             <p style="color: #b0b0b0; font-size: 13px; margin: 0;">Do not share personal details like phone numbers, addresses, or passwords. Keep posts focused on your achievements and goals.</p>
@@ -1288,9 +1451,9 @@
 
                     <!-- Community Feed -->
                     <div class="feed">
-                        <h3>💬 Today's Posts</h3>
+                        <h3>💬 All Community Posts</h3>
                         <div id="feed-container">
-                            <div class="feed-empty">No posts yet today. Be the first! 🚀</div>
+                            <div class="feed-empty">No posts yet. Be the first! 🚀</div>
                         </div>
                     </div>
                 </div>
@@ -1328,7 +1491,7 @@
         <div class="winner-card">
             <div class="winner-emoji">🏆</div>
             <h2 id="winner-name">Champion Name</h2>
-            <p>wins Rat Race Season 1!</p>
+            <p>wins Momentum Season 1!</p>
             <div class="winner-score" id="winner-score">100 points</div>
         </div>
     </div>
@@ -1336,8 +1499,30 @@
     <!-- Confetti Container -->
     <div id="confetti-container"></div>
 
+    <!-- Error Modal -->
+    <div id="error-modal">
+        <div class="error-modal-content">
+            <h2>
+                <span>❌</span>
+                <span>Error Occurred</span>
+            </h2>
+            <div class="error-message" id="error-message-text"></div>
+            <div class="error-solution" id="error-solution"></div>
+            <div class="error-modal-buttons">
+                <button class="copy-error-btn" type="button">📋 Copy Error</button>
+                <button class="close-error-btn" type="button">✕ Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Debug Panel -->
+    <div id="debug-panel">
+        <h4>🐛 Debug Log (Press Ctrl+` to toggle)</h4>
+        <div class="debug-log" id="debug-log"></div>
+    </div>
+
     <footer>
-        <p>&copy; 2026 Rat Race Season 1 — An accountability challenge by <a href="mailto:pradeep.kothakota@gmail.com">Pradeep Kothakota</a></p>
+        <p>&copy; 2026 Momentum Season 1 — A 21-day challenge by <a href="mailto:pradeep.kothakota@gmail.com">Pradeep Kothakota</a></p>
     </footer>
 
     <script type="module">
@@ -1380,6 +1565,33 @@
         let unsubscribers = [];
         let winnerShown = false;
 
+        // Global error handler
+        window.addEventListener('error', (event) => {
+            const timestamp = new Date().toLocaleTimeString();
+            const errorMsg = `${event.message} at ${event.filename}:${event.lineno}`;
+            console.error(`[UNCAUGHT ERROR ${timestamp}]`, errorMsg, event.error);
+            errorLog.push(`[${timestamp}] ❌ UNCAUGHT: ${errorMsg}`);
+            updateDebugPanel();
+
+            if (event.message.includes('requires an index')) {
+                showErrorModal(event.message, '<p>Firestore index required. Check the error message for a link to create it.</p>');
+            }
+        });
+
+        window.addEventListener('unhandledrejection', (event) => {
+            const timestamp = new Date().toLocaleTimeString();
+            const errorMsg = event.reason?.message || String(event.reason);
+            console.error(`[UNHANDLED REJECTION ${timestamp}]`, errorMsg, event.reason);
+            errorLog.push(`[${timestamp}] ❌ REJECTED: ${errorMsg}`);
+            updateDebugPanel();
+
+            if (errorMsg.includes('requires an index')) {
+                showErrorModal(errorMsg, '<p>Firestore index required. Check the error message for a link to create it.</p>');
+            } else {
+                showToast(`Error: ${errorMsg}`, 'error');
+            }
+        });
+
         // ========== UTILITY FUNCTIONS ==========
         function getTodayDate() {
             const d = new Date();
@@ -1416,12 +1628,92 @@
             document.getElementById('signout-btn').style.display = screenName === 'app' ? 'block' : 'none';
         }
 
+        let errorLog = [];
+        let lastError = null;
+
+        function showErrorModal(errorMessage, solution = null) {
+            lastError = errorMessage;
+            document.getElementById('error-message-text').textContent = errorMessage;
+
+            const solutionDiv = document.getElementById('error-solution');
+            if (solution) {
+                solutionDiv.innerHTML = `<h3>💡 How to Fix:</h3>${solution}`;
+                solutionDiv.style.display = 'block';
+            } else {
+                solutionDiv.style.display = 'none';
+            }
+
+            document.getElementById('error-modal').classList.add('show');
+            console.error('ERROR MODAL SHOWN:', errorMessage);
+        }
+
+        function closeErrorModal() {
+            console.log('Closing error modal...');
+            const modal = document.getElementById('error-modal');
+            if (modal) {
+                modal.classList.remove('show');
+                console.log('Error modal closed');
+            }
+        }
+
+        function copyErrorToClipboard() {
+            if (lastError) {
+                navigator.clipboard.writeText(lastError).then(() => {
+                    showToast('Error copied to clipboard! ✓', 'success');
+                }).catch(() => {
+                    // Fallback
+                    const textarea = document.createElement('textarea');
+                    textarea.value = lastError;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    showToast('Error copied to clipboard! ✓', 'success');
+                });
+            }
+        }
+
+        function updateDebugPanel() {
+            const logDiv = document.getElementById('debug-log');
+            if (logDiv) {
+                logDiv.innerHTML = errorLog.map(msg => {
+                    const isError = msg.includes('Error') || msg.includes('UNCAUGHT') || msg.includes('REJECTED');
+                    return `<div ${isError ? 'class="error"' : ''}>${escapeHtml(msg)}</div>`;
+                }).join('');
+                logDiv.scrollTop = logDiv.scrollHeight;
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
         function showToast(message, type = 'info') {
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
             toast.textContent = message;
             document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+
+            if (type === 'error') {
+                const timestamp = new Date().toLocaleTimeString();
+                errorLog.push(`[${timestamp}] ${message}`);
+                console.error(`[${timestamp}] ${message}`);
+                updateDebugPanel();
+            }
+
+            setTimeout(() => toast.remove(), 5000);
+        }
+
+        function logError(context, error) {
+            const timestamp = new Date().toLocaleTimeString();
+            const errorMsg = `${context}: ${error.message || error}`;
+            console.error(`[${timestamp}] ${errorMsg}`);
+            console.error('Full error:', error);
+            errorLog.push(`[${timestamp}] ${errorMsg}`);
+            updateDebugPanel();
+            return errorMsg;
         }
 
         function formatPostText(text) {
@@ -1481,7 +1773,7 @@
                 );
 
                 if (invitesSnap.empty) {
-                    errorDiv.textContent = '❌ You are not invited to Rat Race. Ask the admin for an invite!';
+                    errorDiv.textContent = '❌ You are not invited to Momentum. Ask the admin for an invite!';
                     return;
                 }
 
@@ -1646,7 +1938,7 @@
 
         function subscribeToTodaysFeed(callback) {
             return onSnapshot(
-                query(collection(db, 'posts'), where('date', '==', getTodayDate()), orderBy('createdAt', 'desc')),
+                query(collection(db, 'posts'), orderBy('date', 'desc'), orderBy('createdAt', 'desc')),
                 callback
             );
         }
@@ -1658,9 +1950,9 @@
         // ========== POST FUNCTIONS ==========
         async function getUserPostToday(uid) {
             const snap = await getDocs(
-                query(collection(db, 'posts'), where('date', '==', getTodayDate()), where('uid', '==', uid))
+                query(collection(db, 'posts'), where('date', '==', getTodayDate()), where('uid', '==', uid), orderBy('createdAt', 'desc'))
             );
-            return snap.empty ? null : snap.docs[0].data();
+            return snap.empty ? null : snap.docs.map(d => d.data());
         }
 
         document.getElementById('post-text').addEventListener('input', (e) => {
@@ -1717,33 +2009,41 @@
                 return;
             }
 
-            if (!currentUser) return;
+            if (!currentUser) {
+                showToast('Not logged in', 'error');
+                return;
+            }
 
             btn.disabled = true;
             btn.textContent = 'Posting...';
 
             try {
+                console.log('1. Fetching member data...');
                 const memberSnap = await getDoc(doc(db, 'members', currentUser.uid));
+                if (!memberSnap.exists()) {
+                    throw new Error('Member document not found');
+                }
                 const member = memberSnap.data();
+                console.log('2. Member data fetched:', member);
 
                 if (!member.isActive) {
                     showToast('You have been eliminated', 'error');
                     return;
                 }
 
-                const existing = await getUserPostToday(currentUser.uid);
-                if (existing) {
-                    showToast('You already posted today', 'error');
-                    return;
-                }
-
+                console.log('3. Fetching season data...');
                 const seasonSnap = await getDoc(doc(db, 'seasons', 'season1'));
+                if (!seasonSnap.exists()) {
+                    throw new Error('Season document not found');
+                }
                 const season = seasonSnap.data();
                 if (!season || season.status !== 'active') {
                     showToast('Season is not active', 'error');
                     return;
                 }
+                console.log('4. Season status:', season.status);
 
+                console.log('5. Creating post...');
                 await addDoc(collection(db, 'posts'), {
                     uid: currentUser.uid,
                     displayName: member.displayName,
@@ -1751,13 +2051,45 @@
                     date: getTodayDate(),
                     createdAt: serverTimestamp()
                 });
+                console.log('6. Post created successfully');
 
                 document.getElementById('post-text').value = '';
                 document.getElementById('char-count').textContent = '0';
                 showToast('Post submitted! 🎉', 'success');
+
+                console.log('7. Checking early bird badge...');
                 await checkEarlyBirdBadge(currentUser.uid);
+                console.log('8. Early bird check complete');
             } catch (err) {
-                showToast('Error posting: ' + err.message, 'error');
+                const errorMsg = logError('handlePostSubmit', err);
+                const fullError = err.message || String(err);
+
+                // Check for specific error types
+                if (fullError.includes('requires an index')) {
+                    const solution = `<p>Firestore is asking for a composite index. This link should appear in the error below:</p>
+                    <p style="margin-top: 12px; padding: 12px; background: #1a1a1a; border-radius: 4px; border: 1px solid #3a3a3a;">
+                        ${err.message}
+                    </p>
+                    <p style="margin-top: 12px;">
+                        ✅ Click the link in the error message above to create the index automatically, OR<br>
+                        ✅ Go to <a href="https://console.firebase.google.com/project/geneinsert/firestore/indexes" target="_blank">Firebase Console → Firestore → Indexes</a>
+                    </p>`;
+                    showErrorModal(fullError, solution);
+                } else if (fullError.includes('Missing or insufficient permissions')) {
+                    const solution = `<p>Your Firestore security rules need to be updated.</p>
+                    <p>Go to <a href="https://console.firebase.google.com/project/geneinsert/firestore/rules" target="_blank">Firebase Console → Firestore → Rules</a> and ensure rules allow authenticated users to read/write posts.</p>`;
+                    showErrorModal(fullError, solution);
+                } else if (fullError.includes('not-found')) {
+                    const solution = `<p>A required document or collection is missing:</p>
+                    <p>• Make sure you've started a season (in Admin Panel)<br>
+                    • Make sure your member document exists<br>
+                    • Check that the seasons/season1 document exists</p>`;
+                    showErrorModal(fullError, solution);
+                } else {
+                    showErrorModal(fullError, `<p>Full error: ${escapeHtml(err.stack || err.toString())}</p>`);
+                }
+
+                showToast('Error posting (see error dialog)', 'error');
             } finally {
                 btn.disabled = false;
                 btn.textContent = 'Post';
@@ -1765,17 +2097,26 @@
         }
 
         async function checkEarlyBirdBadge(uid) {
-            const snap = await getDocs(
-                query(collection(db, 'posts'), where('date', '==', getTodayDate()))
-            );
-            if (snap.size === 1 && snap.docs[0].data().uid === uid) {
-                const memberRef = doc(db, 'members', uid);
-                const member = await getDoc(memberRef);
-                const badges = new Set(member.data().badges || []);
-                if (!badges.has('early_bird')) {
-                    badges.add('early_bird');
-                    await updateDoc(memberRef, { badges: Array.from(badges) });
+            try {
+                console.log('Checking early bird badge for:', uid);
+                const snap = await getDocs(
+                    query(collection(db, 'posts'), where('date', '==', getTodayDate()), orderBy('createdAt', 'asc'))
+                );
+                console.log('Posts found for today:', snap.size);
+
+                if (snap.size > 0 && snap.docs[0].data().uid === uid) {
+                    console.log('User is first to post today!');
+                    const memberRef = doc(db, 'members', uid);
+                    const member = await getDoc(memberRef);
+                    const badges = new Set(member.data().badges || []);
+                    if (!badges.has('early_bird')) {
+                        badges.add('early_bird');
+                        await updateDoc(memberRef, { badges: Array.from(badges) });
+                        console.log('Early bird badge awarded!');
+                    }
                 }
+            } catch (err) {
+                logError('checkEarlyBirdBadge', err);
             }
         }
 
@@ -2121,25 +2462,48 @@
         function renderCommunityFeed(posts) {
             const container = document.getElementById('feed-container');
             if (!posts.length) {
-                container.innerHTML = '<div class="feed-empty">No posts yet today. Be the first! 🚀</div>';
+                container.innerHTML = '<div class="feed-empty">No posts yet. Be the first! 🚀</div>';
                 return;
             }
 
-            container.innerHTML = '<div class="feed-list">' + posts.map(p => {
-                const icons = detectActivityIcons(p.text).join(' ');
-                const time = formatTime(p.createdAt);
-                const formattedText = formatPostText(p.text);
-                return `
-                    <div class="feed-item">
-                        <div class="feed-header">
-                            <div class="feed-name">${p.displayName}</div>
-                            <div class="feed-time">${time}</div>
+            const today = getTodayDate();
+            const postsByDate = {};
+
+            posts.forEach(p => {
+                if (!postsByDate[p.date]) {
+                    postsByDate[p.date] = [];
+                }
+                postsByDate[p.date].push(p);
+            });
+
+            let html = '<div class="feed-list">';
+
+            const sortedDates = Object.keys(postsByDate).sort().reverse();
+            for (const date of sortedDates) {
+                const dateLabel = date === today ? 'Today' : new Date(date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                html += `<div style="padding: 16px 0; border-top: 1px solid #3a3a3a; margin-top: 16px; margin-bottom: 8px;">
+                    <div style="color: #6b7280; font-size: 12px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">${dateLabel}</div>
+                </div>`;
+
+                for (const p of postsByDate[date]) {
+                    const icons = detectActivityIcons(p.text).join(' ');
+                    const time = formatTime(p.createdAt);
+                    const formattedText = formatPostText(p.text);
+                    html += `
+                        <div class="feed-item">
+                            <div class="feed-header">
+                                <div class="feed-name">${p.displayName}</div>
+                                <div class="feed-time">${time}</div>
+                            </div>
+                            <div class="feed-content" style="white-space: pre-wrap;">${formattedText}</div>
+                            ${icons ? `<div class="activity-icons">${icons}</div>` : ''}
                         </div>
-                        <div class="feed-content" style="white-space: pre-wrap;">${formattedText}</div>
-                        ${icons ? `<div class="activity-icons">${icons}</div>` : ''}
-                    </div>
-                `;
-            }).join('') + '</div>';
+                    `;
+                }
+            }
+
+            html += '</div>';
+            container.innerHTML = html;
         }
 
         function renderPersonalStats(member) {
@@ -2181,14 +2545,24 @@
                 return;
             }
 
-            const existing = await getUserPostToday(currentUser.uid);
-            if (existing) {
-                const formattedText = formatPostText(existing.text);
-                document.getElementById('posted-content').textContent = formattedText;
-                document.getElementById('posted-content').style.whiteSpace = 'pre-wrap';
+            form.style.display = 'block';
+
+            const existingPosts = await getUserPostToday(currentUser.uid);
+            if (existingPosts && existingPosts.length > 0) {
+                const postsHtml = existingPosts.map((post, idx) => {
+                    const formattedText = formatPostText(post.text);
+                    const time = formatTime(post.createdAt);
+                    return `<div style="background: #2a2a2a; border: 1px solid #3a3a3a; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                            <div style="color: #22c55e; font-weight: 600; font-size: 14px;">✓ Post ${idx + 1}</div>
+                            <div style="color: #6b7280; font-size: 12px;">${time}</div>
+                        </div>
+                        <div class="post-content" style="color: #b0b0b0; font-size: 15px; line-height: 1.6; white-space: pre-wrap;">${formattedText}</div>
+                    </div>`;
+                }).join('');
+
+                document.getElementById('posted-content').innerHTML = postsHtml;
                 posted.style.display = 'block';
-            } else {
-                form.style.display = 'block';
             }
         }
 
@@ -2301,6 +2675,62 @@
                     renderPersonalStats(snap.data());
                 }
             }));
+        });
+
+        // ========== MODAL & KEYBOARD SHORTCUTS ==========
+        document.addEventListener('keydown', (e) => {
+            // Close error modal with Escape
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('error-modal');
+                if (modal && modal.classList.contains('show')) {
+                    closeErrorModal();
+                }
+            }
+
+            // Toggle debug panel with Ctrl+`
+            if (e.ctrlKey && e.key === '`') {
+                e.preventDefault();
+                const panel = document.getElementById('debug-panel');
+                if (panel) {
+                    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+                    updateDebugPanel();
+                }
+            }
+        });
+
+        // Setup button click handlers
+        document.addEventListener('DOMContentLoaded', () => {
+            const closeBtn = document.querySelector('.close-error-btn');
+            const copyBtn = document.querySelector('.copy-error-btn');
+            const modal = document.getElementById('error-modal');
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Close button clicked');
+                    closeErrorModal();
+                });
+            }
+
+            if (copyBtn) {
+                copyBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Copy button clicked');
+                    copyErrorToClipboard();
+                });
+            }
+
+            // Close modal when clicking outside the content
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        console.log('Clicked outside modal, closing...');
+                        closeErrorModal();
+                    }
+                });
+            }
         });
 
         // ========== EVENT LISTENERS ==========
