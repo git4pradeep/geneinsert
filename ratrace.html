@@ -94,73 +94,88 @@
         #login-screen {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
+            gap: 30px;
+            align-items: flex-start;
             min-height: calc(100vh - 120px);
             background: #0f0f0f;
-            padding: 40px;
+            padding: 30px 40px;
+            padding-top: 20px;
         }
 
         .login-info {
-            padding: 40px;
+            padding: 0;
+            overflow-y: auto;
+            max-height: calc(100vh - 180px);
+            padding-right: 20px;
         }
 
         .login-info h2 {
-            font-size: 36px;
+            font-size: 28px;
             color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
 
         .login-info h3 {
-            font-size: 18px;
+            font-size: 14px;
             color: #22c55e;
-            margin-top: 24px;
-            margin-bottom: 12px;
+            margin-top: 14px;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .login-info p {
             color: #b0b0b0;
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 16px;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 10px;
         }
 
         .login-info ul {
             color: #b0b0b0;
-            font-size: 15px;
-            line-height: 1.8;
-            margin-left: 20px;
-            margin-bottom: 16px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-left: 18px;
+            margin-bottom: 10px;
+            padding: 0;
         }
 
         .login-info li {
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .login-card {
             background: #1a1a1a;
             border: 1px solid #2a2a2a;
             border-radius: 12px;
-            padding: 50px;
+            padding: 20px;
             width: 100%;
             text-align: center;
+            height: fit-content;
+            margin-top: 0;
+            max-width: 320px;
         }
 
         .login-card h2 {
-            font-size: 32px;
+            font-size: 20px;
             color: #ffffff;
-            margin-bottom: 30px;
+            margin-bottom: 4px;
+        }
+
+        .login-card > p {
+            font-size: 11px;
+            color: #6b7280;
+            margin-bottom: 14px !important;
         }
 
         .login-card input {
             width: 100%;
-            padding: 14px 16px;
-            margin-bottom: 16px;
+            padding: 8px 10px;
+            margin-bottom: 10px;
             background: #2a2a2a;
             border: 1px solid #3a3a3a;
             border-radius: 6px;
             color: #ffffff;
-            font-size: 15px;
+            font-size: 13px;
         }
 
         .login-card input::placeholder {
@@ -174,23 +189,23 @@
 
         .login-tabs {
             display: flex;
-            gap: 12px;
-            margin-bottom: 30px;
+            gap: 6px;
+            margin-bottom: 14px;
             border-bottom: 1px solid #3a3a3a;
-            padding-bottom: 16px;
+            padding-bottom: 8px;
         }
 
         .login-tab-btn {
             flex: 1;
-            padding: 12px;
+            padding: 6px;
             background: #2a2a2a;
             color: #b0b0b0;
             border: none;
-            border-radius: 6px 6px 0 0;
+            border-radius: 4px 4px 0 0;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 14px;
+            font-size: 11px;
         }
 
         .login-tab-btn.active {
@@ -205,13 +220,13 @@
         .login-card button[type="submit"],
         .login-card .submit-btn {
             width: 100%;
-            padding: 14px;
+            padding: 8px;
             background: #ffffff;
             color: #1a1a1a;
             border: none;
             border-radius: 6px;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 12px;
             cursor: pointer;
             transition: background 0.3s;
         }
@@ -263,8 +278,8 @@
 
         #login-error {
             color: #ef4444;
-            font-size: 14px;
-            margin-top: 16px;
+            font-size: 12px;
+            margin-top: 10px;
         }
 
         /* ========== Not Invited Screen ========== */
@@ -1237,6 +1252,10 @@
                     <!-- Post Section -->
                     <div class="post-section">
                         <h3>✍️ Today's Post</h3>
+                        <div style="background: #2a2a2a; border: 1px solid #3a3a3a; border-radius: 8px; padding: 12px; margin-bottom: 20px; border-left: 3px solid #f97316;">
+                            <p style="color: #f97316; font-size: 12px; font-weight: 600; margin: 0 0 4px 0;">⚠️ Privacy Notice</p>
+                            <p style="color: #b0b0b0; font-size: 13px; margin: 0;">Do not share personal details like phone numbers, addresses, or passwords. Keep posts focused on your achievements and goals.</p>
+                        </div>
                         <div id="post-form">
                             <textarea id="post-text" placeholder="What did you accomplish today? Use > for bullet points:
 > walked 6k steps
