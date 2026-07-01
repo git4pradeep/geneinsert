@@ -669,6 +669,33 @@
             border: 1px solid #3a3a3a;
             border-radius: 8px;
             padding: 16px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .feed-item-hidden {
+            display: none;
+        }
+
+        .more-posts-btn {
+            padding: 14px 32px;
+            background: #3b82f6;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .more-posts-btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+        }
+
+        .more-posts-btn:active {
+            transform: translateY(0);
         }
 
         .feed-header {
@@ -1425,7 +1452,7 @@
 > studied 2 hours
 > read a chapter" maxlength="2000"></textarea>
                             <div class="char-counter"><span id="char-count">0</span>/2000</div>
-                            <button class="post-btn" id="post-btn" onclick="handlePostSubmit()">Post</button>
+                            <button class="post-btn" id="post-btn" type="button">Post</button>
                         </div>
                         <div id="posted-today" style="display:none;">
                             <div class="posted-card">
@@ -2476,21 +2503,41 @@
                 postsByDate[p.date].push(p);
             });
 
-            let html = '<div class="feed-list">';
-
             const sortedDates = Object.keys(postsByDate).sort().reverse();
+
+            // Flatten all posts while keeping track of date groups
+            const allPostItems = [];
             for (const date of sortedDates) {
                 const dateLabel = date === today ? 'Today' : new Date(date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                html += `<div style="padding: 16px 0; border-top: 1px solid #3a3a3a; margin-top: 16px; margin-bottom: 8px;">
-                    <div style="color: #6b7280; font-size: 12px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">${dateLabel}</div>
-                </div>`;
+                allPostItems.push({ type: 'date-header', label: dateLabel });
 
                 for (const p of postsByDate[date]) {
+                    allPostItems.push({ type: 'post', data: p });
+                }
+            }
+
+            const POSTS_PER_PAGE = 3;
+            const totalPostCount = allPostItems.filter(item => item.type === 'post').length;
+            const hasMore = totalPostCount > POSTS_PER_PAGE;
+
+            // Build HTML with limited posts initially
+            let html = '<div class="feed-list" id="feed-list-content">';
+            let postCount = 0;
+
+            for (const item of allPostItems) {
+                if (item.type === 'date-header') {
+                    html += `<div style="padding: 16px 0; border-top: 1px solid #3a3a3a; margin-top: 16px; margin-bottom: 8px;">
+                        <div style="color: #6b7280; font-size: 12px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">${item.label}</div>
+                    </div>`;
+                } else if (item.type === 'post') {
+                    const p = item.data;
                     const icons = detectActivityIcons(p.text).join(' ');
                     const time = formatTime(p.createdAt);
                     const formattedText = formatPostText(p.text);
+                    const isHidden = postCount >= POSTS_PER_PAGE ? ' feed-item-hidden' : '';
+
                     html += `
-                        <div class="feed-item">
+                        <div class="feed-item${isHidden}" data-post-index="${postCount}">
                             <div class="feed-header">
                                 <div class="feed-name">${p.displayName}</div>
                                 <div class="feed-time">${time}</div>
@@ -2499,11 +2546,39 @@
                             ${icons ? `<div class="activity-icons">${icons}</div>` : ''}
                         </div>
                     `;
+                    postCount++;
                 }
             }
 
             html += '</div>';
+
+            // Add "More" button if there are more posts
+            if (hasMore) {
+                html += `
+                    <div style="text-align: center; margin-top: 24px; padding: 20px 0; border-top: 1px solid #3a3a3a;">
+                        <button class="more-posts-btn" onclick="expandFeedPosts()">
+                            📖 Show More Posts (${totalPostCount - POSTS_PER_PAGE} more)
+                        </button>
+                    </div>
+                `;
+            }
+
             container.innerHTML = html;
+        }
+
+        function expandFeedPosts() {
+            const hiddenPosts = document.querySelectorAll('.feed-item-hidden');
+            hiddenPosts.forEach(post => {
+                post.classList.remove('feed-item-hidden');
+            });
+
+            // Hide the "More" button
+            const moreBtn = document.querySelector('.more-posts-btn');
+            if (moreBtn) {
+                moreBtn.parentElement.style.display = 'none';
+            }
+
+            showToast('All posts loaded! Scroll to see more 👇', 'info');
         }
 
         function renderPersonalStats(member) {
