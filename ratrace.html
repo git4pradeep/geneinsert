@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏁 Rat Race - Accountability Challenge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0f0f;
+            color: #b0b0b0;
+        }
+
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 15px 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .header-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        footer {
+            background: #0a0a0a;
+            color: #b0b0b0;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            font-size: 14px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========== Login Screen ========== */
+        #login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 120px);
+            background: #0f0f0f;
+        }
+
+        .login-card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 50px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-card h2 {
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+
+        .login-card input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 15px;
+        }
+
+        .login-card input::placeholder {
+            color: #666666;
+        }
+
+        .login-card input:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+
+        .login-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #3a3a3a;
+            padding-bottom: 16px;
+        }
+
+        .login-tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: #2a2a2a;
+            color: #b0b0b0;
+            border: none;
+            border-radius: 6px 6px 0 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .login-tab-btn.active {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+
+        .login-tab-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .login-card button[type="submit"],
+        .login-card .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #ffffff;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-card button[type="submit"]:hover,
+        .login-card .submit-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .login-card button[type="submit"]:disabled,
+        .login-card .submit-btn:disabled {
+            background: #3a3a3a;
+            cursor: not-allowed;
+        }
+
+        .back-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2a2a2a;
+            color: #b0b0b0;
+            border: 1px solid #3a3a3a;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #333333;
+        }
+
+        .setup-btn {
+            width: 100%;
+            padding: 14px;
+            background: #22c55e;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 12px;
+        }
+
+        .setup-btn:hover {
+            background: #16a34a;
+        }
+
+        #login-error {
+            color: #ef4444;
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        /* ========== Not Invited Screen ========== */
+        #not-invited-screen {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 120px);
+            background: #0f0f0f;
+        }
+
+        .not-invited-card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 50px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .not-invited-card h2 {
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .not-invited-card p {
+            color: #b0b0b0;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .not-invited-card button {
+            padding: 12px 28px;
+            background: #ffffff;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        /* ========== App Screen ========== */
+        #app {
+            display: none;
+        }
+
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .season-banner {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+        }
+
+        .season-info h2 {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .season-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #b0b0b0;
+        }
+
+        .season-countdown {
+            text-align: right;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            padding: 16px 24px;
+            min-width: 200px;
+        }
+
+        .season-countdown .day-counter {
+            font-size: 28px;
+            font-weight: 700;
+            color: #22c55e;
+        }
+
+        .season-countdown .label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        /* ========== Post Section ========== */
+        .post-section {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 24px;
+        }
+
+        .post-section h3 {
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        #post-text {
+            width: 100%;
+            min-height: 120px;
+            padding: 14px;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 15px;
+            resize: vertical;
+            margin-bottom: 12px;
+        }
+
+        #post-text:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+
+        #post-text:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .char-counter {
+            text-align: right;
+            color: #6b7280;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .char-counter.warn {
+            color: #f97316;
+        }
+
+        .char-counter.limit {
+            color: #ef4444;
+        }
+
+        .post-btn {
+            padding: 12px 28px;
+            background: #ffffff;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .post-btn:hover:not(:disabled) {
+            background: #e0e0e0;
+        }
+
+        .post-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .posted-card {
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .posted-card .check {
+            color: #22c55e;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .posted-card .post-content {
+            color: #b0b0b0;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .elimination-message {
+            background: #3a2a2a;
+            border: 1px solid #a64d4d;
+            border-radius: 8px;
+            padding: 20px;
+            color: #fca5a5;
+            text-align: center;
+        }
+
+        .season-not-started {
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            color: #b0b0b0;
+        }
+
+        .season-ended {
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            color: #b0b0b0;
+        }
+
+        /* ========== Leaderboard ========== */
+        .leaderboard {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 24px;
+        }
+
+        .leaderboard h3 {
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+
+        .leaderboard-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .leaderboard-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            border-radius: 8px;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            transition: background 0.2s;
+            position: relative;
+        }
+
+        .leaderboard-row.current-user {
+            border-color: #ffffff;
+            background: #2a2a2a;
+        }
+
+        .leaderboard-row.eliminated {
+            opacity: 0.5;
+        }
+
+        .rank-badge {
+            font-size: 20px;
+            font-weight: 700;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .rank-1 { color: #fbbf24; }
+        .rank-2 { color: #9ca3af; }
+        .rank-3 { color: #cd7c2d; }
+
+        .leaderboard-name {
+            flex: 1;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .score-bar-container {
+            width: 80px;
+            flex-shrink: 0;
+        }
+
+        .score-bar {
+            background: #1a1a1a;
+            border-radius: 4px;
+            height: 8px;
+            overflow: hidden;
+            border: 1px solid #3a3a3a;
+        }
+
+        .score-fill {
+            background: #ffffff;
+            height: 100%;
+            transition: width 0.8s ease;
+        }
+
+        .score-fill.elim {
+            background: #3a3a3a;
+        }
+
+        .score-number {
+            min-width: 50px;
+            text-align: right;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .streak-icon {
+            font-size: 16px;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .eliminated-tag {
+            font-size: 10px;
+            background: #3a2a2a;
+            color: #fca5a5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .score-delta {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 18px;
+            font-weight: 700;
+            pointer-events: none;
+            animation: floatUp 2s ease-out forwards;
+            z-index: 10;
+        }
+
+        .score-delta.positive { color: #22c55e; }
+        .score-delta.negative { color: #ef4444; }
+
+        @keyframes floatUp {
+            0%   { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-50px); }
+        }
+
+        /* ========== Community Feed ========== */
+        .feed {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 24px;
+        }
+
+        .feed h3 {
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+
+        .feed-empty {
+            text-align: center;
+            color: #6b7280;
+            padding: 40px 20px;
+        }
+
+        .feed-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .feed-item {
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .feed-name {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .feed-time {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .feed-content {
+            color: #b0b0b0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .activity-icons {
+            display: flex;
+            gap: 6px;
+            font-size: 16px;
+        }
+
+        /* ========== Personal Stats Sidebar ========== */
+        .stats-card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 24px;
+            sticky: top 100px;
+        }
+
+        .stats-card h3 {
+            font-size: 14px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .score-display {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .stat-row {
+            padding: 12px 0;
+            border-bottom: 1px solid #2a2a2a;
+            font-size: 14px;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 16px;
+            margin-top: 4px;
+        }
+
+        .streak-display {
+            color: #f97316;
+        }
+
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* ========== Admin Panel ========== */
+        #admin-panel {
+            display: none;
+            background: #1a1a1a;
+            border: 2px solid #f97316;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        #admin-panel h2 {
+            font-size: 20px;
+            color: #f97316;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-section {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .admin-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .admin-section h3 {
+            font-size: 14px;
+            color: #b0b0b0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .admin-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 12px;
+            align-items: end;
+            margin-bottom: 16px;
+        }
+
+        .admin-form input {
+            padding: 10px 12px;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .admin-form input:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+
+        .admin-form button {
+            padding: 10px 20px;
+            background: #f97316;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .admin-form button:hover {
+            background: #ea580c;
+        }
+
+        .run-scoring-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #f97316;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .run-scoring-btn:hover:not(:disabled) {
+            background: #ea580c;
+        }
+
+        .run-scoring-btn:disabled {
+            background: #3a3a3a;
+            cursor: not-allowed;
+        }
+
+        .scoring-status {
+            font-size: 14px;
+            color: #b0b0b0;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #2a2a2a;
+            border-radius: 6px;
+            border: 1px solid #3a3a3a;
+        }
+
+        .scoring-status.completed {
+            color: #22c55e;
+            border-color: #22c55e;
+        }
+
+        .admin-button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .admin-btn {
+            padding: 12px 20px;
+            background: #f97316;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .admin-btn:hover:not(:disabled) {
+            background: #ea580c;
+        }
+
+        .admin-btn:disabled {
+            background: #3a3a3a;
+            cursor: not-allowed;
+        }
+
+        /* ========== Winner Overlay ========== */
+        #winner-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .winner-card {
+            background: #1a1a1a;
+            border: 3px solid #fbbf24;
+            border-radius: 16px;
+            padding: 50px;
+            max-width: 500px;
+        }
+
+        .winner-emoji {
+            font-size: 72px;
+            margin-bottom: 20px;
+        }
+
+        .winner-card h2 {
+            font-size: 32px;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+
+        .winner-card p {
+            font-size: 18px;
+            color: #b0b0b0;
+            margin: 10px 0;
+        }
+
+        .winner-score {
+            font-size: 24px;
+            color: #22c55e;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        #confetti-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .confetti-piece {
+            position: fixed;
+            top: -20px;
+            border-radius: 2px;
+            animation: confettiFall linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ========== Toast Notifications ========== */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 2000;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            padding: 14px 20px;
+            color: #ffffff;
+            font-size: 14px;
+            animation: slideIn 0.3s ease;
+            max-width: 320px;
+        }
+
+        .toast.success { border-color: #22c55e; }
+        .toast.error   { border-color: #ef4444; }
+        .toast.info    { border-color: #3b82f6; }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-left {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .header-nav {
+                width: 100%;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .header-title {
+                font-size: 20px;
+            }
+
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .season-banner {
+                grid-template-columns: 1fr;
+            }
+
+            .season-countdown {
+                text-align: center;
+            }
+
+            .admin-form {
+                grid-template-columns: 1fr;
+            }
+
+            .login-card,
+            .not-invited-card {
+                padding: 30px 20px;
+            }
+
+            .post-section,
+            .leaderboard,
+            .feed,
+            .stats-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <div class="logo">🧬</div>
+            <div class="header-title">🏁 Rat Race Season 1</div>
+        </div>
+        <nav class="header-nav">
+            <a href="index.html">← Home</a>
+            <a href="articles.html">📰 Articles</a>
+            <a href="index.html#contact">Contact</a>
+            <button id="signout-btn" style="display:none; padding: 8px 16px; background: #ffffff; color: #1a1a1a; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Sign Out</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- ========== LOGIN SCREEN ========== -->
+        <div id="login-screen">
+            <div class="login-card">
+                <h2>🏁 Rat Race</h2>
+                <p style="color: #b0b0b0; margin-bottom: 30px;">21-day accountability challenge</p>
+
+                <!-- Tab Buttons -->
+                <div class="login-tabs">
+                    <button type="button" class="login-tab-btn active" id="signin-tab">Sign In</button>
+                    <button type="button" class="login-tab-btn" id="signup-tab">Sign Up</button>
+                </div>
+
+                <!-- Sign In Form -->
+                <div id="signin-form">
+                    <input type="email" id="login-email" placeholder="Email" />
+                    <input type="password" id="login-password" placeholder="Password" />
+                    <button type="button" class="submit-btn" id="signin-btn">Sign In</button>
+                    <div id="login-error" style="color: #ef4444; font-size: 14px; margin-top: 16px;"></div>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div id="signup-form" style="display: none;">
+                    <input type="email" id="signup-email" placeholder="Email address" />
+                    <button type="button" class="submit-btn" id="signup-continue-btn" style="margin-bottom: 12px;">Continue</button>
+                    <div id="signup-error" style="color: #ef4444; font-size: 14px;"></div>
+                </div>
+
+                <!-- Password Setup Form (shown after email verified) -->
+                <div id="password-setup" style="display: none;">
+                    <p style="color: #b0b0b0; font-size: 14px; margin-bottom: 20px;">Create a password for <span id="setup-email-display"></span></p>
+                    <input type="password" id="setup-password" placeholder="Password (min 8 characters)" />
+                    <input type="password" id="setup-password-confirm" placeholder="Confirm password" />
+                    <button type="button" class="setup-btn" id="setup-create-btn">Create Account</button>
+                    <button type="button" class="back-btn" id="setup-back-btn">← Back</button>
+                    <div id="setup-error" style="color: #ef4444; font-size: 14px; margin-top: 12px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== NOT INVITED SCREEN ========== -->
+        <div id="not-invited-screen">
+            <div class="not-invited-card">
+                <h2>❌ Not Invited</h2>
+                <p>You're not invited to Rat Race Season 1. Ask the admin for an invite!</p>
+                <button onclick="handleSignOut()">Sign Out</button>
+            </div>
+        </div>
+
+        <!-- ========== APP SCREEN ========== -->
+        <div id="app">
+            <div class="app-header">
+                <h2>🏁 Rat Race Season 1</h2>
+            </div>
+
+            <!-- Season Banner -->
+            <div class="season-banner">
+                <div class="season-info">
+                    <h2 id="season-title">Season 1</h2>
+                    <div class="season-meta">
+                        <span id="season-day">Day 1/21</span>
+                        <span id="season-status">Active</span>
+                    </div>
+                </div>
+                <div class="season-countdown">
+                    <div class="day-counter" id="days-remaining">21</div>
+                    <div class="label">Days Remaining</div>
+                </div>
+            </div>
+
+            <!-- Main Grid -->
+            <div class="main-grid">
+                <!-- Left Column -->
+                <div>
+                    <!-- Admin Panel -->
+                    <div id="admin-panel">
+                        <h2>⚙️ Admin Panel</h2>
+
+                        <!-- Add Member -->
+                        <div class="admin-section">
+                            <h3>👥 Add Member</h3>
+                            <div class="admin-form">
+                                <input type="email" id="admin-email" placeholder="Email" />
+                                <input type="text" id="admin-name" placeholder="Display Name" />
+                                <button type="button" id="add-member-btn" style="grid-column: span 2;">Add Member</button>
+                            </div>
+                            <p style="font-size: 12px; color: #6b7280; margin-top: 8px;">⚠️ After adding, create account in Firebase Console → Authentication</p>
+                        </div>
+
+                        <!-- Scoring -->
+                        <div class="admin-section">
+                            <h3>⚡ Daily Scoring</h3>
+                            <div id="scoring-status" class="scoring-status">Loading...</div>
+                            <button class="run-scoring-btn" id="run-scoring-btn" onclick="runDailyScoring()">⚡ Run Today's Scoring</button>
+                            <p style="font-size: 12px; color: #6b7280; margin-top: 12px;">💡 Run at or after 9 PM to ensure all members have posted</p>
+                        </div>
+
+                        <!-- Season Controls -->
+                        <div class="admin-section">
+                            <h3>🎮 Season Controls</h3>
+                            <div class="admin-button-group">
+                                <button class="admin-btn" id="start-season-btn" onclick="handleStartSeason()">Start Season</button>
+                                <button class="admin-btn" id="end-season-btn" onclick="handleEndSeason()" style="display:none;">End Season</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post Section -->
+                    <div class="post-section">
+                        <h3>✍️ Today's Post</h3>
+                        <div id="post-form">
+                            <textarea id="post-text" placeholder="What did you accomplish today? Use > for bullet points:
+> walked 6k steps
+> studied 2 hours
+> read a chapter" maxlength="2000"></textarea>
+                            <div class="char-counter"><span id="char-count">0</span>/2000</div>
+                            <button class="post-btn" id="post-btn" onclick="handlePostSubmit()">Post</button>
+                        </div>
+                        <div id="posted-today" style="display:none;">
+                            <div class="posted-card">
+                                <div class="check">✓ Posted today!</div>
+                                <div class="post-content" id="posted-content"></div>
+                            </div>
+                        </div>
+                        <div id="eliminated-msg" style="display:none;">
+                            <div class="elimination-message">🛑 You've been eliminated. Keep watching the competition! 👀</div>
+                        </div>
+                        <div id="season-not-active" style="display:none;">
+                            <div class="season-not-started">Season hasn't started yet. Check back soon! 🚀</div>
+                        </div>
+                    </div>
+
+                    <!-- Leaderboard -->
+                    <div class="leaderboard">
+                        <h3>🏆 Leaderboard</h3>
+                        <div class="leaderboard-list" id="leaderboard-list">
+                            <div style="text-align:center; color:#6b7280;">Loading...</div>
+                        </div>
+                    </div>
+
+                    <!-- Community Feed -->
+                    <div class="feed">
+                        <h3>💬 Today's Posts</h3>
+                        <div id="feed-container">
+                            <div class="feed-empty">No posts yet today. Be the first! 🚀</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar -->
+                <div>
+                    <div class="stats-card">
+                        <h3>📊 Your Stats</h3>
+                        <div class="score-display" id="current-score">100</div>
+
+                        <div class="stat-row">
+                            <div class="stat-label">Streak</div>
+                            <div class="stat-value streak-display" id="current-streak">🔥 0 days</div>
+                        </div>
+
+                        <div class="stat-row">
+                            <div class="stat-label">Badges</div>
+                            <div class="badges-container" id="badges-container"></div>
+                        </div>
+                    </div>
+
+                    <div class="stats-card" style="margin-top: 24px;">
+                        <h3>👥 Members</h3>
+                        <div id="members-list" style="display: flex; flex-direction: column; gap: 8px;">
+                            <div style="text-align:center; color:#6b7280; padding: 20px;">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Winner Overlay -->
+    <div id="winner-overlay">
+        <div class="winner-card">
+            <div class="winner-emoji">🏆</div>
+            <h2 id="winner-name">Champion Name</h2>
+            <p>wins Rat Race Season 1!</p>
+            <div class="winner-score" id="winner-score">100 points</div>
+        </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div id="confetti-container"></div>
+
+    <footer>
+        <p>&copy; 2026 Rat Race Season 1 — An accountability challenge by <a href="mailto:pradeep.kothakota@gmail.com">Pradeep Kothakota</a></p>
+    </footer>
+
+    <script type="module">
+        // ============================================================
+        // FIREBASE CONFIGURATION
+        // ============================================================
+        // 1. Go to https://console.firebase.google.com
+        // 2. Create a project → Add a web app → copy the config below
+        // 3. Enable Email/Password under Authentication → Sign-in method
+        // 4. Create Firestore Database in production mode
+        // 5. Deploy security rules from plan
+        // 6. Create 4 composite indexes (see plan)
+        // 7. Add users in Firebase Console → Authentication for each member
+        // ============================================================
+
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+        import {
+            getFirestore, doc, collection, query, where, orderBy,
+            onSnapshot, addDoc, updateDoc, setDoc, getDoc, getDocs,
+            writeBatch, serverTimestamp, deleteDoc
+        } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey:            "AIzaSyCF-4aV09QS6ffSqqYEViGH60X6YN6QkOc",
+            authDomain:        "geneinsert.firebaseapp.com",
+            projectId:         "geneinsert",
+            storageBucket:     "geneinsert.firebasestorage.app",
+            messagingSenderId: "204825646789",
+            appId:             "1:204825646789:web:00f9c34a5e4f8d29a802ac"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db   = getFirestore(app);
+        const ADMIN_EMAIL = 'pradeep.kothakota@gmail.com';
+
+        // Global state
+        let currentUser = null;
+        let unsubscribers = [];
+        let winnerShown = false;
+
+        // ========== UTILITY FUNCTIONS ==========
+        function getTodayDate() {
+            const d = new Date();
+            const yyyy = d.getFullYear();
+            const mm   = String(d.getMonth() + 1).padStart(2, '0');
+            const dd   = String(d.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+        function getSeasonDay(startDateString) {
+            const start = new Date(startDateString + 'T00:00:00').getTime();
+            const today = new Date().getTime();
+            return Math.floor((today - start) / 86400000) + 1;
+        }
+
+        function getDaysRemaining(endDateString) {
+            const end = new Date(endDateString + 'T23:59:59').getTime();
+            const today = new Date().getTime();
+            return Math.max(0, Math.ceil((end - today) / 86400000));
+        }
+
+        function formatTime(timestamp) {
+            if (!timestamp) return '';
+            const d = new Date(timestamp.toDate ? timestamp.toDate() : timestamp);
+            const hours = String(d.getHours()).padStart(2, '0');
+            const mins = String(d.getMinutes()).padStart(2, '0');
+            return `${hours}:${mins}`;
+        }
+
+        function showScreen(screenName) {
+            document.getElementById('login-screen').style.display = screenName === 'login' ? 'flex' : 'none';
+            document.getElementById('not-invited-screen').style.display = screenName === 'not-invited' ? 'flex' : 'none';
+            document.getElementById('app').style.display = screenName === 'app' ? 'block' : 'none';
+            document.getElementById('signout-btn').style.display = screenName === 'app' ? 'block' : 'none';
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function formatPostText(text) {
+            // Convert > to bullet points
+            return text.split('\n').map(line => {
+                if (line.trim().startsWith('>')) {
+                    return '• ' + line.trim().substring(1).trim();
+                }
+                return line;
+            }).join('\n');
+        }
+
+        // ========== AUTH FUNCTIONS ==========
+        let signupEmail = '';
+
+        function switchTab(tab) {
+            const signinForm = document.getElementById('signin-form');
+            const signupForm = document.getElementById('signup-form');
+            const signinTab = document.getElementById('signin-tab');
+            const signupTab = document.getElementById('signup-tab');
+
+            if (tab === 'signin') {
+                signinForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                document.getElementById('password-setup').style.display = 'none';
+                signinTab.classList.add('active');
+                signupTab.classList.remove('active');
+            } else {
+                signinForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                document.getElementById('password-setup').style.display = 'none';
+                signinTab.classList.remove('active');
+                signupTab.classList.add('active');
+                document.getElementById('signup-email').focus();
+                document.getElementById('signup-error').textContent = '';
+            }
+        }
+
+        async function handleSignUpStep1() {
+            const email = document.getElementById('signup-email').value.trim().toLowerCase();
+            const errorDiv = document.getElementById('signup-error');
+            errorDiv.textContent = '';
+
+            if (!email) {
+                errorDiv.textContent = 'Email required';
+                return;
+            }
+
+            if (!email.includes('@')) {
+                errorDiv.textContent = 'Invalid email address';
+                return;
+            }
+
+            try {
+                const invitesSnap = await getDocs(
+                    query(collection(db, 'invites'), where('email', '==', email))
+                );
+
+                if (invitesSnap.empty) {
+                    errorDiv.textContent = '❌ You are not invited to Rat Race. Ask the admin for an invite!';
+                    return;
+                }
+
+                const invite = invitesSnap.docs[0].data();
+                signupEmail = email;
+                document.getElementById('signup-form').style.display = 'none';
+                document.getElementById('password-setup').style.display = 'block';
+                document.getElementById('setup-email-display').textContent = email;
+                document.getElementById('setup-password').value = '';
+                document.getElementById('setup-password-confirm').value = '';
+            } catch (err) {
+                errorDiv.textContent = 'Error: ' + err.message;
+            }
+        }
+
+        async function handleSignUpStep2() {
+            const password = document.getElementById('setup-password').value;
+            const passwordConfirm = document.getElementById('setup-password-confirm').value;
+            const errorDiv = document.getElementById('setup-error');
+            errorDiv.textContent = '';
+
+            if (!password || !passwordConfirm) {
+                errorDiv.textContent = 'Both password fields required';
+                return;
+            }
+
+            if (password.length < 8) {
+                errorDiv.textContent = 'Password must be at least 8 characters';
+                return;
+            }
+
+            if (password !== passwordConfirm) {
+                errorDiv.textContent = 'Passwords do not match';
+                return;
+            }
+
+            try {
+                const btn = event.target;
+                btn.disabled = true;
+                btn.textContent = 'Creating account...';
+
+                await createUserWithEmailAndPassword(auth, signupEmail, password);
+                // onAuthStateChanged will handle the rest
+            } catch (err) {
+                btn.disabled = false;
+                btn.textContent = 'Create Account';
+                errorDiv.textContent = err.message.includes('auth/email-already-in-use')
+                    ? 'This email is already registered'
+                    : err.message.includes('auth/weak-password')
+                    ? 'Password is too weak'
+                    : err.message;
+            }
+        }
+
+        function backToEmailEntry() {
+            document.getElementById('password-setup').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'block';
+            document.getElementById('signup-email').value = '';
+            document.getElementById('setup-error').textContent = '';
+            signupEmail = '';
+        }
+
+        async function handleLogin() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+            const errorDiv = document.getElementById('login-error');
+            errorDiv.textContent = '';
+
+            if (!email || !password) {
+                errorDiv.textContent = 'Email and password required';
+                return;
+            }
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (err) {
+                errorDiv.textContent = err.message.includes('auth/user-not-found')
+                    ? 'User not found'
+                    : err.message.includes('auth/wrong-password')
+                    ? 'Wrong password'
+                    : err.message;
+            }
+        }
+
+        async function handleSignOut() {
+            try {
+                unsubscribers.forEach(fn => {
+                    try { fn(); } catch (e) { console.log('Unsubscriber error:', e); }
+                });
+                unsubscribers.length = 0;
+                await signOut(auth);
+                showScreen('login');
+                document.getElementById('login-email').value = '';
+                document.getElementById('login-password').value = '';
+                showToast('Signed out', 'success');
+            } catch (err) {
+                showToast('Error signing out: ' + err.message, 'error');
+                console.error(err);
+            }
+        }
+
+        // ========== MEMBER REGISTRATION ==========
+        async function ensureMemberDoc(user) {
+            const memberRef = doc(db, 'members', user.uid);
+            const memberDoc = await getDoc(memberRef);
+
+            if (memberDoc.exists()) {
+                return memberDoc.data();
+            }
+
+            // Admin gets automatic access without invite
+            if (user.email === ADMIN_EMAIL) {
+                await setDoc(memberRef, {
+                    email: user.email,
+                    displayName: 'Admin',
+                    score: 100,
+                    isActive: true,
+                    joinedAt: serverTimestamp(),
+                    streak: 0,
+                    lastPostDate: null,
+                    badges: []
+                });
+                return (await getDoc(memberRef)).data();
+            }
+
+            // Regular members need an invite
+            const invitesSnap = await getDocs(
+                query(collection(db, 'invites'), where('email', '==', user.email), where('status', '==', 'pending'))
+            );
+
+            if (invitesSnap.empty) {
+                return null;
+            }
+
+            const invite = invitesSnap.docs[0].data();
+            await setDoc(memberRef, {
+                email: user.email,
+                displayName: invite.displayName,
+                score: 100,
+                isActive: true,
+                joinedAt: serverTimestamp(),
+                streak: 0,
+                lastPostDate: null,
+                badges: []
+            });
+
+            await updateDoc(invitesSnap.docs[0].ref, { status: 'accepted' });
+            return (await getDoc(memberRef)).data();
+        }
+
+        // ========== FIRESTORE LISTENERS ==========
+        function subscribeToSeason(callback) {
+            return onSnapshot(doc(db, 'seasons', 'season1'), callback);
+        }
+
+        function subscribeToLeaderboard(callback) {
+            return onSnapshot(
+                query(collection(db, 'members'), orderBy('score', 'desc')),
+                callback
+            );
+        }
+
+        function subscribeToTodaysFeed(callback) {
+            return onSnapshot(
+                query(collection(db, 'posts'), where('date', '==', getTodayDate()), orderBy('createdAt', 'desc')),
+                callback
+            );
+        }
+
+        function subscribeToOwnMember(uid, callback) {
+            return onSnapshot(doc(db, 'members', uid), callback);
+        }
+
+        // ========== POST FUNCTIONS ==========
+        async function getUserPostToday(uid) {
+            const snap = await getDocs(
+                query(collection(db, 'posts'), where('date', '==', getTodayDate()), where('uid', '==', uid))
+            );
+            return snap.empty ? null : snap.docs[0].data();
+        }
+
+        document.getElementById('post-text').addEventListener('input', (e) => {
+            document.getElementById('char-count').textContent = e.target.value.length;
+            const counter = document.querySelector('.char-counter');
+            counter.classList.remove('warn', 'limit');
+            if (e.target.value.length > 1800) counter.classList.add('warn');
+            if (e.target.value.length > 1950) counter.classList.add('limit');
+        });
+
+        document.getElementById('post-text').addEventListener('focus', (e) => {
+            const textarea = e.target;
+            if (textarea.value.trim() === '') {
+                textarea.value = '> ';
+                textarea.selectionStart = 2;
+                textarea.selectionEnd = 2;
+                textarea.dispatchEvent(new Event('input'));
+            }
+        });
+
+        document.getElementById('post-text').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const textarea = e.target;
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+                const text = textarea.value;
+
+                // Insert newline + "> "
+                const newText = text.substring(0, start) + '\n> ' + text.substring(end);
+                textarea.value = newText;
+
+                // Move cursor after the "> "
+                const newCursorPos = start + 3; // \n + "> "
+                textarea.selectionStart = newCursorPos;
+                textarea.selectionEnd = newCursorPos;
+
+                // Trigger input event to update char count
+                textarea.dispatchEvent(new Event('input'));
+            }
+        });
+
+        async function handlePostSubmit() {
+            const text = document.getElementById('post-text').value.trim();
+            const btn = document.getElementById('post-btn');
+
+            if (!text) {
+                showToast('Post cannot be empty', 'error');
+                return;
+            }
+
+            if (text.length > 2000) {
+                showToast('Post too long', 'error');
+                return;
+            }
+
+            if (!currentUser) return;
+
+            btn.disabled = true;
+            btn.textContent = 'Posting...';
+
+            try {
+                const memberSnap = await getDoc(doc(db, 'members', currentUser.uid));
+                const member = memberSnap.data();
+
+                if (!member.isActive) {
+                    showToast('You have been eliminated', 'error');
+                    return;
+                }
+
+                const existing = await getUserPostToday(currentUser.uid);
+                if (existing) {
+                    showToast('You already posted today', 'error');
+                    return;
+                }
+
+                const seasonSnap = await getDoc(doc(db, 'seasons', 'season1'));
+                const season = seasonSnap.data();
+                if (!season || season.status !== 'active') {
+                    showToast('Season is not active', 'error');
+                    return;
+                }
+
+                await addDoc(collection(db, 'posts'), {
+                    uid: currentUser.uid,
+                    displayName: member.displayName,
+                    text,
+                    date: getTodayDate(),
+                    createdAt: serverTimestamp()
+                });
+
+                document.getElementById('post-text').value = '';
+                document.getElementById('char-count').textContent = '0';
+                showToast('Post submitted! 🎉', 'success');
+                await checkEarlyBirdBadge(currentUser.uid);
+            } catch (err) {
+                showToast('Error posting: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Post';
+            }
+        }
+
+        async function checkEarlyBirdBadge(uid) {
+            const snap = await getDocs(
+                query(collection(db, 'posts'), where('date', '==', getTodayDate()))
+            );
+            if (snap.size === 1 && snap.docs[0].data().uid === uid) {
+                const memberRef = doc(db, 'members', uid);
+                const member = await getDoc(memberRef);
+                const badges = new Set(member.data().badges || []);
+                if (!badges.has('early_bird')) {
+                    badges.add('early_bird');
+                    await updateDoc(memberRef, { badges: Array.from(badges) });
+                }
+            }
+        }
+
+        // ========== SCORING ENGINE ==========
+        function calculatePostScore(text) {
+            let score = 5;
+
+            if (text.length > 50)  score += 2;
+            if (text.length > 150) score += 2;
+            if (text.length > 300) score += 1;
+
+            const categoryPatterns = {
+                fitness:     /\b(workout|exercise|gym|ran|run|running|walk|walked|cycling|yoga|swim|lifting|hiked|steps|pushup|pullup)\b/i,
+                reading:     /\b(read|reading|book|books|article|chapter|pages|literature|novel)\b/i,
+                learning:    /\b(learned|learning|study|studying|course|lecture|tutorial|lesson|class)\b/i,
+                coding:      /\b(code|coded|coding|programm|develop|debug|built|feature|github|commit|deploy|app)\b/i,
+                mindfulness: /\b(meditat|mindful|breath|gratitude|journal|journaled|reflect|calm|peace|focused)\b/i,
+                health:      /\b(sleep|slept|diet|nutrition|meal|healthy|water|vitamin|doctor|therapy|dentist)\b/i,
+                work:        /\b(work|worked|meeting|project|deadline|task|client|report|presentation|shipped)\b/i,
+                social:      /\b(family|friend|friends|call|visit|help|community|volunteer|connected|lunch)\b/i,
+            };
+            let catPoints = 0;
+            for (const pattern of Object.values(categoryPatterns)) {
+                if (catPoints >= 8) break;
+                if (pattern.test(text)) catPoints += 2;
+            }
+            score += catPoints;
+
+            const achievementWords = ['completed', 'finished', 'achieved', 'started', 'learned', 'mastered'];
+            let achPoints = 0;
+            const lowerText = text.toLowerCase();
+            for (const word of achievementWords) {
+                if (achPoints >= 3) break;
+                if (lowerText.includes(word)) achPoints += 1;
+            }
+            score += achPoints;
+
+            if (/\d/.test(text)) score += 2;
+
+            return Math.min(20, score);
+        }
+
+        function detectActivityIcons(text) {
+            const iconMap = {
+                '🏃': /\b(workout|exercise|gym|ran|run|walk|yoga|swim|cycling|hike|steps)\b/i,
+                '📚': /\b(read|book|article|chapter|pages|novel)\b/i,
+                '💻': /\b(code|coding|programm|develop|debug|built|app|github)\b/i,
+                '🧘': /\b(meditat|mindful|breath|gratitude|calm|peace|focus)\b/i,
+                '🥗': /\b(diet|nutrition|meal|healthy|food|water|vitamin)\b/i,
+                '🎓': /\b(learn|study|course|lecture|tutorial|lesson|class)\b/i,
+                '💼': /\b(work|meeting|project|deadline|client|report|shipped)\b/i,
+                '🤝': /\b(family|friend|community|volunteer|help|connect)\b/i,
+            };
+            return Object.entries(iconMap)
+                .filter(([, pattern]) => pattern.test(text))
+                .map(([icon]) => icon);
+        }
+
+        // ========== ADMIN SCORING ==========
+        async function runDailyScoring() {
+            const today = getTodayDate();
+            const resultRef = doc(db, 'dailyResults', today);
+
+            try {
+                const existing = await getDoc(resultRef);
+                if (existing.exists() && existing.data().processed) {
+                    showToast('Scoring already run for ' + today, 'error');
+                    return;
+                }
+
+                if (!confirm(`Run scoring for ${today}? This cannot be undone for today.`)) return;
+
+                const btn = document.getElementById('run-scoring-btn');
+                btn.disabled = true;
+                btn.textContent = 'Processing...';
+
+                const membersSnap = await getDocs(collection(db, 'members'));
+                const members = membersSnap.docs.map(d => ({ uid: d.id, ...d.data() }));
+
+                const postsSnap = await getDocs(
+                    query(collection(db, 'posts'), where('date', '==', today))
+                );
+                const postsByUid = {};
+                postsSnap.docs.forEach(d => { postsByUid[d.data().uid] = { id: d.id, ...d.data() }; });
+
+                const scores = {};
+                const batch = writeBatch(db);
+
+                for (const member of members) {
+                    if (!member.isActive && member.score === 0) {
+                        scores[member.uid] = { delta: 0, cumulative: 0, reason: 'Eliminated' };
+                        continue;
+                    }
+
+                    const post = postsByUid[member.uid];
+                    let delta, reason;
+
+                    if (!post) {
+                        delta = -10;
+                        reason = 'No post submitted';
+                    } else {
+                        delta = calculatePostScore(post.text);
+                        reason = `+${delta} points`;
+                        batch.update(doc(db, 'posts', post.id), { scored: true, score: delta });
+                    }
+
+                    const newScore = Math.max(0, member.score + delta);
+                    const isNowElim = newScore === 0 && member.isActive;
+
+                    scores[member.uid] = { delta, cumulative: newScore, reason };
+
+                    const memberUpdate = { score: newScore };
+                    if (post) {
+                        memberUpdate.lastPostDate = today;
+                        memberUpdate.streak = member.streak + 1;
+                    } else {
+                        memberUpdate.streak = 0;
+                    }
+                    if (isNowElim) {
+                        memberUpdate.isActive = false;
+                    }
+                    batch.update(doc(db, 'members', member.uid), memberUpdate);
+                }
+
+                batch.set(resultRef, {
+                    processed: true,
+                    processedAt: serverTimestamp(),
+                    processedBy: auth.currentUser.email,
+                    scores
+                });
+
+                await batch.commit();
+                await checkAndAwardBadgesAfterScoring(members, scores);
+                await maybeAnnounceWinner();
+
+                showToast('Scoring complete for ' + today, 'success');
+            } catch (err) {
+                showToast('Error during scoring: ' + err.message, 'error');
+                console.error(err);
+            } finally {
+                document.getElementById('run-scoring-btn').disabled = false;
+                document.getElementById('run-scoring-btn').textContent = '⚡ Run Today\'s Scoring';
+            }
+        }
+
+        async function checkAndAwardBadgesAfterScoring(members, scores) {
+            const batch = writeBatch(db);
+            let hasBatchOp = false;
+
+            for (const member of members) {
+                const scoreResult = scores[member.uid];
+                const currentBadges = new Set(member.badges || []);
+                let badgesChanged = false;
+
+                const newStreak = scoreResult.delta > 0 && scoreResult.delta !== -10
+                    ? (member.streak || 0) + 1
+                    : 0;
+                if (newStreak >= 7 && !currentBadges.has('consistent')) {
+                    currentBadges.add('consistent');
+                    badgesChanged = true;
+                }
+
+                if (scoreResult.delta === 20 && !currentBadges.has('overachiever')) {
+                    currentBadges.add('overachiever');
+                    badgesChanged = true;
+                }
+
+                if (member.score < 20 && scoreResult.cumulative > 50 && !currentBadges.has('comeback_kid')) {
+                    currentBadges.add('comeback_kid');
+                    badgesChanged = true;
+                }
+
+                if (badgesChanged) {
+                    batch.update(doc(db, 'members', member.uid), { badges: Array.from(currentBadges) });
+                    hasBatchOp = true;
+                }
+            }
+
+            if (hasBatchOp) await batch.commit();
+        }
+
+        async function maybeAnnounceWinner() {
+            const seasonDoc = await getDoc(doc(db, 'seasons', 'season1'));
+            if (!seasonDoc.exists()) return;
+            const { startDate, status } = seasonDoc.data();
+            if (status !== 'active') return;
+            const day = getSeasonDay(startDate);
+            if (day === 21) {
+                showToast('Day 21 scoring complete! Click "End Season" to announce winner.', 'info');
+            }
+        }
+
+        // ========== ADMIN PANEL ==========
+        async function handleAddMember() {
+            const email = document.getElementById('admin-email').value.trim();
+            const name = document.getElementById('admin-name').value.trim();
+
+            if (!email || !name) {
+                showToast('Email and name required', 'error');
+                return;
+            }
+
+            try {
+                const existing = await getDocs(collection(db, 'invites'));
+                if (existing.size >= 5) {
+                    showToast('Maximum 5 members reached', 'error');
+                    return;
+                }
+
+                const dup = existing.docs.find(d => d.data().email === email);
+                if (dup) {
+                    showToast('Already invited', 'error');
+                    return;
+                }
+
+                await addDoc(collection(db, 'invites'), {
+                    email,
+                    displayName: name,
+                    status: 'pending',
+                    invitedAt: serverTimestamp()
+                });
+
+                document.getElementById('admin-email').value = '';
+                document.getElementById('admin-name').value = '';
+                showToast(`Invited ${email} ✓`, 'success');
+            } catch (err) {
+                showToast('Error: ' + err.message, 'error');
+            }
+        }
+
+        async function handleStartSeason() {
+            try {
+                const today = getTodayDate();
+                const endDate = new Date(new Date(today).getTime() + 20 * 86400000).toISOString().split('T')[0];
+
+                await setDoc(doc(db, 'seasons', 'season1'), {
+                    name: 'Season 1',
+                    startDate: today,
+                    endDate,
+                    status: 'active',
+                    maxMembers: 5,
+                    winnerId: null
+                });
+
+                showToast('Season 1 started! 🚀', 'success');
+                document.getElementById('start-season-btn').style.display = 'none';
+                document.getElementById('end-season-btn').style.display = 'block';
+            } catch (err) {
+                showToast('Error: ' + err.message, 'error');
+            }
+        }
+
+        async function handleEndSeason() {
+            if (!confirm('End Season 1? This will announce the winner.')) return;
+
+            try {
+                const snap = await getDocs(query(collection(db, 'members'), orderBy('score', 'desc')));
+                const winner = snap.docs[0];
+
+                await updateDoc(doc(db, 'seasons', 'season1'), {
+                    status: 'ended',
+                    winnerId: winner.id
+                });
+
+                showToast('Season ended! 🏆', 'success');
+            } catch (err) {
+                showToast('Error: ' + err.message, 'error');
+            }
+        }
+
+        // ========== RENDER FUNCTIONS ==========
+        function renderSeasonHeader(season) {
+            if (!season) return;
+
+            const day = season.status === 'active' ? getSeasonDay(season.startDate) : 0;
+            const remaining = season.status === 'active' ? getDaysRemaining(season.endDate) : 0;
+
+            document.getElementById('season-day').textContent = `Day ${day}/21`;
+            document.getElementById('season-status').textContent = season.status === 'active' ? 'Active' : 'Ended';
+            document.getElementById('days-remaining').textContent = remaining;
+        }
+
+        function renderLeaderboard(members) {
+            const list = document.getElementById('leaderboard-list');
+            if (!members.length) {
+                list.innerHTML = '<div style="text-align:center; color:#6b7280;">No members yet</div>';
+                return;
+            }
+
+            list.innerHTML = members.map((m, i) => {
+                const rank = i + 1;
+                let rankBadge = rank.toString();
+                if (rank === 1) rankBadge = '🥇';
+                else if (rank === 2) rankBadge = '🥈';
+                else if (rank === 3) rankBadge = '🥉';
+
+                const maxScore = 200;
+                const barWidth = Math.min(100, (m.score / maxScore) * 100);
+                const isCurrent = currentUser && m.uid === currentUser.uid;
+                const isElim = m.score === 0 && !m.isActive;
+
+                return `
+                    <div class="leaderboard-row ${isCurrent ? 'current-user' : ''} ${isElim ? 'eliminated' : ''}" data-uid="${m.uid}">
+                        <div class="rank-badge">${rankBadge}</div>
+                        <div class="leaderboard-name">${m.displayName}</div>
+                        <div class="score-bar-container">
+                            <div class="score-bar">
+                                <div class="score-fill ${isElim ? 'elim' : ''}" style="width: ${barWidth}%"></div>
+                            </div>
+                        </div>
+                        <div class="score-number">${m.score}</div>
+                        ${m.streak > 0 ? `<div class="streak-icon">🔥</div>` : ''}
+                        ${isElim ? '<div class="eliminated-tag">Eliminated</div>' : ''}
+                    </div>
+                `;
+            }).join('');
+
+            // Also update members list in sidebar
+            renderMembersList(members);
+        }
+
+        function renderMembersList(members) {
+            const list = document.getElementById('members-list');
+            if (!members.length) {
+                list.innerHTML = '<div style="text-align:center; color:#6b7280; font-size:12px;">No members yet</div>';
+                return;
+            }
+
+            list.innerHTML = members.map(m => {
+                const isElim = m.score === 0 && !m.isActive;
+                const isCurrent = currentUser && m.uid === currentUser.uid;
+                return `
+                    <div style="padding: 10px; background: #2a2a2a; border: 1px solid #3a3a3a; border-radius: 6px; ${isCurrent ? 'border-color: #ffffff;' : ''} ${isElim ? 'opacity: 0.5;' : ''}">
+                        <div style="font-weight: 600; color: #ffffff; font-size: 14px;">${m.displayName} ${isCurrent ? '(you)' : ''}</div>
+                        <div style="font-size: 12px; color: #6b7280; margin-top: 4px;">Score: ${m.score}</div>
+                        ${m.streak > 0 ? `<div style="font-size: 12px; color: #f97316; margin-top: 2px;">🔥 ${m.streak} day streak</div>` : ''}
+                        ${isElim ? `<div style="font-size: 11px; color: #fca5a5; margin-top: 4px;">🛑 Eliminated</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderCommunityFeed(posts) {
+            const container = document.getElementById('feed-container');
+            if (!posts.length) {
+                container.innerHTML = '<div class="feed-empty">No posts yet today. Be the first! 🚀</div>';
+                return;
+            }
+
+            container.innerHTML = '<div class="feed-list">' + posts.map(p => {
+                const icons = detectActivityIcons(p.text).join(' ');
+                const time = formatTime(p.createdAt);
+                const formattedText = formatPostText(p.text);
+                return `
+                    <div class="feed-item">
+                        <div class="feed-header">
+                            <div class="feed-name">${p.displayName}</div>
+                            <div class="feed-time">${time}</div>
+                        </div>
+                        <div class="feed-content" style="white-space: pre-wrap;">${formattedText}</div>
+                        ${icons ? `<div class="activity-icons">${icons}</div>` : ''}
+                    </div>
+                `;
+            }).join('') + '</div>';
+        }
+
+        function renderPersonalStats(member) {
+            document.getElementById('current-score').textContent = member.score;
+            document.getElementById('current-streak').textContent = `🔥 ${member.streak} day${member.streak !== 1 ? 's' : ''}`;
+
+            const badgeMap = {
+                'early_bird': { icon: '🐦', label: 'Early Bird' },
+                'consistent': { icon: '🔥', label: 'Consistent' },
+                'overachiever': { icon: '🌟', label: 'Overachiever' },
+                'comeback_kid': { icon: '💪', label: 'Comeback Kid' }
+            };
+
+            const badgesContainer = document.getElementById('badges-container');
+            badgesContainer.innerHTML = (member.badges || []).map(b => {
+                const info = badgeMap[b];
+                return info ? `<div class="badge-pill">${info.icon} ${info.label}</div>` : '';
+            }).join('');
+        }
+
+        async function updatePostSection(member, season) {
+            const form = document.getElementById('post-form');
+            const posted = document.getElementById('posted-today');
+            const elim = document.getElementById('eliminated-msg');
+            const notActive = document.getElementById('season-not-active');
+
+            form.style.display = 'none';
+            posted.style.display = 'none';
+            elim.style.display = 'none';
+            notActive.style.display = 'none';
+
+            if (!season || season.status !== 'active') {
+                notActive.style.display = 'block';
+                return;
+            }
+
+            if (!member.isActive) {
+                elim.style.display = 'block';
+                return;
+            }
+
+            const existing = await getUserPostToday(currentUser.uid);
+            if (existing) {
+                const formattedText = formatPostText(existing.text);
+                document.getElementById('posted-content').textContent = formattedText;
+                document.getElementById('posted-content').style.whiteSpace = 'pre-wrap';
+                posted.style.display = 'block';
+            } else {
+                form.style.display = 'block';
+            }
+        }
+
+        async function updateScoringStatus() {
+            const today = getTodayDate();
+            const resultDoc = await getDoc(doc(db, 'dailyResults', today));
+            const statusDiv = document.getElementById('scoring-status');
+
+            if (resultDoc.exists() && resultDoc.data().processed) {
+                statusDiv.textContent = '✓ Today\'s scoring already run';
+                statusDiv.classList.add('completed');
+            } else {
+                statusDiv.textContent = '⏳ Today\'s scoring not yet run';
+                statusDiv.classList.remove('completed');
+            }
+        }
+
+        function launchConfetti() {
+            const colors = ['#fbbf24', '#ffffff', '#f97316', '#9ca3af', '#4ade80'];
+            const container = document.getElementById('confetti-container');
+            for (let i = 0; i < 120; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.cssText = `
+                    left: ${Math.random() * 100}vw;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    animation-duration: ${2 + Math.random() * 3}s;
+                    animation-delay: ${Math.random() * 2}s;
+                    width: ${6 + Math.random() * 6}px;
+                    height: ${6 + Math.random() * 6}px;
+                `;
+                container.appendChild(piece);
+            }
+            setTimeout(() => { container.innerHTML = ''; }, 7000);
+        }
+
+        function showWinnerAnnouncement(winner) {
+            if (winnerShown) return;
+            winnerShown = true;
+
+            document.getElementById('winner-name').textContent = winner.displayName;
+            document.getElementById('winner-score').textContent = `${winner.score} points`;
+            document.getElementById('winner-overlay').style.display = 'flex';
+            launchConfetti();
+        }
+
+        // ========== AUTH STATE HANDLER ==========
+        onAuthStateChanged(auth, async (user) => {
+            unsubscribers.forEach(fn => fn());
+            unsubscribers.length = 0;
+            winnerShown = false;
+
+            if (!user) {
+                showScreen('login');
+                return;
+            }
+
+            currentUser = user;
+            const memberData = await ensureMemberDoc(user);
+
+            if (!memberData) {
+                showScreen('not-invited');
+                return;
+            }
+
+            showScreen('app');
+
+            // Show/hide admin panel based on user
+            if (user.email === ADMIN_EMAIL) {
+                document.getElementById('admin-panel').style.display = 'block';
+                await updateScoringStatus();
+            } else {
+                document.getElementById('admin-panel').style.display = 'none';
+            }
+
+            // Subscribe to season
+            unsubscribers.push(subscribeToSeason(season => {
+                if (season.exists()) {
+                    renderSeasonHeader(season.data());
+                    if (season.data().status === 'ended' && season.data().winnerId) {
+                        getDoc(doc(db, 'members', season.data().winnerId)).then(d => {
+                            showWinnerAnnouncement(d.data());
+                        });
+                    }
+                    if (user.email === ADMIN_EMAIL) {
+                        document.getElementById('start-season-btn').style.display =
+                            season.data().status === 'active' ? 'none' : 'block';
+                        document.getElementById('end-season-btn').style.display =
+                            season.data().status === 'active' ? 'block' : 'none';
+                    }
+                    updatePostSection(memberData, season.data());
+                }
+            }));
+
+            // Subscribe to leaderboard
+            unsubscribers.push(subscribeToLeaderboard(snap => {
+                const members = snap.docs.map(d => ({ uid: d.id, ...d.data() }));
+                renderLeaderboard(members);
+            }));
+
+            // Subscribe to feed
+            unsubscribers.push(subscribeToTodaysFeed(snap => {
+                const posts = snap.docs.map(d => d.data());
+                renderCommunityFeed(posts);
+            }));
+
+            // Subscribe to own member
+            unsubscribers.push(subscribeToOwnMember(user.uid, snap => {
+                if (snap.exists()) {
+                    renderPersonalStats(snap.data());
+                }
+            }));
+        });
+
+        // ========== EVENT LISTENERS ==========
+        // Tab switching
+        const signinTabBtn = document.getElementById('signin-tab');
+        const signupTabBtn = document.getElementById('signup-tab');
+        if (signinTabBtn) signinTabBtn.addEventListener('click', () => switchTab('signin'));
+        if (signupTabBtn) signupTabBtn.addEventListener('click', () => switchTab('signup'));
+
+        // Sign in/up buttons
+        const signinBtn = document.getElementById('signin-btn');
+        const signupContinueBtn = document.getElementById('signup-continue-btn');
+        const setupCreateBtn = document.getElementById('setup-create-btn');
+        const setupBackBtn = document.getElementById('setup-back-btn');
+        if (signinBtn) signinBtn.addEventListener('click', handleLogin);
+        if (signupContinueBtn) signupContinueBtn.addEventListener('click', handleSignUpStep1);
+        if (setupCreateBtn) setupCreateBtn.addEventListener('click', handleSignUpStep2);
+        if (setupBackBtn) setupBackBtn.addEventListener('click', backToEmailEntry);
+
+        // Sign out button - attach when visible
+        const signoutBtn = document.getElementById('signout-btn');
+        if (signoutBtn) {
+            signoutBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await handleSignOut();
+            });
+        }
+
+        // Post button - app screen
+        const postBtn = document.getElementById('post-btn');
+        if (postBtn) postBtn.addEventListener('click', handlePostSubmit);
+
+        // Admin panel buttons - attach listeners
+        const addMemberBtn = document.getElementById('add-member-btn');
+        const runScoringBtn = document.getElementById('run-scoring-btn');
+        const startSeasonBtn = document.getElementById('start-season-btn');
+        const endSeasonBtn = document.getElementById('end-season-btn');
+
+        if (addMemberBtn) addMemberBtn.addEventListener('click', handleAddMember);
+        if (runScoringBtn) runScoringBtn.addEventListener('click', runDailyScoring);
+        if (startSeasonBtn) startSeasonBtn.addEventListener('click', handleStartSeason);
+        if (endSeasonBtn) endSeasonBtn.addEventListener('click', handleEndSeason);
+    </script>
+</body>
+</html>

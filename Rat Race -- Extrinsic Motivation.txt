@@ -1,0 +1,24 @@
+Rat Race -- Extrinsic Motivation 
+
+- I want to create one tab in existing website, Under that we need to create RatRace - Season 1 - 
+- Group of friends on invite by email should be able to login and see what other members are saying , Limit the members to max 5. 
+- Each member will be given 100 points
+- This season will be open for 21 days.
+- Daily each member should come and post on what they have done, below are few examples 
+	> walked for 6000 steps
+	> started Claude Course 
+	> Studied for 2 hours 
+	> Learnt how to create website
+	> Started reading book, The Plot , completed 10 pages 
+- at end of day (9 PM of the day) , one program should run and score each member, 
+	- if someone does not post for last 24 hours , -10 marks. 
+	- go through that member posts and give score between 0 to 20. 
+	
+	and publish that day scores of all members and cumulative score with rankings max score to low score with names. 
+
+- if any member score becomes 0 then disable posting for that member 
+- Repeat same for 21 days and announce winner at end of 21 days. 
+
+Make it fun and add emojis, add features that you think are better. 
+
+
