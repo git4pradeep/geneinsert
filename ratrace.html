@@ -676,6 +676,10 @@
             display: none;
         }
 
+        .my-feed-item-hidden {
+            display: none;
+        }
+
         .more-posts-btn {
             padding: 14px 32px;
             background: #3b82f6;
@@ -1476,6 +1480,14 @@
                         </div>
                     </div>
 
+                    <!-- Recent Posts of Mine -->
+                    <div class="feed">
+                        <h3>📝 Recent Posts of Mine</h3>
+                        <div id="my-posts-container">
+                            <div class="feed-empty">No posts yet. Be the first! 🚀</div>
+                        </div>
+                    </div>
+
                     <!-- Community Feed -->
                     <div class="feed">
                         <h3>💬 All Community Posts</h3>
@@ -1966,6 +1978,13 @@
         function subscribeToTodaysFeed(callback) {
             return onSnapshot(
                 query(collection(db, 'posts'), orderBy('date', 'desc'), orderBy('createdAt', 'desc')),
+                callback
+            );
+        }
+
+        function subscribeToMyPosts(uid, callback) {
+            return onSnapshot(
+                query(collection(db, 'posts'), where('uid', '==', uid), orderBy('date', 'desc'), orderBy('createdAt', 'desc')),
                 callback
             );
         }
@@ -2581,6 +2600,77 @@
             showToast('All posts loaded! Scroll to see more 👇', 'info');
         }
 
+        function expandMyPosts() {
+            const hiddenPosts = document.querySelectorAll('.my-feed-item-hidden');
+            hiddenPosts.forEach(post => {
+                post.classList.remove('my-feed-item-hidden');
+            });
+
+            const moreBtn = document.querySelector('.more-my-posts-btn');
+            if (moreBtn) {
+                moreBtn.parentElement.style.display = 'none';
+            }
+
+            showToast('All your posts loaded! Scroll to see more 👇', 'info');
+        }
+
+        function renderMyPosts(posts) {
+            const container = document.getElementById('my-posts-container');
+            if (!posts.length) {
+                container.innerHTML = '<div class="feed-empty">You haven\'t posted yet. Share your first accomplishment! 🚀</div>';
+                return;
+            }
+
+            const POSTS_PER_PAGE = 3;
+            const totalPosts = posts.length;
+            const hasMore = totalPosts > POSTS_PER_PAGE;
+
+            let html = '<div class="feed-list" id="my-feed-list-content">';
+
+            for (let i = 0; i < posts.length; i++) {
+                const p = posts[i];
+                const icons = detectActivityIcons(p.text).join(' ');
+                const time = formatTime(p.createdAt);
+                const formattedText = formatPostText(p.text);
+                const date = p.date || getTodayDate();
+                const isToday = date === getTodayDate();
+                const dateLabel = isToday ? 'Today' : new Date(date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                const isHidden = i >= POSTS_PER_PAGE ? ' my-feed-item-hidden' : '';
+
+                if (i === 0 || posts[i-1].date !== date) {
+                    if (i > 0) html += '</div>';
+                    html += `<div style="padding: 16px 0; border-top: 1px solid #3a3a3a; margin-top: 16px; margin-bottom: 8px;">
+                        <div style="color: #6b7280; font-size: 12px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">${dateLabel}</div>
+                    </div>`;
+                }
+
+                html += `
+                    <div class="feed-item${isHidden}" data-my-post-index="${i}">
+                        <div class="feed-header">
+                            <div class="feed-name">You</div>
+                            <div class="feed-time">${time}</div>
+                        </div>
+                        <div class="feed-content" style="white-space: pre-wrap;">${formattedText}</div>
+                        ${icons ? `<div class="activity-icons">${icons}</div>` : ''}
+                    </div>
+                `;
+            }
+
+            html += '</div>';
+
+            if (hasMore) {
+                html += `
+                    <div style="text-align: center; margin-top: 24px; padding: 20px 0; border-top: 1px solid #3a3a3a;">
+                        <button class="more-my-posts-btn" onclick="expandMyPosts()">
+                            📖 Show More of My Posts (${totalPosts - POSTS_PER_PAGE} more)
+                        </button>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
         function renderPersonalStats(member) {
             document.getElementById('current-score').textContent = member.score;
             document.getElementById('current-streak').textContent = `🔥 ${member.streak} day${member.streak !== 1 ? 's' : ''}`;
@@ -2736,6 +2826,12 @@
             unsubscribers.push(subscribeToLeaderboard(snap => {
                 const members = snap.docs.map(d => ({ uid: d.id, ...d.data() }));
                 renderLeaderboard(members);
+            }));
+
+            // Subscribe to my posts
+            unsubscribers.push(subscribeToMyPosts(user.uid, snap => {
+                const posts = snap.docs.map(d => d.data());
+                renderMyPosts(posts);
             }));
 
             // Subscribe to feed
