@@ -23,17 +23,17 @@
             --danger: #ef4444;
         }
 
-        /* Bright Mode Theme - Modern & Clean */
+        /* Bright Mode Theme - Modern & Easy on Eyes (Soft Blue-White) */
         body.theme-bright {
-            --bg-primary: #f8f9fc;
-            --bg-secondary: #ffffff;
-            --bg-tertiary: #f3f4f9;
-            --bg-quaternary: #e9ecf3;
-            --text-primary: #1a1a2e;
-            --text-secondary: #404857;
-            --text-tertiary: #757f95;
-            --border-color: #e1e5f0;
-            --border-light: #d1d7e6;
+            --bg-primary: #f5f7fc;
+            --bg-secondary: #f8faff;
+            --bg-tertiary: #eef2f9;
+            --bg-quaternary: #e6ecf5;
+            --text-primary: #1a1f3a;
+            --text-secondary: #42495a;
+            --text-tertiary: #7a8399;
+            --border-color: #dce3f0;
+            --border-light: #cdd5e8;
             --accent-primary: #5b6cff;
             --accent-secondary: #8b9dff;
             --success: #10b981;
@@ -41,22 +41,114 @@
             --danger: #ef4444;
         }
 
-        /* Colorful Mode Theme - Vibrant Blue & Purple */
+        body.theme-bright header {
+            background: linear-gradient(135deg, #5b6cff 0%, #8b9dff 100%);
+            box-shadow: 0 4px 20px rgba(91, 108, 255, 0.15);
+        }
+
+        body.theme-bright .season-countdown {
+            background: linear-gradient(135deg, #5b6cff 0%, #8b9dff 100%);
+            border-color: #5b6cff;
+        }
+
+        body.theme-bright .stats-card-primary {
+            border-color: #5b6cff;
+            background: linear-gradient(135deg, rgba(91, 108, 255, 0.08) 0%, rgba(139, 157, 255, 0.08) 100%);
+        }
+
+        body.theme-bright .post-section {
+            box-shadow: 0 2px 8px rgba(91, 108, 255, 0.08);
+        }
+
+        body.theme-bright #post-text:focus {
+            border-color: #5b6cff !important;
+            box-shadow: 0 0 0 3px rgba(91, 108, 255, 0.1);
+        }
+
+        body.theme-bright .post-btn {
+            background: #5b6cff;
+        }
+
+        body.theme-bright .post-btn:hover {
+            background: linear-gradient(135deg, #5b6cff 0%, #8b9dff 100%);
+        }
+
+        body.theme-bright .feed-filter-btn.active {
+            background: #5b6cff;
+            color: #ffffff;
+        }
+
+        body.theme-bright .feed-filter-btn:hover {
+            background: rgba(91, 108, 255, 0.1);
+        }
+
+        /* Colorful Mode Theme - Ocean Cool (Dark + Vibrant Cyan/Lime) */
         body.theme-colorful {
-            --bg-primary: #0f1139;
-            --bg-secondary: #1a1f5a;
-            --bg-tertiary: #2d2f6f;
-            --bg-quaternary: #3d4a8f;
-            --text-primary: #ffffff;
-            --text-secondary: #e8e8f8;
-            --text-tertiary: #b8b8d8;
-            --border-color: #3d4a8f;
-            --border-light: #5a6ab5;
-            --accent-primary: #6366f1;
-            --accent-secondary: #a78bfa;
-            --success: #34d399;
+            --bg-primary: #0f1419;
+            --bg-secondary: #1a2332;
+            --bg-tertiary: #243447;
+            --bg-quaternary: #2d3e52;
+            --text-primary: #e0f2fe;
+            --text-secondary: #b0d9f0;
+            --text-tertiary: #7ec8e3;
+            --border-color: #1e3a4a;
+            --border-light: #2a4a5f;
+            --accent-primary: #06b6d4;
+            --accent-secondary: #14b8a6;
+            --success: #84cc16;
             --warning: #fbbf24;
             --danger: #f87171;
+        }
+
+        body.theme-colorful header {
+            background: linear-gradient(135deg, #06b6d4 0%, #14b8a6 100%);
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+        }
+
+        body.theme-colorful .season-countdown {
+            background: linear-gradient(135deg, #06b6d4 0%, #84cc16 100%) !important;
+            border-color: #06b6d4 !important;
+        }
+
+        body.theme-colorful .stats-card-primary {
+            border-color: #06b6d4 !important;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(20, 184, 166, 0.15) 100%) !important;
+        }
+
+        body.theme-colorful .post-section {
+            box-shadow: 0 2px 12px rgba(6, 182, 212, 0.15);
+            border-color: #1e3a4a !important;
+        }
+
+        body.theme-colorful #post-text:focus {
+            border-color: #06b6d4 !important;
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+        }
+
+        body.theme-colorful .post-btn {
+            background: #06b6d4;
+            color: #0f1419;
+        }
+
+        body.theme-colorful .post-btn:hover {
+            background: linear-gradient(135deg, #06b6d4 0%, #14b8a6 100%);
+        }
+
+        body.theme-colorful .leaderboard {
+            border-color: #1e3a4a !important;
+        }
+
+        body.theme-colorful .feed {
+            border-color: #1e3a4a !important;
+        }
+
+        body.theme-colorful .feed-filter-btn.active {
+            background: #06b6d4;
+            color: #0f1419;
+        }
+
+        body.theme-colorful .feed-filter-btn:hover {
+            background: rgba(6, 182, 212, 0.2);
         }
 
         * {
@@ -410,83 +502,97 @@
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 24px;
+            padding: 16px 24px;
             margin-bottom: 24px;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
         .season-info {
             display: flex;
             align-items: center;
+            gap: 20px;
+            min-width: fit-content;
+            flex-shrink: 0;
         }
 
         .season-info h2 {
             font-size: 24px;
             color: var(--text-primary);
-            margin-bottom: 8px;
+            margin-bottom: 0;
         }
 
         .season-meta {
             display: flex;
-            gap: 20px;
-            font-size: 14px;
+            gap: 16px;
+            font-size: 12px;
             color: var(--text-secondary);
+            white-space: nowrap;
         }
 
         .season-countdown {
             text-align: center;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-light);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             border-radius: 8px;
-            padding: 12px 16px;
-            min-width: 140px;
+            padding: 8px 12px;
+            min-width: 56px;
+            height: 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            margin-left: auto;
         }
 
         .season-countdown .day-counter {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
-            color: var(--success);
+            color: #ffffff;
+            line-height: 1;
         }
 
         .season-countdown .label {
-            font-size: 11px;
-            color: var(--text-tertiary);
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.9);
             margin-top: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
         /* ========== Motivational Quote ========== */
         .motivational-quote {
             flex: 1;
+            min-width: 0;
             text-align: center;
-            padding: 12px 20px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.08) 100%);
-            border-radius: 8px;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-        }
-
-        .quote-text {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-primary);
+            padding: 0;
+            font-size: 12px;
+            color: var(--text-secondary);
             font-style: italic;
-            line-height: 1.4;
-            margin-bottom: 6px;
-            transition: opacity 0.3s ease;
-        }
-
-        .quote-author {
-            font-size: 10px;
-            color: var(--accent-primary);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: opacity 0.3s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            transition: color 0.3s ease;
         }
 
         .motivational-quote:hover {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.12) 100%);
-            border-color: rgba(102, 126, 234, 0.3);
+            color: var(--accent-primary);
+        }
+
+        #quote-text {
+            margin-right: 4px;
+        }
+
+        #quote-author {
+            color: var(--text-tertiary);
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        .motivational-quote:hover #quote-author {
+            color: var(--accent-primary);
         }
 
         .main-grid {
@@ -580,6 +686,7 @@
         #post-text {
             width: 100%;
             min-height: 120px;
+            max-height: 500px;
             padding: 14px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-light);
@@ -589,6 +696,13 @@
             font-size: 15px;
             resize: vertical;
             margin-bottom: 12px;
+            overflow: hidden;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+
+        #post-text::-webkit-scrollbar {
+            display: none;
         }
 
         #post-text:focus {
@@ -1660,7 +1774,18 @@
             }
 
             .season-banner {
-                grid-template-columns: 1fr;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .season-info {
+                min-width: fit-content;
+            }
+
+            .motivational-quote {
+                flex-basis: 100%;
+                order: -1;
+                font-size: 11px;
             }
 
             .season-countdown {
@@ -1809,8 +1934,8 @@
                     </div>
                 </div>
                 <div class="motivational-quote">
-                    <div class="quote-text" id="quote-text">"The only way to do great work is to love what you do."</div>
-                    <div class="quote-author" id="quote-author">— Steve Jobs</div>
+                    <span id="quote-text">"The only way to do great work is to love what you do."</span>
+                    <span id="quote-author">— Steve Jobs</span>
                 </div>
                 <div class="season-countdown">
                     <div class="day-counter" id="days-remaining">21</div>
@@ -2108,7 +2233,7 @@ Use > for bullet points:
 
         // Global error handler
         window.addEventListener('error', (event) => {
-            const timestamp = new Date().toLocaleTimeString();
+            const timestamp = formatTime(new Date());
             const errorMsg = `${event.message} at ${event.filename}:${event.lineno}`;
             console.error(`[UNCAUGHT ERROR ${timestamp}]`, errorMsg, event.error);
             errorLog.push(`[${timestamp}] ❌ UNCAUGHT: ${errorMsg}`);
@@ -2120,7 +2245,7 @@ Use > for bullet points:
         });
 
         window.addEventListener('unhandledrejection', (event) => {
-            const timestamp = new Date().toLocaleTimeString();
+            const timestamp = formatTime(new Date());
             const errorMsg = event.reason?.message || String(event.reason);
             console.error(`[UNHANDLED REJECTION ${timestamp}]`, errorMsg, event.reason);
             errorLog.push(`[${timestamp}] ❌ REJECTED: ${errorMsg}`);
@@ -2157,9 +2282,34 @@ Use > for bullet points:
         function formatTime(timestamp) {
             if (!timestamp) return '';
             const d = new Date(timestamp.toDate ? timestamp.toDate() : timestamp);
-            const hours = String(d.getHours()).padStart(2, '0');
-            const mins = String(d.getMinutes()).padStart(2, '0');
+
+            // Convert to US Central Time (CST/CDT)
+            const formatter = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'America/Chicago',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+
+            const parts = formatter.formatToParts(d);
+            const hours = parts.find(p => p.type === 'hour')?.value || '00';
+            const mins = parts.find(p => p.type === 'minute')?.value || '00';
             return `${hours}:${mins}`;
+        }
+
+        function formatDate(timestamp) {
+            if (!timestamp) return '';
+            const d = new Date(timestamp.toDate ? timestamp.toDate() : timestamp);
+
+            // Convert to US Central Time
+            const formatter = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'America/Chicago',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+
+            return formatter.format(d);
         }
 
         function showScreen(screenName) {
@@ -2238,7 +2388,7 @@ Use > for bullet points:
             document.body.appendChild(toast);
 
             if (type === 'error') {
-                const timestamp = new Date().toLocaleTimeString();
+                const timestamp = formatTime(new Date());
                 errorLog.push(`[${timestamp}] ${message}`);
                 console.error(`[${timestamp}] ${message}`);
                 updateDebugPanel();
@@ -2248,7 +2398,7 @@ Use > for bullet points:
         }
 
         function logError(context, error) {
-            const timestamp = new Date().toLocaleTimeString();
+            const timestamp = formatTime(new Date());
             const errorMsg = `${context}: ${error.message || error}`;
             console.error(`[${timestamp}] ${errorMsg}`);
             console.error('Full error:', error);
@@ -3169,7 +3319,15 @@ Use > for bullet points:
             // Flatten all posts while keeping track of date groups
             const allPostItems = [];
             for (const date of sortedDates) {
-                const dateLabel = date === today ? 'Today' : new Date(date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                let dateLabel = 'Today';
+                if (date !== today) {
+                    const formatter = new Intl.DateTimeFormat('en-US', {
+                        timeZone: 'America/Chicago',
+                        month: 'short',
+                        day: 'numeric'
+                    });
+                    dateLabel = formatter.format(new Date(date + 'T00:00:00'));
+                }
                 allPostItems.push({ type: 'date-header', label: dateLabel });
 
                 for (const p of postsByDate[date]) {
@@ -3284,7 +3442,15 @@ Use > for bullet points:
                 const time = formatTime(p.createdAt);
                 const formattedText = formatPostText(p.text);
                 const isToday = date === getTodayDate();
-                const dateLabel = isToday ? 'Today' : new Date(date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                let dateLabel = 'Today';
+                if (!isToday) {
+                    const formatter = new Intl.DateTimeFormat('en-US', {
+                        timeZone: 'America/Chicago',
+                        month: 'short',
+                        day: 'numeric'
+                    });
+                    dateLabel = formatter.format(new Date(date + 'T00:00:00'));
+                }
                 const isHidden = i >= POSTS_PER_PAGE ? ' my-feed-item-hidden' : '';
 
                 if (date !== lastDate) {
