@@ -1442,6 +1442,122 @@
             cursor: not-allowed;
         }
 
+        /* Admin Tables */
+        #members-table tbody tr:hover,
+        #scoring-table tbody tr:hover {
+            background: var(--bg-tertiary);
+        }
+
+        #members-table tbody tr,
+        #scoring-table tbody tr {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        #members-table td,
+        #members-table th,
+        #scoring-table td,
+        #scoring-table th {
+            padding: 10px 8px;
+        }
+
+        .member-action-btn {
+            padding: 4px 8px;
+            font-size: 10px;
+            background: var(--accent-primary);
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 2px;
+            white-space: nowrap;
+        }
+
+        .member-action-btn:hover {
+            opacity: 0.8;
+        }
+
+        .member-action-btn.delete {
+            background: #ef4444;
+        }
+
+        .member-action-btn.toggle {
+            background: #f59e0b;
+        }
+
+        /* Modal */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-modal.active {
+            display: flex;
+        }
+
+        .admin-modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .admin-modal-content h3 {
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .admin-modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .admin-modal-content input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .admin-modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .admin-modal-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .admin-modal-btn.primary {
+            background: var(--accent-primary);
+            color: #ffffff;
+        }
+
+        .admin-modal-btn.cancel {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
         /* ========== Winner Overlay ========== */
         #winner-overlay {
             display: none;
@@ -2026,6 +2142,21 @@ Use > for bullet points:
                 </div>
             </div>
 
+    <!-- Member Score Modal -->
+    <div id="score-modal" class="admin-modal">
+        <div class="admin-modal-content">
+            <h3>Adjust Member Score</h3>
+            <input type="hidden" id="score-modal-uid">
+            <div id="score-modal-name" style="color: var(--text-secondary); margin-bottom: 12px;"></div>
+            <label style="color: var(--text-tertiary); font-size: 12px;">New Score:</label>
+            <input type="number" id="score-modal-value" placeholder="Enter new score" min="0">
+            <div class="admin-modal-buttons">
+                <button class="admin-modal-btn cancel" onclick="closeScoreModal()">Cancel</button>
+                <button class="admin-modal-btn primary" onclick="saveScoreAdjustment()">Save</button>
+            </div>
+        </div>
+    </div>
+
             <!-- Mobile Bottom Navigation -->
             <nav class="mobile-nav">
                 <div class="mobile-nav-content">
@@ -2080,10 +2211,61 @@ Use > for bullet points:
                             </div>
                         </div>
 
+                        <!-- Member Management -->
+                        <div class="admin-section">
+                            <h3>👥 Member Management</h3>
+                            <div style="overflow-x: auto; max-height: 400px; overflow-y: auto;">
+                                <table id="members-table" style="width: 100%; font-size: 12px; border-collapse: collapse;">
+                                    <thead style="position: sticky; top: 0; background: var(--bg-tertiary);">
+                                        <tr style="border-bottom: 1px solid var(--border-color);">
+                                            <th style="padding: 8px; text-align: left;">Name</th>
+                                            <th style="padding: 8px; text-align: center;">Score</th>
+                                            <th style="padding: 8px; text-align: center;">Streak</th>
+                                            <th style="padding: 8px; text-align: center;">Status</th>
+                                            <th style="padding: 8px; text-align: center;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="members-table-body">
+                                        <tr><td colspan="5" style="padding: 20px; text-align: center; color: #6b7280;">Loading...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Scoring Report -->
+                        <div class="admin-section">
+                            <h3>📊 Scoring Report</h3>
+                            <div style="overflow-x: auto; max-height: 300px; overflow-y: auto;">
+                                <table id="scoring-table" style="width: 100%; font-size: 11px; border-collapse: collapse;">
+                                    <thead style="position: sticky; top: 0; background: var(--bg-tertiary);">
+                                        <tr style="border-bottom: 1px solid var(--border-color);">
+                                            <th style="padding: 8px; text-align: left;">Date</th>
+                                            <th style="padding: 8px; text-align: center;">Posted</th>
+                                            <th style="padding: 8px; text-align: center;">No Post</th>
+                                            <th style="padding: 8px; text-align: center;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="scoring-table-body">
+                                        <tr><td colspan="4" style="padding: 20px; text-align: center; color: #6b7280;">Loading...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Export Data -->
+                        <div class="admin-section">
+                            <h3>💾 Export Data</h3>
+                            <div class="admin-button-group">
+                                <button class="admin-btn" id="export-scores-btn" style="background: #10b981;">📥 Export Members & Scores</button>
+                                <button class="admin-btn" id="export-all-btn" style="background: #3b82f6;">📥 Export All Data</button>
+                            </div>
+                            <p style="font-size: 12px; color: #6b7280; margin-top: 8px;">Download all data as CSV for records and analysis</p>
+                        </div>
+
                         <!-- Cleanup -->
                         <div class="admin-section">
                             <h3>🧹 Cleanup (Testing Only)</h3>
-                            <button class="admin-btn" style="background: #f97316; width: 100%;" onclick="deleteAllPosts()">🗑️ Delete All Posts</button>
+                            <button class="admin-btn" style="background: #f97316; width: 100%;" id="delete-all-posts-btn">🗑️ Delete All Posts</button>
                             <p style="font-size: 12px; color: #6b7280; margin-top: 8px;">⚠️ This will permanently delete ALL posts. Use only for testing!</p>
                         </div>
                     </div>
@@ -2969,115 +3151,145 @@ Use > for bullet points:
 
         // ========== ADMIN SCORING ==========
         async function runDailyScoring() {
-            const today = getTodayDate();
-            const resultRef = doc(db, 'dailyResults', today);
-
             try {
-                const existing = await getDoc(resultRef);
-                if (existing.exists() && existing.data().processed) {
-                    showToast('Scoring already run for ' + today, 'error');
-                    return;
-                }
-
-                if (!confirm(`Run scoring for ${today}? This cannot be undone for today.`)) return;
+                if (!confirm('Run scoring for all unscored days? This will backfill missed days.')) return;
 
                 const btn = document.getElementById('run-scoring-btn');
                 btn.disabled = true;
-                btn.textContent = 'Processing...';
+                btn.textContent = '⏳ Processing...';
+
+                // Get all posts to find dates that need scoring
+                const allPostsSnap = await getDocs(collection(db, 'posts'));
+                const uniqueDates = new Set();
+                allPostsSnap.docs.forEach(d => {
+                    const date = d.data().date;
+                    if (date) uniqueDates.add(date);
+                });
+
+                // Get all daily results to see which dates already have scoring
+                const resultsSnap = await getDocs(collection(db, 'dailyResults'));
+                const scoredDates = new Set();
+                resultsSnap.docs.forEach(d => {
+                    if (d.data().processed) {
+                        scoredDates.add(d.id);
+                    }
+                });
+
+                // Find dates that need scoring
+                const datesToScore = Array.from(uniqueDates).filter(d => !scoredDates.has(d)).sort();
+
+                if (datesToScore.length === 0) {
+                    showToast('✓ All days already scored!', 'info');
+                    btn.disabled = false;
+                    btn.textContent = '⚡ Run Today\'s Scoring';
+                    return;
+                }
+
+                console.log(`Scoring ${datesToScore.length} missed days:`, datesToScore);
 
                 const membersSnap = await getDocs(collection(db, 'members'));
                 const members = membersSnap.docs.map(d => ({ uid: d.id, ...d.data() }));
 
-                const postsSnap = await getDocs(
-                    query(collection(db, 'posts'), where('date', '==', today))
-                );
-                const postsByUid = {};
-                postsSnap.docs.forEach(d => { postsByUid[d.data().uid] = { id: d.id, ...d.data() }; });
+                let totalScoringOps = 0;
 
-                const scores = {};
-                const batch = writeBatch(db);
-
-                for (const member of members) {
-                    if (!member.isActive && member.score === 0) {
-                        scores[member.uid] = { delta: 0, cumulative: 0, reason: 'Eliminated' };
-                        continue;
-                    }
-
-                    const post = postsByUid[member.uid];
-                    let delta, reason;
-
-                    if (!post) {
-                        delta = -10;
-                        reason = 'No post submitted';
-                    } else {
-                        delta = calculatePostScore(post.text);
-                        reason = `+${delta} points`;
-                        batch.update(doc(db, 'posts', post.id), { scored: true, score: delta });
-                    }
-
-                    const newScore = Math.max(0, member.score + delta);
-                    const isNowElim = newScore === 0 && member.isActive;
-
-                    scores[member.uid] = { delta, cumulative: newScore, reason };
-
-                    const memberUpdate = { score: newScore };
-                    if (post) {
-                        memberUpdate.lastPostDate = today;
-                        memberUpdate.streak = member.streak + 1;
-                    } else {
-                        memberUpdate.streak = 0;
-                    }
-                    if (isNowElim) {
-                        memberUpdate.isActive = false;
-                    }
-                    batch.update(doc(db, 'members', member.uid), memberUpdate);
+                // Score each missed date
+                for (const scoreDate of datesToScore) {
+                    await scoreSingleDay(scoreDate, members);
+                    totalScoringOps++;
                 }
 
-                batch.set(resultRef, {
-                    processed: true,
-                    processedAt: serverTimestamp(),
-                    processedBy: auth.currentUser.email,
-                    scores
-                });
-
-                await batch.commit();
-                await checkAndAwardBadgesAfterScoring(members, scores);
+                await checkAndAwardBadgesAfterBatchScoring(members);
                 await maybeAnnounceWinner();
 
-                showToast('Scoring complete for ' + today, 'success');
+                showToast(`✓ Scored ${totalScoringOps} days! Backfill complete.`, 'success');
             } catch (err) {
-                showToast('Error during scoring: ' + err.message, 'error');
-                console.error(err);
+                showToast('❌ Error during scoring: ' + err.message, 'error');
+                console.error('Scoring error:', err);
             } finally {
-                document.getElementById('run-scoring-btn').disabled = false;
-                document.getElementById('run-scoring-btn').textContent = '⚡ Run Today\'s Scoring';
+                const btn = document.getElementById('run-scoring-btn');
+                btn.disabled = false;
+                btn.textContent = '⚡ Run Today\'s Scoring';
             }
         }
 
-        async function checkAndAwardBadgesAfterScoring(members, scores) {
+        async function scoreSingleDay(scoreDate, members) {
+            const resultRef = doc(db, 'dailyResults', scoreDate);
+            const postsSnap = await getDocs(
+                query(collection(db, 'posts'), where('date', '==', scoreDate))
+            );
+            const postsByUid = {};
+            postsSnap.docs.forEach(d => { postsByUid[d.data().uid] = { id: d.id, ...d.data() }; });
+
+            const scores = {};
+            const batch = writeBatch(db);
+
+            for (const member of members) {
+                if (!member.isActive && member.score === 0) {
+                    scores[member.uid] = { delta: 0, cumulative: 0, reason: 'Eliminated' };
+                    continue;
+                }
+
+                const post = postsByUid[member.uid];
+                let delta, reason;
+
+                if (!post) {
+                    delta = -10;
+                    reason = 'No post submitted';
+                } else {
+                    if (post.scored) {
+                        // Skip already scored posts
+                        scores[member.uid] = { delta: post.score, cumulative: member.score, reason: 'Already scored' };
+                        continue;
+                    }
+                    delta = calculatePostScore(post.text);
+                    reason = `+${delta} points`;
+                    batch.update(doc(db, 'posts', post.id), { scored: true, score: delta });
+                }
+
+                const newScore = Math.max(0, member.score + delta);
+                const isNowElim = newScore === 0 && member.isActive;
+
+                scores[member.uid] = { delta, cumulative: newScore, reason };
+
+                const memberUpdate = { score: newScore };
+                if (post) {
+                    memberUpdate.lastPostDate = scoreDate;
+                    memberUpdate.streak = (member.streak || 0) + 1;
+                } else {
+                    memberUpdate.streak = 0;
+                }
+                if (isNowElim) {
+                    memberUpdate.isActive = false;
+                }
+                batch.update(doc(db, 'members', member.uid), memberUpdate);
+            }
+
+            batch.set(resultRef, {
+                processed: true,
+                processedAt: serverTimestamp(),
+                processedBy: auth.currentUser.email,
+                scores
+            });
+
+            await batch.commit();
+            console.log(`Scored day ${scoreDate}: ${postsSnap.size} posts`);
+        }
+
+        async function checkAndAwardBadgesAfterBatchScoring(members) {
             const batch = writeBatch(db);
             let hasBatchOp = false;
 
             for (const member of members) {
-                const scoreResult = scores[member.uid];
-                const currentBadges = new Set(member.badges || []);
+                const updatedMember = (await getDoc(doc(db, 'members', member.uid))).data();
+                const currentBadges = new Set(updatedMember.badges || []);
                 let badgesChanged = false;
 
-                const newStreak = scoreResult.delta > 0 && scoreResult.delta !== -10
-                    ? (member.streak || 0) + 1
-                    : 0;
-                if (newStreak >= 7 && !currentBadges.has('consistent')) {
+                if ((updatedMember.streak || 0) >= 7 && !currentBadges.has('consistent')) {
                     currentBadges.add('consistent');
                     badgesChanged = true;
                 }
-
-                if (scoreResult.delta === 20 && !currentBadges.has('overachiever')) {
-                    currentBadges.add('overachiever');
-                    badgesChanged = true;
-                }
-
-                if (member.score < 20 && scoreResult.cumulative > 50 && !currentBadges.has('comeback_kid')) {
-                    currentBadges.add('comeback_kid');
+                if ((updatedMember.score || 0) >= 200 && !currentBadges.has('champion')) {
+                    currentBadges.add('champion');
                     badgesChanged = true;
                 }
 
@@ -3089,6 +3301,7 @@ Use > for bullet points:
 
             if (hasBatchOp) await batch.commit();
         }
+
 
         async function maybeAnnounceWinner() {
             const seasonDoc = await getDoc(doc(db, 'seasons', 'season1'));
@@ -3184,25 +3397,37 @@ Use > for bullet points:
             if (!confirm('This action is permanent. Click OK again to confirm.')) return;
 
             try {
-                const btn = event.target;
+                const btn = document.getElementById('delete-all-posts-btn');
                 btn.disabled = true;
-                btn.textContent = 'Deleting...';
+                btn.textContent = '⏳ Deleting...';
 
+                console.log('Fetching all posts...');
                 const postsSnap = await getDocs(collection(db, 'posts'));
-                const batch = writeBatch(db);
+                console.log(`Found ${postsSnap.size} posts to delete`);
 
+                if (postsSnap.size === 0) {
+                    showToast('✓ No posts to delete!', 'info');
+                    btn.disabled = false;
+                    btn.textContent = '🗑️ Delete All Posts';
+                    return;
+                }
+
+                const batch = writeBatch(db);
                 postsSnap.docs.forEach(doc => {
                     batch.delete(doc.ref);
                 });
 
+                console.log('Committing batch delete...');
                 await batch.commit();
 
+                console.log(`Successfully deleted ${postsSnap.size} posts`);
                 showToast(`✓ Deleted ${postsSnap.size} posts!`, 'success');
                 btn.disabled = false;
                 btn.textContent = '🗑️ Delete All Posts';
             } catch (err) {
-                showToast('Error: ' + err.message, 'error');
-                const btn = event.target;
+                console.error('Delete all posts error:', err);
+                showToast('❌ Error: ' + err.message, 'error');
+                const btn = document.getElementById('delete-all-posts-btn');
                 btn.disabled = false;
                 btn.textContent = '🗑️ Delete All Posts';
             }
@@ -3536,17 +3761,226 @@ Use > for bullet points:
         }
 
         async function updateScoringStatus() {
-            const today = getTodayDate();
-            const resultDoc = await getDoc(doc(db, 'dailyResults', today));
-            const statusDiv = document.getElementById('scoring-status');
+            try {
+                const statusDiv = document.getElementById('scoring-status');
 
-            if (resultDoc.exists() && resultDoc.data().processed) {
-                statusDiv.textContent = '✓ Today\'s scoring already run';
-                statusDiv.classList.add('completed');
-            } else {
-                statusDiv.textContent = '⏳ Today\'s scoring not yet run';
-                statusDiv.classList.remove('completed');
+                // Get all posts to find dates with posts
+                const allPostsSnap = await getDocs(collection(db, 'posts'));
+                const uniqueDates = new Set();
+                allPostsSnap.docs.forEach(d => {
+                    const date = d.data().date;
+                    if (date) uniqueDates.add(date);
+                });
+
+                // Get all scored dates
+                const resultsSnap = await getDocs(collection(db, 'dailyResults'));
+                const scoredDates = new Set();
+                resultsSnap.docs.forEach(d => {
+                    if (d.data().processed) {
+                        scoredDates.add(d.id);
+                    }
+                });
+
+                const unscoreedDates = Array.from(uniqueDates).filter(d => !scoredDates.has(d)).length;
+                const totalDates = uniqueDates.size;
+
+                if (unscoreedDates === 0 && totalDates > 0) {
+                    statusDiv.innerHTML = `✓ All ${totalDates} days scored`;
+                    statusDiv.classList.add('completed');
+                } else if (unscoreedDates > 0) {
+                    statusDiv.innerHTML = `⏳ ${unscoreedDates}/${totalDates} days need scoring`;
+                    statusDiv.classList.remove('completed');
+                } else {
+                    statusDiv.innerHTML = 'No posts yet';
+                    statusDiv.classList.remove('completed');
+                }
+            } catch (err) {
+                console.error('Error updating scoring status:', err);
             }
+        }
+
+        // ========== ADMIN: MEMBER MANAGEMENT ==========
+        async function loadMembersTable() {
+            try {
+                const membersSnap = await getDocs(collection(db, 'members'));
+                const tbody = document.getElementById('members-table-body');
+                const members = membersSnap.docs.map(d => ({ uid: d.id, ...d.data() })).sort((a, b) => (b.score || 0) - (a.score || 0));
+
+                if (members.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="padding: 20px; text-align: center; color: #6b7280;">No members</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = members.map(m => `
+                    <tr>
+                        <td>${m.displayName || m.email}</td>
+                        <td style="text-align: center;"><strong>${m.score || 0}</strong></td>
+                        <td style="text-align: center;">🔥 ${m.streak || 0}</td>
+                        <td style="text-align: center;">${m.isActive ? '✓ Active' : '✗ Eliminated'}</td>
+                        <td style="text-align: center;">
+                            <button class="member-action-btn" onclick="openScoreModal('${m.uid}', '${m.displayName || m.email}', ${m.score || 0})">Edit</button>
+                            <button class="member-action-btn toggle" onclick="toggleMemberActive('${m.uid}', ${!m.isActive})">${m.isActive ? 'Eliminate' : 'Reactivate'}</button>
+                            <button class="member-action-btn delete" onclick="deleteMember('${m.uid}')">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (err) {
+                console.error('Error loading members:', err);
+            }
+        }
+
+        function openScoreModal(uid, name, currentScore) {
+            document.getElementById('score-modal-uid').value = uid;
+            document.getElementById('score-modal-name').textContent = `${name} (Current: ${currentScore})`;
+            document.getElementById('score-modal-value').value = currentScore;
+            document.getElementById('score-modal').classList.add('active');
+            document.getElementById('score-modal-value').focus();
+        }
+
+        function closeScoreModal() {
+            document.getElementById('score-modal').classList.remove('active');
+        }
+
+        async function saveScoreAdjustment() {
+            const uid = document.getElementById('score-modal-uid').value;
+            const newScore = parseInt(document.getElementById('score-modal-value').value);
+            if (isNaN(newScore) || newScore < 0) {
+                showToast('Please enter a valid score', 'error');
+                return;
+            }
+            try {
+                await updateDoc(doc(db, 'members', uid), { score: newScore });
+                showToast('✓ Score updated!', 'success');
+                closeScoreModal();
+                await loadMembersTable();
+            } catch (err) {
+                showToast('Error: ' + err.message, 'error');
+            }
+        }
+
+        async function toggleMemberActive(uid, isActive) {
+            if (!confirm(`${isActive ? 'Reactivate' : 'Eliminate'} this member?`)) return;
+            try {
+                await updateDoc(doc(db, 'members', uid), { isActive });
+                showToast(`✓ Member ${isActive ? 'reactivated' : 'eliminated'}!`, 'success');
+                await loadMembersTable();
+            } catch (err) {
+                showToast('Error: ' + err.message, 'error');
+            }
+        }
+
+        async function deleteMember(uid) {
+            if (!confirm('Delete this member? This cannot be undone!')) return;
+            try {
+                await deleteDoc(doc(db, 'members', uid));
+                showToast('✓ Member deleted!', 'success');
+                await loadMembersTable();
+            } catch (err) {
+                showToast('Error: ' + err.message, 'error');
+            }
+        }
+
+        // ========== ADMIN: SCORING REPORT ==========
+        async function loadScoringReport() {
+            try {
+                const resultsSnap = await getDocs(collection(db, 'dailyResults'));
+                const tbody = document.getElementById('scoring-table-body');
+                const results = resultsSnap.docs.map(d => ({ date: d.id, ...d.data() })).sort((a, b) => b.date.localeCompare(a.date));
+
+                if (results.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" style="padding: 20px; text-align: center; color: #6b7280;">No scoring data</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = results.map(r => {
+                    const postedCount = Object.values(r.scores || {}).filter(s => s.delta !== -10).length;
+                    const noPostCount = Object.values(r.scores || {}).filter(s => s.delta === -10).length;
+                    return `
+                        <tr>
+                            <td>${r.date}</td>
+                            <td style="text-align: center;"><strong>${postedCount}</strong></td>
+                            <td style="text-align: center;"><strong>${noPostCount}</strong></td>
+                            <td style="text-align: center;">✓ Scored</td>
+                        </tr>
+                    `;
+                }).join('');
+            } catch (err) {
+                console.error('Error loading scoring report:', err);
+            }
+        }
+
+        // ========== ADMIN: EXPORT DATA ==========
+        async function exportMembersAndScores() {
+            try {
+                const membersSnap = await getDocs(collection(db, 'members'));
+                const data = membersSnap.docs.map(d => {
+                    const m = d.data();
+                    return {
+                        'Name': m.displayName || m.email,
+                        'Email': m.email,
+                        'Score': m.score || 0,
+                        'Streak': m.streak || 0,
+                        'Status': m.isActive ? 'Active' : 'Eliminated',
+                        'Last Post': m.lastPostDate || 'Never'
+                    };
+                });
+                downloadCSV(data, 'members-scores.csv');
+                showToast('✓ Exported members & scores!', 'success');
+            } catch (err) {
+                showToast('Error: ' + err.message, 'error');
+            }
+        }
+
+        async function exportAllData() {
+            try {
+                const membersSnap = await getDocs(collection(db, 'members'));
+                const postsSnap = await getDocs(collection(db, 'posts'));
+                const resultsSnap = await getDocs(collection(db, 'dailyResults'));
+
+                const zip = [];
+
+                // Members
+                const members = membersSnap.docs.map(d => {
+                    const m = d.data();
+                    return {
+                        'Name': m.displayName || m.email,
+                        'Email': m.email,
+                        'Score': m.score || 0,
+                        'Streak': m.streak || 0,
+                        'Status': m.isActive ? 'Active' : 'Eliminated'
+                    };
+                });
+
+                // Posts
+                const posts = postsSnap.docs.map(d => {
+                    const p = d.data();
+                    return {
+                        'Date': p.date,
+                        'User': p.displayName,
+                        'Post': p.text?.substring(0, 50),
+                        'Score': p.score || '-'
+                    };
+                });
+
+                downloadCSV(members, 'all-members.csv');
+                downloadCSV(posts, 'all-posts.csv');
+                showToast('✓ Exported all data!', 'success');
+            } catch (err) {
+                showToast('Error: ' + err.message, 'error');
+            }
+        }
+
+        function downloadCSV(data, filename) {
+            if (data.length === 0) return;
+            const headers = Object.keys(data[0]);
+            const csv = [headers.join(','), ...data.map(row => headers.map(h => `"${row[h] || ''}"`).join(','))].join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
         }
 
         function launchConfetti() {
@@ -3603,6 +4037,8 @@ Use > for bullet points:
             if (user.email === ADMIN_EMAIL) {
                 document.getElementById('admin-panel').style.display = 'block';
                 await updateScoringStatus();
+                await loadMembersTable();
+                await loadScoringReport();
             } else {
                 document.getElementById('admin-panel').style.display = 'none';
             }
@@ -3822,11 +4258,22 @@ Use > for bullet points:
         const runScoringBtn = document.getElementById('run-scoring-btn');
         const startSeasonBtn = document.getElementById('start-season-btn');
         const endSeasonBtn = document.getElementById('end-season-btn');
+        const deleteAllPostsBtn = document.getElementById('delete-all-posts-btn');
+        const exportScoresBtn = document.getElementById('export-scores-btn');
+        const exportAllBtn = document.getElementById('export-all-btn');
 
         if (addMemberBtn) addMemberBtn.addEventListener('click', handleAddMember);
         if (runScoringBtn) runScoringBtn.addEventListener('click', runDailyScoring);
         if (startSeasonBtn) startSeasonBtn.addEventListener('click', handleStartSeason);
         if (endSeasonBtn) endSeasonBtn.addEventListener('click', handleEndSeason);
+        if (deleteAllPostsBtn) deleteAllPostsBtn.addEventListener('click', deleteAllPosts);
+        if (exportScoresBtn) exportScoresBtn.addEventListener('click', exportMembersAndScores);
+        if (exportAllBtn) exportAllBtn.addEventListener('click', exportAllData);
+
+        // Close score modal when clicking outside
+        document.getElementById('score-modal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'score-modal') closeScoreModal();
+        });
 
         // Event delegation for action buttons (edit/delete on posts, show more posts, feed filters)
         document.addEventListener('click', async (e) => {
