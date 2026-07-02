@@ -23,39 +23,39 @@
             --danger: #ef4444;
         }
 
-        /* Bright Mode Theme */
+        /* Bright Mode Theme - Modern & Clean */
         body.theme-bright {
-            --bg-primary: #f5f3f0;
+            --bg-primary: #f8f9fc;
             --bg-secondary: #ffffff;
-            --bg-tertiary: #f0ede9;
-            --bg-quaternary: #e8e4df;
-            --text-primary: #1a1a1a;
-            --text-secondary: #4a4a4a;
-            --text-tertiary: #6b7280;
-            --border-color: #e0dbd5;
-            --border-light: #d0cac4;
-            --accent-primary: #c67c4e;
-            --accent-secondary: #d4a574;
-            --success: #16a34a;
-            --warning: #d97706;
-            --danger: #dc2626;
-        }
-
-        /* Colorful Mode Theme */
-        body.theme-colorful {
-            --bg-primary: #0a1929;
-            --bg-secondary: #132f4c;
-            --bg-tertiary: #1e3a5f;
-            --bg-quaternary: #2d5f8d;
-            --text-primary: #ffffff;
-            --text-secondary: #e0e0e0;
-            --text-tertiary: #b0b0b0;
-            --border-color: #1e3a5f;
-            --border-light: #2d5f8d;
-            --accent-primary: #6366f1;
-            --accent-secondary: #8b5cf6;
+            --bg-tertiary: #f3f4f9;
+            --bg-quaternary: #e9ecf3;
+            --text-primary: #1a1a2e;
+            --text-secondary: #404857;
+            --text-tertiary: #757f95;
+            --border-color: #e1e5f0;
+            --border-light: #d1d7e6;
+            --accent-primary: #5b6cff;
+            --accent-secondary: #8b9dff;
             --success: #10b981;
             --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        /* Colorful Mode Theme - Vibrant Blue & Purple */
+        body.theme-colorful {
+            --bg-primary: #0f1139;
+            --bg-secondary: #1a1f5a;
+            --bg-tertiary: #2d2f6f;
+            --bg-quaternary: #3d4a8f;
+            --text-primary: #ffffff;
+            --text-secondary: #e8e8f8;
+            --text-tertiary: #b8b8d8;
+            --border-color: #3d4a8f;
+            --border-light: #5a6ab5;
+            --accent-primary: #6366f1;
+            --accent-secondary: #a78bfa;
+            --success: #34d399;
+            --warning: #fbbf24;
             --danger: #f87171;
         }
 
@@ -456,12 +456,110 @@
             margin-top: 2px;
         }
 
+        /* ========== Motivational Quote ========== */
+        .motivational-quote {
+            flex: 1;
+            text-align: center;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.08) 100%);
+            border-radius: 8px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .quote-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-style: italic;
+            line-height: 1.4;
+            margin-bottom: 6px;
+            transition: opacity 0.3s ease;
+        }
+
+        .quote-author {
+            font-size: 10px;
+            color: var(--accent-primary);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s ease;
+        }
+
+        .motivational-quote:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.12) 100%);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 320px;
             gap: 24px;
             align-items: start;
             margin-bottom: 40px;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .right-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            position: sticky;
+            top: 20px;
+        }
+
+        /* ========== MOBILE BOTTOM NAVIGATION ========== */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 12px 0;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .mobile-nav-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 10px;
+        }
+
+        .mobile-nav-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 8px 12px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .mobile-nav-btn:hover,
+        .mobile-nav-btn.active {
+            color: var(--accent-primary);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .mobile-nav-btn-icon {
+            font-size: 20px;
+        }
+
+        .mobile-hidden {
+            display: none !important;
         }
 
         /* ========== Post Section ========== */
@@ -1549,6 +1647,16 @@
 
             .main-grid {
                 grid-template-columns: 1fr;
+                margin-bottom: 100px;
+            }
+
+            .left-column {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .right-sidebar {
+                display: none;
             }
 
             .season-banner {
@@ -1561,6 +1669,23 @@
 
             .admin-form {
                 grid-template-columns: 1fr;
+            }
+
+            /* MOBILE BOTTOM NAVIGATION */
+            .mobile-nav {
+                display: block;
+            }
+
+            body {
+                padding-bottom: 80px;
+            }
+
+            header {
+                padding-bottom: 10px;
+            }
+
+            .right-sidebar.mobile-active {
+                display: flex;
             }
 
             .post-section,
@@ -1683,6 +1808,10 @@
                         <span id="season-status">Active</span>
                     </div>
                 </div>
+                <div class="motivational-quote">
+                    <div class="quote-text" id="quote-text">"The only way to do great work is to love what you do."</div>
+                    <div class="quote-author" id="quote-author">— Steve Jobs</div>
+                </div>
                 <div class="season-countdown">
                     <div class="day-counter" id="days-remaining">21</div>
                     <div class="label">Days Remaining</div>
@@ -1692,9 +1821,110 @@
             <!-- Main Grid -->
             <div class="main-grid">
                 <!-- Left Column -->
-                <div>
-                    <!-- Admin Panel -->
-                    <div id="admin-panel">
+                <div class="left-column">
+                    <!-- Post Section - PRIMARY ACTION (Top) -->
+                    <div class="post-section post-section-primary">
+                        <h3>Today's Accomplishment</h3>
+                        <div id="post-form">
+                            <textarea id="post-text" placeholder="What did you accomplish today? (Share achievements, not personal details)
+Use > for bullet points:
+> walked 6k steps
+> studied 2 hours
+> read a chapter" maxlength="2000"></textarea>
+                            <div class="char-counter"><span id="char-count">0</span>/2000</div>
+                            <button class="post-btn" id="post-btn" type="button">Post</button>
+                        </div>
+                        <div id="eliminated-msg" style="display:none;">
+                            <div class="elimination-message">🛑 You've been eliminated. Keep watching the competition! 👀</div>
+                        </div>
+                        <div id="season-not-active" style="display:none;">
+                            <div class="season-not-started">Season hasn't started yet. Check back soon! 🚀</div>
+                        </div>
+                    </div>
+
+                    <!-- Leaderboard - SECONDARY (Engagement) -->
+                    <div class="leaderboard">
+                        <h3>Leaderboard</h3>
+                        <div class="leaderboard-list" id="leaderboard-list">
+                            <div style="text-align:center; color:#6b7280;">Loading...</div>
+                        </div>
+                    </div>
+
+                    <!-- All Community Posts -->
+                    <div class="feed">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="margin: 0;">Community Posts</h3>
+                            <div class="feed-filter-tabs">
+                                <button class="feed-filter-btn active" data-filter="all" title="Show all posts">All</button>
+                                <button class="feed-filter-btn" data-filter="others" title="Show others' posts only">Others</button>
+                                <button class="feed-filter-btn" data-filter="mine" title="Show your posts">Mine</button>
+                            </div>
+                        </div>
+                        <div id="feed-container">
+                            <div class="feed-empty">No posts yet. Be the first! 🚀</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar -->
+                <div class="right-sidebar">
+                    <!-- Your Stats - TOP PRIORITY -->
+                    <div class="stats-card stats-card-primary" style="border: 2px solid #667eea; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); order: -10;">
+                        <h3 style="color: #667eea; margin-bottom: 16px;">Your Progress</h3>
+                        <div class="score-display" id="current-score" style="font-size: 48px; margin-bottom: 16px;">100</div>
+
+                        <div class="stat-row">
+                            <div class="stat-label">Streak</div>
+                            <div class="stat-value streak-display" id="current-streak" style="font-size: 16px;">🔥 0 days</div>
+                        </div>
+
+                        <div class="stat-row">
+                            <div class="stat-label">Badges Earned</div>
+                            <div class="badges-container" id="badges-container" style="margin-top: 6px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="stats-card" style="margin-top: 24px;">
+                        <h3>Members</h3>
+                        <div id="members-list" style="display: flex; flex-direction: column; gap: 6px;">
+                            <div style="text-align:center; color:#6b7280; padding: 20px;">Loading...</div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Posts of Mine -->
+                    <div class="feed" style="margin-top: 24px;">
+                        <h3>My Posts</h3>
+                        <div id="my-posts-container">
+                            <div class="feed-empty">No posts yet. Be the first! 🚀</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Bottom Navigation -->
+            <nav class="mobile-nav">
+                <div class="mobile-nav-content">
+                    <button class="mobile-nav-btn active" data-tab="feed" type="button">
+                        <span class="mobile-nav-btn-icon">📝</span>
+                        <span>Posts</span>
+                    </button>
+                    <button class="mobile-nav-btn" data-tab="leaderboard" type="button">
+                        <span class="mobile-nav-btn-icon">🏆</span>
+                        <span>Board</span>
+                    </button>
+                    <button class="mobile-nav-btn" data-tab="stats" type="button">
+                        <span class="mobile-nav-btn-icon">📊</span>
+                        <span>Stats</span>
+                    </button>
+                    <button class="mobile-nav-btn" data-tab="members" type="button">
+                        <span class="mobile-nav-btn-icon">👥</span>
+                        <span>Members</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Admin Panel - SEPARATE, HIDDEN FOR NON-ADMINS -->
+            <div id="admin-panel" style="display:none; margin-top: 40px;">
                         <h2>⚙️ Admin Panel</h2>
 
                         <!-- Add Member -->
@@ -1732,87 +1962,6 @@
                             <p style="font-size: 12px; color: #6b7280; margin-top: 8px;">⚠️ This will permanently delete ALL posts. Use only for testing!</p>
                         </div>
                     </div>
-
-                    <!-- Post Section -->
-                    <div class="post-section">
-                        <h3>✍️ Today's Posts</h3>
-                        <div style="background: #2a2a2a; border: 1px solid #3a3a3a; border-radius: 8px; padding: 12px; margin-bottom: 20px; border-left: 3px solid #f97316;">
-                            <p style="color: #f97316; font-size: 12px; font-weight: 600; margin: 0 0 4px 0;">⚠️ Privacy Notice</p>
-                            <p style="color: #b0b0b0; font-size: 13px; margin: 0;">Do not share personal details like phone numbers, addresses, or passwords. Keep posts focused on your achievements and goals.</p>
-                        </div>
-                        <div id="post-form">
-                            <textarea id="post-text" placeholder="What did you accomplish today? Use > for bullet points:
-> walked 6k steps
-> studied 2 hours
-> read a chapter" maxlength="2000"></textarea>
-                            <div class="char-counter"><span id="char-count">0</span>/2000</div>
-                            <button class="post-btn" id="post-btn" type="button">Post</button>
-                        </div>
-                        <div id="eliminated-msg" style="display:none;">
-                            <div class="elimination-message">🛑 You've been eliminated. Keep watching the competition! 👀</div>
-                        </div>
-                        <div id="season-not-active" style="display:none;">
-                            <div class="season-not-started">Season hasn't started yet. Check back soon! 🚀</div>
-                        </div>
-                    </div>
-
-                    <!-- Leaderboard -->
-                    <div class="leaderboard">
-                        <h3>🏆 Leaderboard</h3>
-                        <div class="leaderboard-list" id="leaderboard-list">
-                            <div style="text-align:center; color:#6b7280;">Loading...</div>
-                        </div>
-                    </div>
-
-                    <!-- Community Feed -->
-                    <div class="feed">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                            <h3 style="margin: 0;">💬 All Community Posts</h3>
-                            <div class="feed-filter-tabs">
-                                <button class="feed-filter-btn active" data-filter="all" title="Show all posts">All</button>
-                                <button class="feed-filter-btn" data-filter="others" title="Show others' posts only">Others</button>
-                                <button class="feed-filter-btn" data-filter="mine" title="Show your posts">Mine</button>
-                            </div>
-                        </div>
-                        <div id="feed-container">
-                            <div class="feed-empty">No posts yet. Be the first! 🚀</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Sidebar -->
-                <div>
-                    <!-- Your Stats - MOVED TO TOP -->
-                    <div class="stats-card" style="border: 2px solid #667eea; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);">
-                        <h3 style="color: #667eea; margin-bottom: 16px;">📊 Your Stats</h3>
-                        <div class="score-display" id="current-score" style="font-size: 48px; margin-bottom: 16px;">100</div>
-
-                        <div class="stat-row">
-                            <div class="stat-label">Streak</div>
-                            <div class="stat-value streak-display" id="current-streak" style="font-size: 16px;">🔥 0 days</div>
-                        </div>
-
-                        <div class="stat-row">
-                            <div class="stat-label">Badges Earned</div>
-                            <div class="badges-container" id="badges-container" style="margin-top: 6px;"></div>
-                        </div>
-                    </div>
-
-                    <div class="stats-card" style="margin-top: 24px;">
-                        <h3>👥 Members</h3>
-                        <div id="members-list" style="display: flex; flex-direction: column; gap: 6px;">
-                            <div style="text-align:center; color:#6b7280; padding: 20px;">Loading...</div>
-                        </div>
-                    </div>
-
-                    <!-- Recent Posts of Mine -->
-                    <div class="feed" style="margin-top: 24px;">
-                        <h3>📝 Recent Posts of Mine</h3>
-                        <div id="my-posts-container">
-                            <div class="feed-empty">No posts yet. Be the first! 🚀</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -1896,6 +2045,66 @@
         let unsubscribers = [];
         let winnerShown = false;
         let currentFeedPosts = [];
+
+        // Motivational quotes database
+        const motivationalQuotes = [
+            { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+            { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+            { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+            { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
+            { text: "Everything you want is on the other side of fear.", author: "George Addair" },
+            { text: "Great things never come from comfort zones.", author: "Unknown" },
+            { text: "Dream it. Wish it. Do it.", author: "Unknown" },
+            { text: "Success doesn't just find you. You have to go out and get it.", author: "Unknown" },
+            { text: "The harder you work for something, the greater you'll feel when you achieve it.", author: "Unknown" },
+            { text: "Dream bigger. Do bigger.", author: "Unknown" },
+            { text: "Don't stop when you're tired. Stop when you're done.", author: "Unknown" },
+            { text: "Wake up with determination. Go to bed with satisfaction.", author: "Unknown" },
+            { text: "Do something today that your future self will thank you for.", author: "Sean Patrick Flanery" },
+            { text: "Little things make big days.", author: "Unknown" },
+            { text: "It's going to be hard, but hard does not mean impossible.", author: "Unknown" },
+            { text: "Don't wait for opportunity. Create it.", author: "Unknown" },
+            { text: "Sometimes we're tested not to show our weaknesses, but to discover our strengths.", author: "Unknown" },
+            { text: "The key to success is to focus on goals, not obstacles.", author: "Unknown" },
+            { text: "Dream so big you inspire yourself.", author: "Unknown" }
+        ];
+
+        // Initialize motivational quote
+        function initializeMotivationalQuote() {
+            displayRandomQuote();
+
+            // Allow clicking on quote to get a new one
+            const quoteElement = document.querySelector('.motivational-quote');
+            if (quoteElement) {
+                quoteElement.style.cursor = 'pointer';
+                quoteElement.addEventListener('click', displayRandomQuote);
+                quoteElement.title = 'Click for another quote';
+            }
+        }
+
+        function displayRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * motivationalQuotes.length);
+            const quote = motivationalQuotes[randomIndex];
+
+            const quoteTextEl = document.getElementById('quote-text');
+            const quoteAuthorEl = document.getElementById('quote-author');
+
+            if (quoteTextEl && quoteAuthorEl) {
+                // Fade out
+                quoteTextEl.style.opacity = '0.6';
+                quoteAuthorEl.style.opacity = '0.6';
+
+                setTimeout(() => {
+                    quoteTextEl.textContent = `"${quote.text}"`;
+                    quoteAuthorEl.textContent = `— ${quote.author}`;
+
+                    // Fade in
+                    quoteTextEl.style.opacity = '1';
+                    quoteAuthorEl.style.opacity = '1';
+                }, 150);
+            }
+        }
 
         // Global error handler
         window.addEventListener('error', (event) => {
@@ -3340,6 +3549,9 @@
             // Initialize theme first
             initializeTheme();
 
+            // Initialize motivational quote
+            initializeMotivationalQuote();
+
             const closeBtn = document.querySelector('.close-error-btn');
             const copyBtn = document.querySelector('.copy-error-btn');
             const modal = document.getElementById('error-modal');
@@ -3402,6 +3614,42 @@
         // Post button - app screen
         const postBtn = document.getElementById('post-btn');
         if (postBtn) postBtn.addEventListener('click', handlePostSubmit);
+
+        // Mobile navigation tabs
+        document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tab = e.currentTarget.getAttribute('data-tab');
+
+                // Update active state
+                document.querySelectorAll('.mobile-nav-btn').forEach(b => b.classList.remove('active'));
+                e.currentTarget.classList.add('active');
+
+                // Toggle sections
+                const leftCol = document.querySelector('.left-column');
+                const rightSidebar = document.querySelector('.right-sidebar');
+
+                if (tab === 'stats' || tab === 'members') {
+                    // Show right sidebar for stats/members
+                    leftCol?.classList.add('mobile-hidden');
+                    rightSidebar?.classList.add('mobile-active');
+                } else {
+                    // Show left column for posts/leaderboard
+                    leftCol?.classList.remove('mobile-hidden');
+                    rightSidebar?.classList.remove('mobile-active');
+                }
+
+                // Scroll specific sections into view
+                if (tab === 'feed') {
+                    document.querySelector('.feed')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else if (tab === 'leaderboard') {
+                    document.querySelector('.leaderboard')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else if (tab === 'stats') {
+                    document.querySelector('.stats-card-primary')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else if (tab === 'members') {
+                    document.querySelectorAll('.stats-card')[1]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
 
         // Admin panel buttons - attach listeners
         const addMemberBtn = document.getElementById('add-member-btn');
