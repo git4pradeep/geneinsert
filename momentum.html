@@ -5,6 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>⚡ Momentum - 21-Day Challenge</title>
     <style>
+        /* ========== THEME VARIABLES ========== */
+        :root {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --bg-quaternary: #3a3a3a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-tertiary: #6b7280;
+            --border-color: #2a2a2a;
+            --border-light: #3a3a3a;
+            --accent-primary: #667eea;
+            --accent-secondary: #764ba2;
+            --success: #22c55e;
+            --warning: #f97316;
+            --danger: #ef4444;
+        }
+
+        /* Bright Mode Theme */
+        body.theme-bright {
+            --bg-primary: #f5f3f0;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f0ede9;
+            --bg-quaternary: #e8e4df;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-tertiary: #6b7280;
+            --border-color: #e0dbd5;
+            --border-light: #d0cac4;
+            --accent-primary: #c67c4e;
+            --accent-secondary: #d4a574;
+            --success: #16a34a;
+            --warning: #d97706;
+            --danger: #dc2626;
+        }
+
+        /* Colorful Mode Theme */
+        body.theme-colorful {
+            --bg-primary: #0a1929;
+            --bg-secondary: #132f4c;
+            --bg-tertiary: #1e3a5f;
+            --bg-quaternary: #2d5f8d;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-tertiary: #b0b0b0;
+            --border-color: #1e3a5f;
+            --border-light: #2d5f8d;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #f87171;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -17,13 +71,14 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0f0f0f;
-            color: #b0b0b0;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         header {
-            background: #1a1a1a;
-            color: white;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
             padding: 15px 40px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             display: flex;
@@ -54,7 +109,7 @@
         }
 
         .header-nav a {
-            color: #fff;
+            color: var(--text-primary);
             text-decoration: none;
             font-weight: 500;
             font-size: 14px;
@@ -65,6 +120,19 @@
             text-decoration: underline;
         }
 
+        #theme-selector {
+            transition: all 0.3s ease;
+        }
+
+        #theme-selector:hover {
+            opacity: 0.8;
+        }
+
+        #theme-selector option {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -72,8 +140,8 @@
         }
 
         footer {
-            background: #0a0a0a;
-            color: #b0b0b0;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
             text-align: center;
             padding: 30px 20px;
             margin-top: 60px;
@@ -82,7 +150,7 @@
         }
 
         footer a {
-            color: #ffffff;
+            color: var(--text-primary);
             text-decoration: none;
         }
 
@@ -111,27 +179,27 @@
 
         .login-info h2 {
             font-size: 28px;
-            color: #ffffff;
+            color: var(--text-primary);
             margin-bottom: 12px;
         }
 
         .login-info h3 {
             font-size: 14px;
-            color: #22c55e;
+            color: var(--success);
             margin-top: 14px;
             margin-bottom: 8px;
             font-weight: 600;
         }
 
         .login-info p {
-            color: #b0b0b0;
+            color: var(--text-secondary);
             font-size: 13px;
             line-height: 1.5;
             margin-bottom: 10px;
         }
 
         .login-info ul {
-            color: #b0b0b0;
+            color: var(--text-secondary);
             font-size: 13px;
             line-height: 1.6;
             margin-left: 18px;
@@ -144,8 +212,8 @@
         }
 
         .login-card {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 20px;
             width: 100%;
@@ -157,13 +225,13 @@
 
         .login-card h2 {
             font-size: 20px;
-            color: #ffffff;
+            color: var(--text-primary);
             margin-bottom: 4px;
         }
 
         .login-card > p {
             font-size: 11px;
-            color: #6b7280;
+            color: var(--text-tertiary);
             margin-bottom: 14px !important;
         }
 
@@ -171,10 +239,10 @@
             width: 100%;
             padding: 8px 10px;
             margin-bottom: 10px;
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
             border-radius: 6px;
-            color: #ffffff;
+            color: var(--text-primary);
             font-size: 13px;
         }
 
@@ -198,8 +266,8 @@
         .login-tab-btn {
             flex: 1;
             padding: 6px;
-            background: #2a2a2a;
-            color: #b0b0b0;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
             border: none;
             border-radius: 4px 4px 0 0;
             font-weight: 600;
@@ -245,9 +313,9 @@
         .back-btn {
             width: 100%;
             padding: 12px;
-            background: #2a2a2a;
-            color: #b0b0b0;
-            border: 1px solid #3a3a3a;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
@@ -262,7 +330,7 @@
             width: 100%;
             padding: 14px;
             background: #22c55e;
-            color: #ffffff;
+            color: var(--text-primary);
             border: none;
             border-radius: 6px;
             font-weight: 600;
@@ -277,7 +345,7 @@
         }
 
         #login-error {
-            color: #ef4444;
+            color: var(--danger);
             font-size: 12px;
             margin-top: 10px;
         }
@@ -292,8 +360,8 @@
         }
 
         .not-invited-card {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 50px;
             width: 100%;
@@ -303,12 +371,12 @@
 
         .not-invited-card h2 {
             font-size: 32px;
-            color: #ffffff;
+            color: var(--text-primary);
             margin-bottom: 20px;
         }
 
         .not-invited-card p {
-            color: #b0b0b0;
+            color: var(--text-secondary);
             font-size: 16px;
             margin-bottom: 30px;
         }
@@ -335,12 +403,12 @@
             align-items: center;
             margin: 30px 0 20px;
             padding-bottom: 20px;
-            border-bottom: 1px solid #2a2a2a;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .season-banner {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 24px;
             margin-bottom: 24px;
@@ -351,7 +419,7 @@
 
         .season-info h2 {
             font-size: 24px;
-            color: #ffffff;
+            color: var(--text-primary);
             margin-bottom: 8px;
         }
 
@@ -359,28 +427,28 @@
             display: flex;
             gap: 20px;
             font-size: 14px;
-            color: #b0b0b0;
+            color: var(--text-secondary);
         }
 
         .season-countdown {
-            text-align: right;
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            text-align: center;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
-            padding: 16px 24px;
-            min-width: 200px;
+            padding: 12px 16px;
+            min-width: 140px;
         }
 
         .season-countdown .day-counter {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 700;
-            color: #22c55e;
+            color: var(--success);
         }
 
         .season-countdown .label {
-            font-size: 12px;
-            color: #6b7280;
-            margin-top: 4px;
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: 2px;
         }
 
         .main-grid {
@@ -393,8 +461,8 @@
 
         /* ========== Post Section ========== */
         .post-section {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 24px;
@@ -402,7 +470,7 @@
 
         .post-section h3 {
             font-size: 18px;
-            color: #ffffff;
+            color: var(--text-primary);
             margin-bottom: 20px;
         }
 
@@ -410,10 +478,10 @@
             width: 100%;
             min-height: 120px;
             padding: 14px;
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
-            color: #ffffff;
+            color: var(--text-primary);
             font-family: inherit;
             font-size: 15px;
             resize: vertical;
@@ -432,17 +500,17 @@
 
         .char-counter {
             text-align: right;
-            color: #6b7280;
+            color: var(--text-tertiary);
             font-size: 12px;
             margin-bottom: 12px;
         }
 
         .char-counter.warn {
-            color: #f97316;
+            color: var(--warning);
         }
 
         .char-counter.limit {
-            color: #ef4444;
+            color: var(--danger);
         }
 
         .post-btn {
@@ -467,20 +535,20 @@
         }
 
         .posted-card {
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
             padding: 20px;
         }
 
         .posted-card .check {
-            color: #22c55e;
+            color: var(--success);
             font-weight: 700;
             margin-bottom: 8px;
         }
 
         .posted-card .post-content {
-            color: #b0b0b0;
+            color: var(--text-secondary);
             font-size: 15px;
             line-height: 1.6;
         }
@@ -495,27 +563,27 @@
         }
 
         .season-not-started {
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
             padding: 30px;
             text-align: center;
-            color: #b0b0b0;
+            color: var(--text-secondary);
         }
 
         .season-ended {
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
             padding: 30px;
             text-align: center;
-            color: #b0b0b0;
+            color: var(--text-secondary);
         }
 
         /* ========== Leaderboard ========== */
         .leaderboard {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 24px;
@@ -523,7 +591,7 @@
 
         .leaderboard h3 {
             font-size: 18px;
-            color: #ffffff;
+            color: var(--text-primary);
             margin-bottom: 24px;
         }
 
@@ -539,15 +607,15 @@
             gap: 12px;
             padding: 14px;
             border-radius: 8px;
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
             transition: background 0.2s;
             position: relative;
         }
 
         .leaderboard-row.current-user {
             border-color: #ffffff;
-            background: #2a2a2a;
+            background: var(--bg-tertiary);
         }
 
         .leaderboard-row.eliminated {
@@ -567,7 +635,7 @@
 
         .leaderboard-name {
             flex: 1;
-            color: #ffffff;
+            color: var(--text-primary);
             font-weight: 500;
         }
 
@@ -577,11 +645,11 @@
         }
 
         .score-bar {
-            background: #1a1a1a;
+            background: var(--bg-secondary);
             border-radius: 4px;
             height: 8px;
             overflow: hidden;
-            border: 1px solid #3a3a3a;
+            border: 1px solid var(--border-light);
         }
 
         .score-fill {
@@ -597,7 +665,7 @@
         .score-number {
             min-width: 50px;
             text-align: right;
-            color: #ffffff;
+            color: var(--text-primary);
             font-weight: 600;
             font-size: 14px;
         }
@@ -639,8 +707,8 @@
 
         /* ========== Community Feed ========== */
         .feed {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 24px;
@@ -648,13 +716,13 @@
 
         .feed h3 {
             font-size: 18px;
-            color: #ffffff;
+            color: var(--text-primary);
             margin-bottom: 24px;
         }
 
         .feed-empty {
             text-align: center;
-            color: #6b7280;
+            color: var(--text-tertiary);
             padding: 40px 20px;
         }
 
@@ -709,7 +777,7 @@
         .more-posts-btn {
             padding: 14px 32px;
             background: #3b82f6;
-            color: #ffffff;
+            color: var(--text-primary);
             border: none;
             border-radius: 8px;
             font-weight: 600;
@@ -737,19 +805,19 @@
         }
 
         .feed-name {
-            color: #ffffff;
+            color: var(--text-primary);
             font-weight: 600;
             font-size: 14px;
         }
 
         .feed-time {
-            color: #6b7280;
+            color: var(--text-tertiary);
             font-size: 11px;
             white-space: nowrap;
         }
 
         .feed-content {
-            color: #b0b0b0;
+            color: var(--text-secondary);
             font-size: 14px;
             line-height: 1.5;
             margin-bottom: 6px;
@@ -799,10 +867,36 @@
             background: #dc2626;
         }
 
+        .post-action-btn-small {
+            padding: 4px 6px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #3a3a3a;
+            border: 1px solid #4a4a4a;
+        }
+
+        .post-action-btn-small:hover {
+            background: #4a4a4a;
+            transform: scale(1.1);
+        }
+
+        .edit-btn-small:hover {
+            background: #3b82f6;
+            border-color: #3b82f6;
+        }
+
+        .delete-btn-small:hover {
+            background: #ef4444;
+            border-color: #ef4444;
+        }
+
         /* ========== Personal Stats Sidebar ========== */
         .stats-card {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 24px;
             sticky: top 100px;
@@ -810,7 +904,7 @@
 
         .stats-card h3 {
             font-size: 14px;
-            color: #6b7280;
+            color: var(--text-tertiary);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 16px;
@@ -819,14 +913,14 @@
         .score-display {
             font-size: 48px;
             font-weight: 700;
-            color: #ffffff;
+            color: var(--text-primary);
             text-align: center;
             margin-bottom: 24px;
         }
 
         .stat-row {
             padding: 12px 0;
-            border-bottom: 1px solid #2a2a2a;
+            border-bottom: 1px solid var(--border-color);
             font-size: 14px;
         }
 
@@ -835,20 +929,20 @@
         }
 
         .stat-label {
-            color: #6b7280;
+            color: var(--text-tertiary);
             font-size: 12px;
             text-transform: uppercase;
         }
 
         .stat-value {
-            color: #ffffff;
+            color: var(--text-primary);
             font-weight: 600;
             font-size: 16px;
             margin-top: 4px;
         }
 
         .streak-display {
-            color: #f97316;
+            color: var(--warning);
         }
 
         .badges-container {
@@ -864,9 +958,9 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
-            color: #ffffff;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
             border-radius: 20px;
             padding: 4px 10px;
             font-size: 12px;
@@ -876,7 +970,7 @@
         /* ========== Admin Panel ========== */
         #admin-panel {
             display: none;
-            background: #1a1a1a;
+            background: var(--bg-secondary);
             border: 2px solid #f97316;
             border-radius: 12px;
             padding: 30px;
@@ -885,7 +979,7 @@
 
         #admin-panel h2 {
             font-size: 20px;
-            color: #f97316;
+            color: var(--warning);
             margin-bottom: 24px;
             display: flex;
             align-items: center;
@@ -895,7 +989,7 @@
         .admin-section {
             margin-bottom: 24px;
             padding-bottom: 24px;
-            border-bottom: 1px solid #2a2a2a;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .admin-section:last-child {
@@ -906,7 +1000,7 @@
 
         .admin-section h3 {
             font-size: 14px;
-            color: #b0b0b0;
+            color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 16px;
@@ -922,10 +1016,10 @@
 
         .admin-form input {
             padding: 10px 12px;
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
             border-radius: 6px;
-            color: #ffffff;
+            color: var(--text-primary);
             font-size: 14px;
         }
 
@@ -937,7 +1031,7 @@
         .admin-form button {
             padding: 10px 20px;
             background: #f97316;
-            color: #ffffff;
+            color: var(--text-primary);
             border: none;
             border-radius: 6px;
             font-weight: 600;
@@ -955,7 +1049,7 @@
             width: 100%;
             padding: 14px;
             background: #f97316;
-            color: #ffffff;
+            color: var(--text-primary);
             border: none;
             border-radius: 6px;
             font-weight: 700;
@@ -975,16 +1069,16 @@
 
         .scoring-status {
             font-size: 14px;
-            color: #b0b0b0;
+            color: var(--text-secondary);
             margin-bottom: 16px;
             padding: 12px;
-            background: #2a2a2a;
+            background: var(--bg-tertiary);
             border-radius: 6px;
-            border: 1px solid #3a3a3a;
+            border: 1px solid var(--border-light);
         }
 
         .scoring-status.completed {
-            color: #22c55e;
+            color: var(--success);
             border-color: #22c55e;
         }
 
@@ -997,7 +1091,7 @@
         .admin-btn {
             padding: 12px 20px;
             background: #f97316;
-            color: #ffffff;
+            color: var(--text-primary);
             border: none;
             border-radius: 6px;
             font-weight: 600;
@@ -1028,7 +1122,7 @@
         }
 
         .winner-card {
-            background: #1a1a1a;
+            background: var(--bg-secondary);
             border: 3px solid #fbbf24;
             border-radius: 16px;
             padding: 50px;
@@ -1048,13 +1142,13 @@
 
         .winner-card p {
             font-size: 18px;
-            color: #b0b0b0;
+            color: var(--text-secondary);
             margin: 10px 0;
         }
 
         .winner-score {
             font-size: 24px;
-            color: #22c55e;
+            color: var(--success);
             font-weight: 700;
             margin-top: 20px;
         }
@@ -1094,7 +1188,7 @@
         }
 
         .error-modal-content {
-            background: #1a1a1a;
+            background: var(--bg-secondary);
             border: 3px solid #ef4444;
             border-radius: 12px;
             padding: 32px;
@@ -1105,7 +1199,7 @@
         }
 
         .error-modal-content h2 {
-            color: #ef4444;
+            color: var(--danger);
             margin: 0 0 20px 0;
             font-size: 24px;
             display: flex;
@@ -1114,30 +1208,30 @@
         }
 
         .error-modal-content .error-message {
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
             padding: 16px;
             margin-bottom: 20px;
             font-family: monospace;
             font-size: 13px;
-            color: #b0b0b0;
+            color: var(--text-secondary);
             white-space: pre-wrap;
             word-break: break-word;
             line-height: 1.6;
         }
 
         .error-modal-content .error-solution {
-            background: #2a2a2a;
+            background: var(--bg-tertiary);
             border-left: 4px solid #22c55e;
             border-radius: 4px;
             padding: 16px;
             margin-bottom: 20px;
-            color: #b0b0b0;
+            color: var(--text-secondary);
         }
 
         .error-modal-content .error-solution h3 {
-            color: #22c55e;
+            color: var(--success);
             margin: 0 0 10px 0;
             font-size: 16px;
         }
@@ -1174,7 +1268,7 @@
 
         .close-error-btn {
             background: #3a3a3a;
-            color: #ffffff;
+            color: var(--text-primary);
             flex: 1;
             cursor: pointer;
             position: relative;
@@ -1192,7 +1286,7 @@
 
         .copy-error-btn {
             background: #3b82f6;
-            color: #ffffff;
+            color: var(--text-primary);
             flex: 1;
             cursor: pointer;
             position: relative;
@@ -1216,7 +1310,7 @@
             left: 24px;
             width: 400px;
             max-height: 300px;
-            background: #1a1a1a;
+            background: var(--bg-secondary);
             border: 2px solid #f97316;
             border-radius: 8px;
             padding: 16px;
@@ -1227,18 +1321,18 @@
         }
 
         #debug-panel h4 {
-            color: #f97316;
+            color: var(--warning);
             margin: 0 0 12px 0;
             font-size: 12px;
         }
 
         #debug-panel .debug-log {
-            color: #b0b0b0;
+            color: var(--text-secondary);
             line-height: 1.4;
         }
 
         #debug-panel .debug-log .error {
-            color: #ef4444;
+            color: var(--danger);
         }
 
         /* ========== Toast Notifications ========== */
@@ -1247,11 +1341,11 @@
             bottom: 24px;
             right: 24px;
             z-index: 2000;
-            background: #2a2a2a;
-            border: 1px solid #3a3a3a;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
             padding: 14px 20px;
-            color: #ffffff;
+            color: var(--text-primary);
             font-size: 14px;
             animation: slideIn 0.3s ease;
             max-width: 320px;
@@ -1366,7 +1460,12 @@
             <a href="index.html">← Home</a>
             <a href="articles.html">📰 Articles</a>
             <a href="index.html#contact">Contact</a>
-            <button id="signout-btn" style="display:none; padding: 8px 16px; background: #ffffff; color: #1a1a1a; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Sign Out</button>
+            <select id="theme-selector" style="padding: 8px 12px; background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-light); border-radius: 4px; font-weight: 500; cursor: pointer; font-size: 13px;">
+                <option value="dark">🌙 Dark Mode</option>
+                <option value="bright">☀️ Bright Mode</option>
+                <option value="colorful">🎨 Colorful Mode</option>
+            </select>
+            <button id="signout-btn" style="display:none; padding: 8px 16px; background: var(--text-primary); color: var(--bg-secondary); border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Sign Out</button>
         </nav>
     </header>
 
@@ -1454,10 +1553,6 @@
 
         <!-- ========== APP SCREEN ========== -->
         <div id="app">
-            <div class="app-header">
-                <h2>⚡ Momentum Season 1</h2>
-            </div>
-
             <!-- Season Banner -->
             <div class="season-banner">
                 <div class="season-info">
@@ -1555,14 +1650,6 @@
                             <div class="feed-empty">No posts yet. Be the first! 🚀</div>
                         </div>
                     </div>
-
-                    <!-- Community Feed -->
-                    <div class="feed">
-                        <h3>💬 All Community Posts</h3>
-                        <div id="feed-container">
-                            <div class="feed-empty">No posts yet. Be the first! 🚀</div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Right Sidebar -->
@@ -1584,8 +1671,16 @@
 
                     <div class="stats-card" style="margin-top: 24px;">
                         <h3>👥 Members</h3>
-                        <div id="members-list" style="display: flex; flex-direction: column; gap: 8px;">
+                        <div id="members-list" style="display: flex; flex-direction: column; gap: 6px;">
                             <div style="text-align:center; color:#6b7280; padding: 20px;">Loading...</div>
+                        </div>
+                    </div>
+
+                    <!-- Community Feed -->
+                    <div class="feed" style="margin-top: 24px;">
+                        <h3>💬 All Community Posts</h3>
+                        <div id="feed-container">
+                            <div class="feed-empty">No posts yet. Be the first! 🚀</div>
                         </div>
                     </div>
                 </div>
@@ -2254,29 +2349,14 @@
             }
         }
 
-        async function openEditModal(postId, currentText) {
+        async function openEditModal(postId) {
             if (!postId) {
                 showToast('Error: Post ID not found', 'error');
                 return;
             }
 
-            const newText = prompt('Edit your post:', currentText.replace(/• /g, '> '));
-
-            if (newText === null) {
-                return; // User cancelled
-            }
-
-            if (!newText.trim()) {
-                showToast('Post cannot be empty', 'error');
-                return;
-            }
-
-            if (newText.length > 2000) {
-                showToast('Post is too long (max 2000 characters)', 'error');
-                return;
-            }
-
             try {
+                // Fetch the post to get current text
                 const postRef = doc(db, 'posts', postId);
                 const postSnap = await getDoc(postRef);
 
@@ -2288,6 +2368,23 @@
                 const postData = postSnap.data();
                 if (postData.uid !== currentUser.uid) {
                     showToast('You can only edit your own posts', 'error');
+                    return;
+                }
+
+                const currentText = postData.text;
+                const newText = prompt('Edit your post:', currentText.replace(/• /g, '> '));
+
+                if (newText === null) {
+                    return; // User cancelled
+                }
+
+                if (!newText.trim()) {
+                    showToast('Post cannot be empty', 'error');
+                    return;
+                }
+
+                if (newText.length > 2000) {
+                    showToast('Post is too long (max 2000 characters)', 'error');
                     return;
                 }
 
@@ -2684,11 +2781,13 @@
                 const isElim = m.score === 0 && !m.isActive;
                 const isCurrent = currentUser && m.uid === currentUser.uid;
                 return `
-                    <div style="padding: 10px; background: #2a2a2a; border: 1px solid #3a3a3a; border-radius: 6px; ${isCurrent ? 'border-color: #ffffff;' : ''} ${isElim ? 'opacity: 0.5;' : ''}">
-                        <div style="font-weight: 600; color: #ffffff; font-size: 14px;">${m.displayName} ${isCurrent ? '(you)' : ''}</div>
-                        <div style="font-size: 12px; color: #6b7280; margin-top: 4px;">Score: ${m.score}</div>
-                        ${m.streak > 0 ? `<div style="font-size: 12px; color: #f97316; margin-top: 2px;">🔥 ${m.streak} day streak</div>` : ''}
-                        ${isElim ? `<div style="font-size: 11px; color: #fca5a5; margin-top: 4px;">🛑 Eliminated</div>` : ''}
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; background: #2a2a2a; border: 1px solid #3a3a3a; border-radius: 6px; ${isCurrent ? 'border-color: #ffffff;' : ''} ${isElim ? 'opacity: 0.5;' : ''}">
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; color: #ffffff; font-size: 13px;">${m.displayName} ${isCurrent ? '(you)' : ''}</div>
+                            ${m.streak > 0 ? `<div style="font-size: 11px; color: #f97316; margin-top: 1px;">🔥 ${m.streak} days</div>` : ''}
+                            ${isElim ? `<div style="font-size: 10px; color: #fca5a5; margin-top: 2px;">🛑 Eliminated</div>` : ''}
+                        </div>
+                        <div style="font-weight: 600; color: #ffffff; font-size: 13px; margin-left: 8px; text-align: right;">${m.score}</div>
                     </div>
                 `;
             }).join('');
@@ -2845,16 +2944,18 @@
                     <div class="feed-item${isHidden}" data-my-post-index="${i}" data-post-id="${p.id || ''}">
                         <div class="feed-avatar" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);">👤</div>
                         <div class="feed-message-group">
-                            <div class="feed-header">
-                                <div class="feed-name">You</div>
-                                <div class="feed-time">${time}</div>
+                            <div class="feed-header" style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+                                <div>
+                                    <div class="feed-name">You</div>
+                                    <div class="feed-time">${time}</div>
+                                </div>
+                                <div class="post-actions-inline" style="display: flex; gap: 4px; white-space: nowrap;">
+                                    <button class="post-action-btn-small edit-btn-small" data-post-id="${p.id || ''}" data-action="edit" title="Edit post">✏️</button>
+                                    <button class="post-action-btn-small delete-btn-small" data-post-id="${p.id || ''}" data-action="delete" title="Delete post">🗑️</button>
+                                </div>
                             </div>
                             <div class="feed-content" style="white-space: pre-wrap;">${formattedText}</div>
                             ${icons ? `<div class="activity-icons">${icons}</div>` : ''}
-                            <div class="post-actions">
-                                <button class="post-action-btn edit-btn" onclick="openEditModal('${p.id || ''}', '${formattedText.replace(/'/g, "\\'")}')">✏️ Edit</button>
-                                <button class="post-action-btn delete-btn" onclick="deletePost('${p.id || ''}', 'my')">🗑️ Delete</button>
-                            </div>
                         </div>
                     </div>
                 `;
@@ -3053,8 +3154,38 @@
             }
         });
 
+        // ========== THEME SYSTEM ==========
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('momentum-theme') || 'dark';
+            applyTheme(savedTheme);
+
+            const themeSelector = document.getElementById('theme-selector');
+            if (themeSelector) {
+                themeSelector.value = savedTheme;
+                themeSelector.addEventListener('change', (e) => {
+                    applyTheme(e.target.value);
+                });
+            }
+        }
+
+        function applyTheme(themeName) {
+            document.body.classList.remove('theme-dark', 'theme-bright', 'theme-colorful');
+
+            if (themeName === 'bright') {
+                document.body.classList.add('theme-bright');
+            } else if (themeName === 'colorful') {
+                document.body.classList.add('theme-colorful');
+            }
+            // Dark theme is default (no class needed)
+
+            localStorage.setItem('momentum-theme', themeName);
+        }
+
         // Setup button click handlers
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize theme first
+            initializeTheme();
+
             const closeBtn = document.querySelector('.close-error-btn');
             const copyBtn = document.querySelector('.copy-error-btn');
             const modal = document.getElementById('error-modal');
@@ -3128,6 +3259,20 @@
         if (runScoringBtn) runScoringBtn.addEventListener('click', runDailyScoring);
         if (startSeasonBtn) startSeasonBtn.addEventListener('click', handleStartSeason);
         if (endSeasonBtn) endSeasonBtn.addEventListener('click', handleEndSeason);
+
+        // Event delegation for small action buttons (edit/delete on my posts)
+        document.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('post-action-btn-small')) {
+                const postId = e.target.getAttribute('data-post-id');
+                const action = e.target.getAttribute('data-action');
+
+                if (action === 'edit') {
+                    await openEditModal(postId);
+                } else if (action === 'delete') {
+                    await deletePost(postId, 'my');
+                }
+            }
+        });
     </script>
 </body>
 </html>
