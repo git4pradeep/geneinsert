@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow:
+
+Sitemap: https://geneinsert.com/sitemap.xml
+
+# Allow all crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
