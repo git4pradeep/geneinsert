@@ -734,41 +734,42 @@
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 30px;
+            padding: 16px;
             margin-bottom: 24px;
         }
 
         .feed h3 {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--text-primary);
-            margin-bottom: 24px;
+            margin-bottom: 12px;
         }
 
         .feed-empty {
             text-align: center;
             color: var(--text-tertiary);
-            padding: 40px 20px;
+            padding: 20px 10px;
+            font-size: 13px;
         }
 
         .feed-list {
             display: flex;
             flex-direction: column;
-            gap: 2px;
-            padding: 16px 0;
+            gap: 0px;
+            padding: 0;
         }
 
         .feed-item {
             display: flex;
-            gap: 12px;
-            padding: 12px 16px;
-            border-radius: 8px;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 6px;
             animation: slideIn 0.3s ease;
             transition: background 0.2s;
             align-items: flex-start;
         }
 
         .feed-item:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .feed-item-hidden {
@@ -780,9 +781,9 @@
         }
 
         .feed-avatar {
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 50%;
             display: flex;
@@ -790,7 +791,7 @@
             justify-content: center;
             color: white;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 12px;
         }
 
         .feed-message-group {
@@ -798,25 +799,84 @@
             min-width: 0;
         }
 
-        .more-posts-btn {
-            padding: 14px 32px;
+        /* ========== Personal Feed Items (Recent Posts of Mine) ========== */
+        .feed-item-personal {
+            padding: 10px 12px !important;
+            gap: 0 !important;
+            border-left: 3px solid #22c55e !important;
+            background: linear-gradient(90deg, rgba(34, 197, 94, 0.08) 0%, transparent 100%) !important;
+        }
+
+        .feed-item-personal:hover {
+            background: linear-gradient(90deg, rgba(34, 197, 94, 0.12) 0%, transparent 100%) !important;
+        }
+
+        .my-post-content {
+            width: 100%;
+        }
+
+        .my-post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ========== Feed Filter Tabs ========== */
+        .feed-filter-tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-tertiary);
+            padding: 3px;
+            border-radius: 6px;
+        }
+
+        .feed-filter-btn {
+            padding: 6px 12px;
+            background: transparent;
+            color: var(--text-tertiary);
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .feed-filter-btn:hover {
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .feed-filter-btn.active {
+            background: var(--accent-primary);
+            color: var(--text-primary);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .more-posts-btn,
+        .more-my-posts-btn {
+            padding: 8px 16px;
             background: #3b82f6;
             color: var(--text-primary);
             border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 15px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .more-posts-btn:hover {
+        .more-posts-btn:hover,
+        .more-my-posts-btn:hover {
             background: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
         }
 
-        .more-posts-btn:active {
+        .more-posts-btn:active,
+        .more-my-posts-btn:active {
             transform: translateY(0);
         }
 
@@ -824,35 +884,35 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 4px;
-            gap: 12px;
+            margin-bottom: 2px;
+            gap: 8px;
         }
 
         .feed-name {
             color: var(--text-primary);
             font-weight: 600;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .feed-time {
             color: var(--text-tertiary);
-            font-size: 11px;
+            font-size: 10px;
             white-space: nowrap;
         }
 
         .feed-content {
             color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 6px;
+            font-size: 12px;
+            line-height: 1.35;
+            margin-bottom: 2px;
             word-break: break-word;
         }
 
         .activity-icons {
             display: flex;
-            gap: 4px;
-            font-size: 14px;
-            margin-top: 6px;
+            gap: 3px;
+            font-size: 12px;
+            margin-top: 2px;
         }
 
         .post-actions {
@@ -1706,7 +1766,14 @@
 
                     <!-- Community Feed -->
                     <div class="feed">
-                        <h3>💬 All Community Posts</h3>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="margin: 0;">💬 All Community Posts</h3>
+                            <div class="feed-filter-tabs">
+                                <button class="feed-filter-btn active" data-filter="all" title="Show all posts">All</button>
+                                <button class="feed-filter-btn" data-filter="others" title="Show others' posts only">Others</button>
+                                <button class="feed-filter-btn" data-filter="mine" title="Show your posts">Mine</button>
+                            </div>
+                        </div>
                         <div id="feed-container">
                             <div class="feed-empty">No posts yet. Be the first! 🚀</div>
                         </div>
@@ -1828,6 +1895,7 @@
         let currentUser = null;
         let unsubscribers = [];
         let winnerShown = false;
+        let currentFeedPosts = [];
 
         // Global error handler
         window.addEventListener('error', (event) => {
@@ -2855,17 +2923,32 @@
             }).join('');
         }
 
-        function renderCommunityFeed(posts) {
+        let currentFeedFilter = 'all';
+
+        function renderCommunityFeed(posts, filter = 'all') {
+            currentFeedFilter = filter;
             const container = document.getElementById('feed-container');
-            if (!posts.length) {
-                container.innerHTML = '<div class="feed-empty">No posts yet. Be the first! 🚀</div>';
+
+            // Filter posts based on selected filter
+            let filteredPosts = posts;
+            if (filter === 'others') {
+                filteredPosts = posts.filter(p => !currentUser || p.uid !== currentUser.uid);
+            } else if (filter === 'mine') {
+                filteredPosts = posts.filter(p => currentUser && p.uid === currentUser.uid);
+            }
+
+            if (!filteredPosts.length) {
+                const emptyMsg = filter === 'mine' ? 'You haven\'t posted yet. Share your first accomplishment! 🚀' :
+                                 filter === 'others' ? 'No posts from others yet. 🚀' :
+                                 'No posts yet. Be the first! 🚀';
+                container.innerHTML = `<div class="feed-empty">${emptyMsg}</div>`;
                 return;
             }
 
             const today = getTodayDate();
             const postsByDate = {};
 
-            posts.forEach(p => {
+            filteredPosts.forEach(p => {
                 if (!postsByDate[p.date]) {
                     postsByDate[p.date] = [];
                 }
@@ -2895,7 +2978,7 @@
 
             for (const item of allPostItems) {
                 if (item.type === 'date-header') {
-                    html += `<div style="padding: 16px 0 12px 0; text-align: center; border-top: 1px solid #3a3a3a;">
+                    html += `<div style="padding: 8px 0 6px 0; text-align: center; border-top: 1px solid var(--border-light);">
                         <div style="color: #6b7280; font-size: 12px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; display: inline-block; background: #0f0f0f; padding: 0 12px;">${item.label}</div>
                     </div>`;
                 } else if (item.type === 'post') {
@@ -2931,8 +3014,8 @@
             // Add "More" button if there are more posts
             if (hasMore) {
                 html += `
-                    <div style="text-align: center; margin-top: 24px; padding: 20px 0; border-top: 1px solid #3a3a3a;">
-                        <button class="more-posts-btn" onclick="expandFeedPosts()">
+                    <div style="text-align: center; margin-top: 24px; padding: 20px 0; border-top: 1px solid var(--border-light);">
+                        <button class="more-posts-btn" data-action="expand-feed" data-target="feed-container">
                             📖 Show More Posts (${totalPostCount - POSTS_PER_PAGE} more)
                         </button>
                     </div>
@@ -2996,27 +3079,26 @@
                 const isHidden = i >= POSTS_PER_PAGE ? ' my-feed-item-hidden' : '';
 
                 if (date !== lastDate) {
-                    html += `<div style="padding: 16px 0 12px 0; text-align: center; border-top: 1px solid #3a3a3a;">
+                    html += `<div style="padding: 8px 0 6px 0; text-align: center; border-top: 1px solid var(--border-light);">
                         <div style="color: #6b7280; font-size: 12px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; display: inline-block; background: #0f0f0f; padding: 0 12px;">${dateLabel}</div>
                     </div>`;
                     lastDate = date;
                 }
 
                 html += `
-                    <div class="feed-item${isHidden}" data-my-post-index="${i}" data-post-id="${p.id || ''}">
-                        <div class="feed-avatar" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);">👤</div>
-                        <div class="feed-message-group">
-                            <div class="feed-header" style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
-                                <div>
-                                    <div class="feed-name">You</div>
-                                    <div class="feed-time">${time}</div>
+                    <div class="feed-item feed-item-personal${isHidden}" data-my-post-index="${i}" data-post-id="${p.id || ''}">
+                        <div class="my-post-content">
+                            <div class="my-post-header" style="display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 4px;">
+                                <div style="display: flex; gap: 6px; align-items: center;">
+                                    <span style="color: #22c55e; font-weight: 700; font-size: 10px;">YOU</span>
+                                    <div class="feed-time" style="margin: 0;">${time}</div>
                                 </div>
-                                <div class="post-actions-inline" style="display: flex; gap: 4px; white-space: nowrap;">
+                                <div class="post-actions-inline" style="display: flex; gap: 3px; white-space: nowrap;">
                                     <button class="post-action-btn-small edit-btn-small" data-post-id="${p.id || ''}" data-action="edit" title="Edit post">✏️</button>
                                     <button class="post-action-btn-small delete-btn-small" data-post-id="${p.id || ''}" data-action="delete" title="Delete post">🗑️</button>
                                 </div>
                             </div>
-                            <div class="feed-content" style="white-space: pre-wrap;">${formattedText}</div>
+                            <div class="feed-content" style="white-space: pre-wrap; margin: 0;">${formattedText}</div>
                             ${icons ? `<div class="activity-icons">${icons}</div>` : ''}
                         </div>
                     </div>
@@ -3027,8 +3109,8 @@
 
             if (hasMore) {
                 html += `
-                    <div style="text-align: center; margin-top: 24px; padding: 20px 0; border-top: 1px solid #3a3a3a;">
-                        <button class="more-my-posts-btn" onclick="expandMyPosts()">
+                    <div style="text-align: center; margin-top: 24px; padding: 20px 0; border-top: 1px solid var(--border-light);">
+                        <button class="more-my-posts-btn" data-action="expand-my-posts" data-target="my-posts-container">
                             📖 Show More of My Posts (${totalPosts - POSTS_PER_PAGE} more)
                         </button>
                     </div>
@@ -3184,7 +3266,17 @@
             // Subscribe to feed
             unsubscribers.push(subscribeToTodaysFeed(snap => {
                 const posts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-                renderCommunityFeed(posts);
+                currentFeedPosts = posts;
+                const savedFilter = localStorage.getItem('feedFilter') || 'all';
+                renderCommunityFeed(posts, savedFilter);
+
+                // Update active filter button
+                document.querySelectorAll('.feed-filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-filter') === savedFilter) {
+                        btn.classList.add('active');
+                    }
+                });
             }));
 
             // Subscribe to own member
@@ -3322,8 +3414,9 @@
         if (startSeasonBtn) startSeasonBtn.addEventListener('click', handleStartSeason);
         if (endSeasonBtn) endSeasonBtn.addEventListener('click', handleEndSeason);
 
-        // Event delegation for small action buttons (edit/delete on my posts)
+        // Event delegation for action buttons (edit/delete on posts, show more posts, feed filters)
         document.addEventListener('click', async (e) => {
+            // Handle edit/delete buttons on posts
             if (e.target.classList.contains('post-action-btn-small')) {
                 const postId = e.target.getAttribute('data-post-id');
                 const action = e.target.getAttribute('data-action');
@@ -3332,6 +3425,42 @@
                     await openEditModal(postId);
                 } else if (action === 'delete') {
                     await deletePost(postId, 'my');
+                }
+            }
+
+            // Handle "Show More" buttons
+            if (e.target.classList.contains('more-posts-btn')) {
+                const action = e.target.getAttribute('data-action');
+                if (action === 'expand-feed') {
+                    expandFeedPosts();
+                }
+            }
+
+            if (e.target.classList.contains('more-my-posts-btn')) {
+                const action = e.target.getAttribute('data-action');
+                if (action === 'expand-my-posts') {
+                    expandMyPosts();
+                }
+            }
+
+            // Handle feed filter buttons
+            if (e.target.classList.contains('feed-filter-btn')) {
+                const selectedFilter = e.target.getAttribute('data-filter');
+
+                // Update active button
+                document.querySelectorAll('.feed-filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                e.target.classList.add('active');
+
+                // Save filter preference
+                localStorage.setItem('feedFilter', selectedFilter);
+
+                // Re-render feed with new filter
+                // Get the current posts from the subscription (they're already loaded)
+                const feedContainer = document.getElementById('feed-container');
+                if (feedContainer && currentFeedPosts) {
+                    renderCommunityFeed(currentFeedPosts, selectedFilter);
                 }
             }
         });
